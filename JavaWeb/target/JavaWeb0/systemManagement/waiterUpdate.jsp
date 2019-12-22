@@ -59,7 +59,7 @@
                 && /^1[3|4|5|8][0-9]\d{4,8}$/.test(waiterPhoneNumber)
             ) {
 
-                window.location.href="/systemManagement/waiterUpdate.jsp?mop=5&" +url;
+                window.location.href=encodeURI("/systemManagement/waiterUpdate.jsp?mop=5&" +url);
             }return false ;
 
         }
@@ -74,7 +74,7 @@
                 window.location.href.split("&")[6] + "&" +
                 window.location.href.split("&")[7] + "&" +
                 window.location.href.split("&")[8];
-            window.location.href="/systemManagement/waiterUpdate.jsp?mop=6&" +urln;
+            window.location.href= encodeURI("/systemManagement/waiterUpdate.jsp?mop=6&" +urln);
         }
 
         function returnm() {
@@ -198,7 +198,7 @@
                         </tr>
                         <tr>
                             <td>姓名</td>
-                            <td><%=request.getParameter("waiterName")%></td>
+                            <td><%= request.getParameter("waiterName")%></td>
                         </tr>
                         <tr>
                             <td>出生日期</td>
