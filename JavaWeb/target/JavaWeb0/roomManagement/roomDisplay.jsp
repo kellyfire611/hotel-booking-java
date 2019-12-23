@@ -12,7 +12,7 @@
 <%
 response.setContentType("text/html;charset=UTF-8");
     request.setCharacterEncoding("utf-8");
-    String rs1[] = {"空","非空","任意"}  ;
+    String rs1[] = {"còn_trống","đã_có_người_thuê","Tất_cả"}  ;
     Map<String, String[]> map =request.getParameterMap() ;
 
 
@@ -88,14 +88,14 @@ response.setContentType("text/html;charset=UTF-8");
 <body>
 <div class="pusher">
     <div class="ui container">
-        <h2 class="ui header">客房概览</h2>
+        <h2 class="ui header">Thông tin Tổng quan</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical  menu">
                     <div class="item">
                         <a class="active title">
                             <i class="dropdown icon"></i>
-                            状态
+                            Tình trạng
                         </a>
                         <div class="active content">
                             <div class="ui form">
@@ -120,10 +120,10 @@ response.setContentType("text/html;charset=UTF-8");
                     <div class="ui icon input">
                         <input class="prompt" type="text" id="roomid" <% if(!search.equals("")){ %>
                                value=<%=search%>
-                                   <% }%> placeholder="Search Rooms...">
+                                   <% }%> placeholder="Tìm kiếm Phòng...">
 
                     </div>
-                    <div class="ui button" onclick="fun2()"> <i class="search icon"></i>房间号检索</div>
+                    <div class="ui button" onclick="fun2()"> <i class="search icon"></i>Tìm theo Số phòng</div>
                 </div>
 
                 <br>
@@ -136,12 +136,12 @@ response.setContentType("text/html;charset=UTF-8");
                                 <%=roominfo.getRoomStatus()%>
                             </a>
                             <img src=<%=roomTypeMap.get(roominfo.getRoomType()).getUrl()%> width="400" height="300"
-                                 onclick="<%=roominfo.getRoomStatus().equals("非空")?"":"fun1('"+roominfo.getRoomType()+"','"+roominfo.getRoomNumber()+"')" %> ">
+                                 onclick="<%=roominfo.getRoomStatus().equals("đã_có_người_thuê")?"":"fun1('"+roominfo.getRoomType()+"','"+roominfo.getRoomNumber()+"')" %> ">
                         </div>
                         <div class="extra">
                             roomid:<%=roominfo.getRoomNumber()%><br>
-                            房型:<%=roominfo.getRoomType()%><br>
-                            <% if(roominfo.getRoomStatus().equals("非空")){
+                            Loại phòng:<%=roominfo.getRoomType()%><br>
+                            <% if(roominfo.getRoomStatus().equals("đã_có_người_thuê")){
                                 OrderView view = Query.getFullOrderViews(roominfo.getRoomNumber());
                             %>
                             入住用户:<%=view.getCustomer()%><br>

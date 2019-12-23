@@ -7,9 +7,9 @@ public class OrderView {
 
 //        <tr><th>订单号</th>
     private String orderNumder;
-//        <th>预定客户</th>
+//        <th>Đặt phòng客户</th>
     private String customer;
-//        <th>预定房间</th>
+//        <th>Đặt phòng房间</th>
     private String  roomNumber;
 //        <th>房间类型</th>
     private String roomType;

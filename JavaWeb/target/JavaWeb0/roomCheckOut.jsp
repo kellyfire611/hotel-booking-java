@@ -99,7 +99,7 @@ response.setContentType("text/html;charset=UTF-8");
 
                 <%  if(op==1){ %>
                 <form class="ui form" onsubmit="return fun(this)">
-                    <h4 class="ui dividing header">房间选择</h4>
+                    <h4 class="ui dividing header">Lựa chọn Phòng</h4>
                     <div class="four wide column">
                         <label>Room</label>
 

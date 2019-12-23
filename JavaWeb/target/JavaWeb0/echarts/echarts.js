@@ -60136,10 +60136,10 @@ function inLineRange(p, range) {
     return range[0] <= p && p <= range[1];
 }
 
-function lineIntersectPolygon(lx, ly, l2x, l2y, points) {
+function lineIntersectPolygon(tkadung, ly, l2x, l2y, points) {
     for (var i = 0, p2 = points[points.length - 1]; i < points.length; i++) {
         var p = points[i];
-        if (lineIntersect(lx, ly, l2x, l2y, p[0], p[1], p2[0], p2[1])) {
+        if (lineIntersect(tkadung, ly, l2x, l2y, p[0], p[1], p2[0], p2[1])) {
             return true;
         }
         p2 = p;

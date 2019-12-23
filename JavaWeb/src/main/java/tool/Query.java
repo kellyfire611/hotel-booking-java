@@ -13,7 +13,7 @@ import java.util.HashMap;
 //数据库查询功能
 public class Query {
 
-    //房间指定型号对应的空和非空房间数量
+    //房间指定型号对应的còn_trống和đã_có_người_thuê房间数量
     public static ArrayList<Integer> getNumofRoom(String roomType){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -22,14 +22,14 @@ public class Query {
         try{
             connection =  DataBase.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='空' and c.roomType='"+roomType+"'");
+                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='còn_trống' and c.roomType='"+roomType+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 list.add( resultSet.getInt("count(*)")) ;
             }
             preparedStatement = connection.prepareStatement(
-                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='非空' ");
+                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='đã_có_người_thuê' and c.roomType='"+roomType+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -43,7 +43,7 @@ public class Query {
         return null ;
     }
 
-    //获得已入住的orderview
+    //获得Đã đăng ký的orderview
     public static OrderView getFullOrderViews(String roomid) {
         ArrayList<OrderView> fullOrderViews = new ArrayList<OrderView>();
         Connection connection = null;
@@ -53,7 +53,7 @@ public class Query {
         try {
             connection =  DataBase.getConnection();
 
-            preparedStatement = connection.prepareStatement("select * from orderviews where roomNumber='"+roomid+"' and orderStatus='已入住'");
+            preparedStatement = connection.prepareStatement("select * from orderviews where roomNumber='"+roomid+"' and orderStatus='Đã đăng ký'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
 
@@ -207,7 +207,7 @@ public class Query {
             if(!search.equals("")){
                 sql ="select * from room where roomNumber like '%"+search+"%'" ;
 
-            }else if(s.equals("")||s.equals("任意"))
+            }else if(s.equals("")||s.equals("Tất_cả"))
                 sql="select * from room " ;
             else
                 sql="select * from room where roomStatus='"+s+"'";
@@ -227,7 +227,7 @@ public class Query {
     }
 
 
-    //*****************lx****************
+    //*****************tkadung****************
     public static  ArrayList<String> searchFullRooms() {
 
         ArrayList<String>fullRooms =new ArrayList<String>() ;
@@ -236,7 +236,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='非空' " ;
+            String sql ="select roomNumber from room where roomStatus='đã_có_người_thuê' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -255,7 +255,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='空' and roomType='"+roomtype+"'" ;
+            String sql ="select roomNumber from room where roomStatus='còn_trống' and roomType='"+roomtype+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -295,7 +295,7 @@ public class Query {
 
         return allRooms ;
     }
-    //查询所有订单信息
+    //查询Tất cả信息
     public static ArrayList<Order> getAllOrders() {
         ArrayList<Order> allOrders = new ArrayList<Order>();
         Connection connection = null;
@@ -448,7 +448,7 @@ public class Query {
     }
 
 
-    //得到页面显示的预定订单
+    //得到页面显示的Tình hình Đặt phòng
     public static ArrayList<OrderView> getAllOrderViews(String orderStatus) {
         ArrayList<OrderView> allOrderViews = new ArrayList<OrderView>();
         Connection connection = null;
@@ -515,11 +515,11 @@ public class Query {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String[]arr = s3.split("-") ;
-        if(s1.equals("任意"))
+        if(s1.equals("Tất_cả"))
             s1="" ;
-        if(s2.equals("任意"))
+        if(s2.equals("Tất_cả"))
             s2="" ;
-        if(s3.equals("任意"))
+        if(s3.equals("Tất_cả"))
             s3="" ;
         try {
             connection =  DataBase.getConnection();
@@ -600,7 +600,7 @@ public class Query {
             preparedStatement.execute();
 
 
-            System.out.println("---++++++++++续费订单插入");
+            System.out.println("---++++++++++Tình hình Renew插入");
         } catch(Exception exception) {
             exception.printStackTrace();
         } finally {
@@ -634,7 +634,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="update orders set orderStatus='已退房' where orderNumber='"+orderNumber+"'" ;
+            String sql ="update orders set orderStatus='Đã thanh toán' where orderNumber='"+orderNumber+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
         } catch(Exception exception) {
@@ -649,7 +649,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select * from orders where roomNumber='"+roomid+"' and orderStatus='已入住'" ;
+            String sql ="select * from orders where roomNumber='"+roomid+"' and orderStatus='Đã đăng ký'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -817,7 +817,7 @@ public class Query {
         }
     }
 
-    //查询续费订单(timeextension tt, orders od, customers ct)
+    //查询Tình hình Renew(timeextension tt, orders od, customers ct)
     public static ArrayList<ExtensionOrderView> getAllTimeExtensionOrders() {
         ArrayList<ExtensionOrderView> allTimeExtensionOrders = new ArrayList<ExtensionOrderView>() ;
         Connection connection = null;
@@ -867,7 +867,7 @@ public class Query {
             exception.printStackTrace();
         }
     }
-    //添加新的房型
+    //添加新的Loại phòng
     public static void inserRoomType(RoomTypeAndPrice roomTypeAndPrice) {
 
     }

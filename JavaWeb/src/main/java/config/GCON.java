@@ -24,7 +24,7 @@ public class GCON {
 
     public static int status = 1 ; //1是Quản trị Hệ thống  0 是Quản trị Khách sạn;
     //订单
-    //查询所有订单信息
+    //查询Tất cả信息
     public static final String SQL_ALL_ORDERS = "SELECT * FROM orders";
     //查询Quản lý员
     public static final String SQL_ALL_ADMINS = "SELECT * FROM systemAdministrator";
@@ -34,7 +34,7 @@ public class GCON {
 
     public static final String SQL_ALL_WAITERS ="SELECT * FROM waiter" ;
 
-    //查询所有续费订单
+    //查询所有Tình hình Renew
     public static final String SQL_ALL_TIME_EXTENSION_ORDERS = "SELECT * FROM timeextension";
 
 

@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: chironyf
+  User: lhsangyf
   Date: 2017/12/26
   Time: 08:41
   To change this template use File | Settings | File Templates.
@@ -140,7 +140,7 @@ response.setContentType("text/html;charset=UTF-8");
 
                 <%} else if (op == 4) {
                     Room newRoom = new Room();
-                    newRoom.setRoomStatus("空");
+                    newRoom.setRoomStatus("còn_trống");
                     newRoom.setRoomNumber(request.getParameter("roomNumber"));
                     newRoom.setRoomType(request.getParameter("roomType"));
                     newRoom.setRemarks(request.getParameter("remarks"));

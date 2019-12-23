@@ -106,7 +106,7 @@ request.setCharacterEncoding("utf-8");
         }
         else if(op==3){
             // 添加订单
-            // 添加触发器 订单导致用户金额提高 续费订单 导致金额提升
+            // 添加触发器 订单导致用户金额提高 Tình hình Renew 导致金额提升
             int num =getOrderNum()+1 ;
             String orderNumber = String.format("%03d", num) ;
             java.util.Date day=new java.util.Date();
@@ -128,7 +128,7 @@ request.setCharacterEncoding("utf-8");
             System.out.println(date);
             System.out.println(date1);
 
-            Order order =new Order(orderNumber,"已入住",map.get("idcard")[0],
+            Order order =new Order(orderNumber,"Đã đăng ký",map.get("idcard")[0],
                     map.get("roomid")[0],date,date1, (int)Double.parseDouble(map.get("pay")[0]) ,request.getSession().getAttribute("hoteladmin").toString(),
                     "",date) ;
             insertOrder(order);
@@ -137,11 +137,11 @@ request.setCharacterEncoding("utf-8");
         else if(op==4){
             // 续费
             /**
-             * Gởi dữ liệu续费订单
+             * Gởi dữ liệuTình hình Renew
              * 订单Gởi dữ liệu后要修改order表的退房ngày期 ;
              */
             TimeExtension renew = (TimeExtension) request.getSession().getAttribute("renew");
-            //插入续费订单 ;
+            //插入Tình hình Renew ;
             Query.addRenew(renew) ;
             //修改相应的orderngày期 ;
             Date newdate = renew.getNewExpiryDate() ;

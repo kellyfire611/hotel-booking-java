@@ -15,7 +15,7 @@ response.setContentType("text/html;charset=UTF-8");
     TimeExtension renew=null ;
     if(op==2){
         /**现在获得的只有 房间号 和 续费天数
-         * 需要通过房间号先获得续费订单的订单号,
+         * 需要通过房间号先获得Tình hình Renew的订单号,
          * 通过订单号获得获得房间编号、房间入住和到期时间
          * 通过房间编号获得房间价格
          *
@@ -32,7 +32,7 @@ response.setContentType("text/html;charset=UTF-8");
         calendar.add(5, Integer.parseInt(map.get("time")[0]));
         //算出新截止时间
         newdate = new Date(calendar.getTime().getTime()) ;
-        //算出 价格 =单价*折扣*天数 ;
+        //算出 Giá =单价*折扣*天数 ;
         double discount = searchDiscount(order.getCustomerIDCard());
 
         int price = 1  ;
@@ -135,7 +135,7 @@ response.setContentType("text/html;charset=UTF-8");
 
                 <%  if(op==1){ %>
                 <form class="ui form" onsubmit="return fun2(this)">
-                    <h4 class="ui dividing header">房间选择</h4>
+                    <h4 class="ui dividing header">Lựa chọn Phòng</h4>
                     <div class="four wide column">
                         <label>Room</label>
 
@@ -172,7 +172,7 @@ response.setContentType("text/html;charset=UTF-8");
 
                     </div>
                     <br/>
-                    <div class="ui right submit floated button" tabindex="0" >Submit Order</div>
+                    <div class="ui right submit floated button" tabindex="0" >Đặt phòng</div>
                 </form>
                 <% } else if(op==2){ %>
 
@@ -185,7 +185,7 @@ response.setContentType("text/html;charset=UTF-8");
                     </tr></thead>
                     <tbody>
                     <tr>
-                        <td>续费订单编号</td>
+                        <td>Tình hình Renew编号</td>
                         <td><%=renew.getOperatingID() %></td>
                     </tr>
                     <tr>
@@ -212,7 +212,7 @@ response.setContentType("text/html;charset=UTF-8");
                 <div class="ui right floated labeled button" tabindex="0">
                     <a class="ui basic right pointing label">
                         <%-- 去数据库查询价格 * 天数 *相应的折扣 --%>
-                        ¥<%=renew.getAddedMoney() %>
+                        $<%=renew.getAddedMoney() %>
                     </a>
                     <div class="ui right button" onclick="fun1()">
                         <i class="shopping icon"></i> 支付

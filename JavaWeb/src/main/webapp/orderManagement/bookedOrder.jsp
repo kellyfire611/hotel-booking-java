@@ -3,7 +3,7 @@
 <%@ page import="display.OrderView" %>
 <%@ page import="tool.Query" %><%--
   Created by IntelliJ IDEA.
-  User: chironyf
+  User: lhsangyf
   Date: 2017/12/26
   Time: 09:34
   To change this template use File | Settings | File Templates.
@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>所有订单</title>
+    <title>Tất cả</title>
     <script>
         function nextPage(maxP) {
 
@@ -92,7 +92,7 @@
 
     ArrayList<OrderView> orderViews = Query.getAllOrderViews("已预订");
 
-    //如果订单非空
+    //如果订单đã_có_người_thuê
     if (orderViews.size() != 0) {
 //        out.print("size---" + orderViews.size());
 
@@ -130,16 +130,16 @@
 <table class="ui sortable celled table">
     <thead>
     <tr class="center aligned"><th class="sorted descending">订单号</th>
-        <th>订单状态</th>
+        <th>订单Tình trạng</th>
         <th>客户Tên</th>
         <th>创建时间</th>
-        <th>预定房间</th>
+        <th>Đặt phòng房间</th>
         <th>房间类型</th>
         <th>入住时间</th>
         <th>离店时间</th>
         <th>入住天数</th>
         <th>Số điện thoại</th>
-        <th>价格</th>
+        <th>Giá</th>
     </tr></thead>
 
     <tbody>
@@ -265,7 +265,7 @@
         <br>
         <br>
         <br>
-        <h1 class="ui red header"><i class="folder open icon"></i>没有预定订单!!!</h1>
+        <h1 class="ui red header"><i class="folder open icon"></i>Không có dữ liệu Đặt phòng!!!</h1>
     </div>
 </div>
 

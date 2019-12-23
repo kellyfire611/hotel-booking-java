@@ -2,7 +2,7 @@
 <%@ page import="display.ExtensionOrderView" %>
 <%@ page import="tool.Query" %><%--
   Created by IntelliJ IDEA.
-  User: chironyf
+  User: lhsangyf
   Date: 2017/12/26
   Time: 09:35
   To change this template use File | Settings | File Templates.
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>续费订单</title>
+    <title>Tình hình Renew</title>
     <script>
         function nextPage(maxP) {
 
@@ -89,7 +89,7 @@
 <%
     ArrayList<ExtensionOrderView> extensionOrderViews = Query.getAllTimeExtensionOrders();
 
-    //如果订单非空
+    //如果订单đã_có_người_thuê
     if (extensionOrderViews.size() != 0) {
 
         int currentOrderSize = extensionOrderViews.size();
@@ -240,7 +240,7 @@
         <br>
         <br>
         <br>
-        <h1 class="ui red header"><i class="folder open icon"></i>没有续费订单!!!</h1>
+        <h1 class="ui red header"><i class="folder open icon"></i>没有Tình hình Renew!!!</h1>
     </div>
 </div>
 

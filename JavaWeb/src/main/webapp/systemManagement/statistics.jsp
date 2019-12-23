@@ -9,7 +9,7 @@
 <%@ page import="tool.TraverseDate" %>
 <%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
-  User: chironyf
+  User: lhsangyf
   Date: 2018/1/5
   Time: 13:02
   To change this template use File | Settings | File Templates.
@@ -17,21 +17,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    //预定订单数量
+    //Tình hình Đặt phòng数量
     int bookedOrderNumber = 0;
-    //入住订单数量
+    //Tình hình Check-in数量
     int checkInOrderNumber = 0;
     //退房订单数量
     int checkOutOrderNumber = 0;
-    //续费订单数量
+    //Tình hình Renew数量
     int timeExtensionOrderNumber = Query.getAllTimeExtensionOrders().size();
     //订单视图
     ArrayList<OrderView> allOrders = Query.getAllOrderViews("");
 
     for (int i = 0; i < allOrders.size(); i++) {
-        if (allOrders.get(i).getOrderStatus().equals("已入住")) {
+        if (allOrders.get(i).getOrderStatus().equals("Đã đăng ký")) {
             checkInOrderNumber++;
-        } else if (allOrders.get(i).getOrderStatus().equals("已退房")) {
+        } else if (allOrders.get(i).getOrderStatus().equals("Đã thanh toán")) {
             checkOutOrderNumber++;
         } else if (allOrders.get(i).getOrderStatus().equals("已预订")) {
             bookedOrderNumber++;
@@ -39,15 +39,15 @@
     }
 
 
-//--------------酒店不同房型Đặt phòng数量时间线------------------ //
+//--------------酒店不同Loại phòngĐặt phòng数量时间线------------------ //
 
     ArrayList<String> weekRoomType = new ArrayList<String>();
 
-    weekRoomType.add("商务间(单人/双人)");
-    weekRoomType.add("大床房(单人/双人)");
-    weekRoomType.add("标准间(单人)");
-    weekRoomType.add("标准间(双人)");
-    weekRoomType.add("高档套房(单人/双人)");
+    weekRoomType.add("商务间(Đơn/Đôi)");
+    weekRoomType.add("大床房(Đơn/Đôi)");
+    weekRoomType.add("标准间(Đơn)");
+    weekRoomType.add("标准间(Đôi)");
+    weekRoomType.add("高档套房(Đơn/Đôi)");
     //获取所有的订单，view根据视图倒序排列
     ArrayList<OrderView> weekView = Query.getAllOrderViews("");
 
@@ -56,7 +56,7 @@
     String weekEndDate = weekView.get(0).getOrderTime().toString();
 
     ArrayList<String> orderDateSequence = (ArrayList<String>)TraverseDate.getEveryday(weekBeginDate, weekEndDate);
-    //ngày期->房间->预定数量
+    //ngày期->房间->Đặt phòng数量
     TreeMap<String, TreeMap<String, Integer>> weekData =  new TreeMap<String, TreeMap<String, Integer>>();
 
     for (int i = 0; i < orderDateSequence.size(); i++) {
@@ -152,12 +152,12 @@
         if (!roomCounts.containsKey(roomsNew.get(i).getRoomType())) {
             roomCounts.put(roomsNew.get(i).getRoomType(), new RoomCountValue(0, 0));
         }
-        if (roomsNew.get(i).getRoomStatus().equals("空")) {
+        if (roomsNew.get(i).getRoomStatus().equals("còn_trống")) {
             int oldEmpy = roomCounts.get(roomsNew.get(i).getRoomType()).getEmptyNum();
             int oldFull = roomCounts.get(roomsNew.get(i).getRoomType()).getFullNum();
             roomCounts.put(roomsNew.get(i).getRoomType(), new RoomCountValue(oldEmpy + 1, oldFull));
         }
-        if (roomsNew.get(i).getRoomStatus().equals("非空")) {
+        if (roomsNew.get(i).getRoomStatus().equals("đã_có_người_thuê")) {
             int oldEmpy = roomCounts.get(roomsNew.get(i).getRoomType()).getEmptyNum();
             int oldFull = roomCounts.get(roomsNew.get(i).getRoomType()).getFullNum();
             roomCounts.put(roomsNew.get(i).getRoomType(), new RoomCountValue(oldEmpy, oldFull + 1));
@@ -253,7 +253,7 @@
 
         <div class="ui column grid">
             <%--//订单统计--%>
-            <div class="nine wide column">
+            <div class="nine wide">
 
                 <%--<div id="ods" style="width: 520px;height:280px;"></div>--%>
                 <%--<script type="text/javascript">--%>
@@ -270,7 +270,7 @@
                             <%--data:['订单量']--%>
                         <%--},--%>
                         <%--xAxis: {--%>
-                            <%--data: ["已预订", "已入住","已退房","续费"]--%>
+                            <%--data: ["已预订", "Đã đăng ký","Đã thanh toán","续费"]--%>
                         <%--},--%>
                         <%--yAxis: {},--%>
                         <%--series: [{--%>
@@ -285,7 +285,17 @@
                 <div id="weekTypeNum" style="width:100%;height:36%;"></div>
 
                 <script>
-                    var weekChart = echarts.init(document.getElementById("weekTypeNum"));
+                    var mainContainerweekTypeNum = document.getElementById("weekTypeNum");
+		var resizeMainContainerweekTypeNum = function () {
+			mainContainerweekTypeNum.style.width = window.innerWidth+'px';
+			mainContainerweekTypeNum.style.height = window.innerHeight*0.8+'px';
+		};
+		resizeMainContainerweekTypeNum();
+		var weekChart = echarts.init(mainContainerweekTypeNum);
+		
+
+                    
+//                    var weekChart = echarts.init(document.getElementById("weekTypeNum"));
                     weekChartOption = {
                         title: {
                             text: '',
@@ -372,11 +382,19 @@
 
             </div>
             <%--//Nhân viên业绩统计--%>
-            <div class="seven wide column">
+            <div class="seven wide">
                 <div id="waiter" style="width: 90%;height:36%;"></div>
                 <script>
 
-                    var waiterChart = echarts.init(document.getElementById('waiter'));
+var mainContainerwaiterChart = document.getElementById("waiter");
+		var resizeMainContainerwaiterChart = function () {
+			mainContainerwaiterChart.style.width = window.innerWidth+'px';
+			mainContainerwaiterChart.style.height = window.innerHeight*0.8+'px';
+		};
+		resizeMainContainerwaiterChart();
+		var waiterChart = echarts.init(mainContainerwaiterChart);
+                
+//                    var waiterChart = echarts.init(document.getElementById('waiter'));
                     var waiterData = genData();
 
                     waiterOption = {
@@ -442,11 +460,18 @@
             </div>
 
             <%--//营收数据统计--%>
-            <div class="nine wide column">
+            <div class="nine wide">
                 <div id="income" style="width: 108%;height:42%;"></div>
                 <script>
-
-                    var incomeChart = echarts.init(document.getElementById("income"));
+var mainContainerincomeChart = document.getElementById("income");
+		var resizeMainContainerincomeChart = function () {
+			mainContainerincomeChart.style.width = window.innerWidth+'px';
+			mainContainerincomeChart.style.height = window.innerHeight*0.8+'px';
+		};
+		resizeMainContainerincomeChart();
+		var incomeChart = echarts.init(mainContainerincomeChart);
+                
+//                    var incomeChart = echarts.init(document.getElementById("income"));
 
                     option = {
 
@@ -511,11 +536,18 @@
             </div>
 
             <%--//酒店房间数据统计--%>
-            <div class="seven wide column">
+            <div class="seven wide">
                 <div id="rooms" style="width:90%;height:38%;"></div>
                 <script type="text/javascript">
 
-                    var roomChart = echarts.init(document.getElementById("rooms"));
+var mainContainerroomChart = document.getElementById("rooms");
+		var resizeMainContainerroomChart = function () {
+			mainContainerroomChart.style.width = window.innerWidth+'px';
+			mainContainerroomChart.style.height = window.innerHeight*0.8+'px';
+		};
+		resizeMainContainerroomChart();
+		var roomChart = echarts.init(mainContainerroomChart);
+//                    var roomChart = echarts.init(document.getElementById("rooms"));
 
                     roomOption = {
                         title : {
@@ -528,7 +560,7 @@
                             }
                         },
                         legend: {
-                            data: ['空房', '非空房']
+                            data: ['còn_trống房', 'đã_có_người_thuê房']
                         },
                         grid: {
                             left: '3%',
@@ -545,7 +577,7 @@
                         },
                         series: [
                             {
-                                name: '空房',
+                                name: 'còn_trống房',
                                 type: 'bar',
                                 stack: '总量',
                                 label: {
@@ -557,7 +589,7 @@
                                 data: <%=roomNumEmpty%>
                             },
                             {
-                                name: '非空房',
+                                name: 'đã_có_người_thuê房',
                                 type: 'bar',
                                 stack: '总量',
                                 label: {
@@ -573,6 +605,21 @@
                     roomChart.setOption(roomOption);
 
                     console.log(<%=roomNumEmpty%>)
+                    
+                    $(window).on('resize',function(){//
+			//屏幕大小自适应，重置容器高宽
+		    resizeMainContainerweekTypeNum();
+		    weekChart.resize();
+                    
+                    resizeMainContainerwaiterChart();
+                    waiterChart.resize();
+                    
+                    resizeMainContainerincomeChart();
+                    incomeChart.resize();
+                    
+                    resizeMainContainerroomChart();
+                    roomChart.resize();
+		});
                 </script>
             </div>
 

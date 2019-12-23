@@ -101,14 +101,14 @@ response.setContentType("text/html;charset=UTF-8");
     </div>
     <div class="ui simple dropdown item">
         <i class="browser icon"></i>
-        订单浏览
+        Thống kê
         <i class="dropdown icon"></i>
         <div class="menu">
-            <a class="item" href="/OrderManage?op=1"><i class="book icon"></i>预定订单</a>
-            <a class="item" href="/OrderManage?op=2"><i class="file icon"></i>入住订单</a>
-            <a class="item" href="/OrderManage?op=3"><i class="file text outline icon"></i>续费订单</a>
-            <a class="item" href="/OrderManage?op=4"><i class="file archive outline icon"></i>历史订单</a>
-            <a class="item" href="/OrderManage?op=5"><i class="folder open icon"></i>所有订单</a>
+            <a class="item" href="/OrderManage?op=1"><i class="book icon"></i>Tình hình Đặt phòng</a>
+            <a class="item" href="/OrderManage?op=2"><i class="file icon"></i>Tình hình Check-in</a>
+            <a class="item" href="/OrderManage?op=3"><i class="file text outline icon"></i>Tình hình Renew</a>
+            <a class="item" href="/OrderManage?op=4"><i class="file archive outline icon"></i>Lịch sử Đặt phòng</a>
+            <a class="item" href="/OrderManage?op=5"><i class="folder open icon"></i>Tất cả</a>
         </div>
     </div>
     <div class="right menu">

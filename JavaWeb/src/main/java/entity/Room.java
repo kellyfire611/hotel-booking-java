@@ -11,7 +11,7 @@ public class Room {
     private String remarks;
 
     public Room() {
-        this.roomStatus = "空";
+        this.roomStatus = "còn_trống";
         this.remarks = "";
 
     }

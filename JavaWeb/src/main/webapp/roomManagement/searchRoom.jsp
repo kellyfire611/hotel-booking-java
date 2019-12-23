@@ -26,9 +26,9 @@
 //        }
 
 
-        String rs1[] = {"单人","双人","任意"}  ;
-        String rs2[] = {"标准","商务","套房","任意"}  ;
-        String rs3[] = {"0-200","200-300","300-400","400-600","任意"}  ;
+        String rs1[] = {"Đơn","Đôi","Tất_cả"}  ;
+        String rs2[] = {"Tiêu_chuẩn","Doanh_nhân","VIP","Tất_cả"}  ;
+        String rs3[] = {"0-200","200-300","300-400","400-600","Tất_cả"}  ;
         // 筛选出类型 放在一个集合里  然后遍历  ;
     %>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
@@ -92,14 +92,14 @@
 <div class="pusher">
 
     <div class="ui container">
-        <h2 class="ui header">客房查询</h2>
+        <h2 class="ui header">Tìm kiếm Phòng theo yêu cầu</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical  menu">
                     <div class="item">
                         <a class="active title">
                             <i class="dropdown icon"></i>
-                            大小
+                            Số lượng
                         </a>
                         <div class="active content">
                             <div class="ui form">
@@ -119,7 +119,7 @@
                     <div class="item">
                         <a class="active title">
                             <i class="dropdown icon"></i>
-                            类型
+                            Hạng phòng
                         </a>
                         <div class="active content">
                             <div class="ui form">
@@ -139,7 +139,7 @@
                     <div class="item">
                         <a class="active title">
                             <i class="dropdown icon"></i>
-                            价格
+                            Giá
                         </a>
                         <div class="active content">
                             <div class="ui form">
@@ -173,14 +173,14 @@
                         <div class="content">
                             <a class="header"><%=rtp.getRoomType()%></a>
                             <div class="meta">
-                                <a class="ui teal tag label ">¥<%=rtp.getPrice()%></a>
+                                <a class="ui teal tag label ">$<%=rtp.getPrice()%></a>
                             </div>
                             <div class="description">
                                 <p><%=rtp.getDesc()%></p>
                             </div>
                             <div class="extra">
                                 <div class="ui right floated  button">
-                                    <a href="/roomOrder.jsp?op=2&roomtype=<%=rtp.getRoomType()%>">预定</a>
+                                    <a href="/roomOrder.jsp?op=2&roomtype=<%=rtp.getRoomType()%>">Đặt phòng</a>
                                     <i class="right chevron icon"></i>
                                 </div>
                                 <%--<div class="ui label">限制的</div>--%>
