@@ -13,6 +13,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%
+response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("utf-8");
     Map<String, String[]> map =request.getParameterMap() ;
     int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang
     Waiter waiter= null ;

@@ -8,6 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("utf-8");
     if (session.getAttribute("hoteladmin") == null) {
         response.sendRedirect("/index.jsp");
     }

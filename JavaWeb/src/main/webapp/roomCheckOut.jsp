@@ -6,6 +6,8 @@
 <%@ page import="static tool.Query.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("utf-8");
     Map<String, String[]> map =request.getParameterMap() ;
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容
     Order order =null ;

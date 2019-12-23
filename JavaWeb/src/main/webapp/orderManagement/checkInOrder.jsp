@@ -12,6 +12,7 @@
 
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>所有订单</title>
     <script>
         function nextPage(maxP) {
