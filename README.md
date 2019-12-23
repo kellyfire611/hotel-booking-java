@@ -1,33 +1,17 @@
-## 项目简介
-- 数据库课程设计，基于MySQL + Tomcat + IDEA + JSP + Servlet开发
-- 前端框架采用Semantic UI + ECharts.js
-- 关于项目的具体信息，请访问[这里](http://chironyf.com/2018/01/11/hotel-management-system-summary/)
+# cần chỉnh setting MYSQL
+## UTF 8 Settings
+init-connect=\'SET NAMES utf8mb4\'
+collation_server=utf8mb4_unicode_ci
+character_set_server=utf8mb4
+#skip-character-set-client-handshake
+#character_sets-dir="C:/xampp/mysql/share/charsets"
 
-## 运行
-1. 在MySQL中建立一个名为new的数据库（别的名字也行，但需要在项目的GCON中修改一下URL）
-2. 执行hotelCreateDB.sql，后面创建用户的语句需要单独执行
-3. 执行hotelCreateData.sql
-4. 将项目部署到Tomcat即可
-5. 默认访问地址是http://localhost:8080
+[mysqldump]
+quick
+max_allowed_packet = 16M
 
-## 项目成员
-- [chironyf](https://github.com/chironyf)(数据可视化展示、添加房间、订单Quản lý等)
-- [李轩](https://github.com/994047477)(Đặt phòng退房、续费、房间查询预览等)
-- [ZoeQ](https://github.com/ZoeQ)(Nhân viênSửa、添加等)
-
-## 关系模式
-![](./images/model.jpg)
-
-## 项目截图（更多图片见images文件夹）
-- Đăng nhập界面
-![](./images/login.jpg)
-- 宾馆Nhân viên树图
-![](./images/treeMap.jpg)
-- 客房查询
-![](./images/room.jpg)
-- 业务数据可视化展示
-![](./images/chart.jpg)
-- 订单Quản lý
-![](./images/list.jpg)
-
-
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+default-character-set=utf8mb4

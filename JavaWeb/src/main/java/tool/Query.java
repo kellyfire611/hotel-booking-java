@@ -102,12 +102,12 @@ public class Query {
             connection =  DataBase.getConnection();
             statement = connection.createStatement();
             statement.execute("UPDATE waiter SET waiterIDCard='" + waiter.getWaiterIDCard() + "' where waiterID ='"+waiter.getWaiterID() +"'");
-            statement.execute("UPDATE waiter SET waiterName='" + waiter.getWaiterName() + "' where waiterID ='"+waiter .getWaiterID() +"'");
+            statement.execute("UPDATE waiter SET waiterName=N'" + waiter.getWaiterName() + "' where waiterID ='"+waiter .getWaiterID() +"'");
             statement.execute("UPDATE waiter SET waiterBirthday='" + waiter.getWaiterBirthday() + "' where waiterID ='"+waiter.getWaiterID() +"'");
             statement.execute("UPDATE waiter SET waiterPassword='" + waiter.getWaiterPassword() + "' where waiterID ='"+waiter.getWaiterID() +"'");
             statement.execute("UPDATE waiter SET waiterJoinDate='" + waiter.getWaiterJoinDate() + "' where waiterID ='"+waiter.getWaiterID() +"'");
             statement.execute("UPDATE waiter SET waiterPhoneNumber='" + waiter.getWaiterPhoneNumber() + "'where waiterID ='"+waiter.getWaiterID() +"'");
-            statement.execute("UPDATE waiter SET remarks='" + waiter.getRemarks() + "'where waiterID ='"+waiter.getWaiterID() +"'");
+            statement.execute("UPDATE waiter SET remarks=N'" + waiter.getRemarks() + "'where waiterID ='"+waiter.getWaiterID() +"'");
 
         } catch(Exception exception) {
             exception.printStackTrace();

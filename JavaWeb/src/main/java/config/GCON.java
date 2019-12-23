@@ -7,7 +7,7 @@ public class GCON {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
     //public static final String URL = "jdbc:mysql://localhost:3306/new?autoReconnect=true&useSSL=false&useUnicode=true&charaterEncoding=UTF";
-    public static final String URL = "jdbc:mysql://localhost/hotel?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useUnicode=true&charaterEncoding=UTF-8";
+    public static final String URL = "jdbc:mysql://localhost/hotel?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useUnicode=true";
 
     //Đăng nhập时默认使用system用户验证Đăng nhập名与Mật khẩu是否正确
     public static  String USERNAME = "root";
