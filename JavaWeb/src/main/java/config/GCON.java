@@ -9,7 +9,7 @@ public class GCON {
     //public static final String URL = "jdbc:mysql://localhost:3306/new?autoReconnect=true&useSSL=false&useUnicode=true&charaterEncoding=UTF";
     public static final String URL = "jdbc:mysql://localhost/hotel?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useUnicode=true&charaterEncoding=UTF-8";
 
-    //登录时默认使用system用户验证登录名与密码是否正确
+    //Đăng nhập时默认使用system用户验证Đăng nhập名与Mật khẩu是否正确
     public static  String USERNAME = "root";
 
     public static  String PASSWORD = "root";
@@ -22,11 +22,11 @@ public class GCON {
 
     public static final String HOTELPASSWORD = "root";
 
-    public static int status = 1 ; //1是系统管理员  0 是宾馆管理员;
+    public static int status = 1 ; //1是Quản trị Hệ thống  0 是Quản trị Khách sạn;
     //订单
     //查询所有订单信息
     public static final String SQL_ALL_ORDERS = "SELECT * FROM orders";
-    //查询管理员
+    //查询Quản lý员
     public static final String SQL_ALL_ADMINS = "SELECT * FROM systemAdministrator";
 
     //查询所有房间
@@ -39,7 +39,7 @@ public class GCON {
 
 
     //----------------------jsp-----------------------//
-    //客房管理
+    //客房Quản lý
     public static final String SEARCH_ROOM = "1";
 
     public static final String ADD_ROOM = "2";

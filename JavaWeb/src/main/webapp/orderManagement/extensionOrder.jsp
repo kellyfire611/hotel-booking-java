@@ -126,12 +126,12 @@
     <thead>
     <tr class="center aligned">
         <th class="sorted descending">订单号</th>
-        <th>客户姓名</th>
+        <th>客户Tên</th>
         <th>房间</th>
         <th>入住时间</th>
         <th>原离店时间</th>
         <th>新离店时间</th>
-        <th>手机号码</th>
+        <th>Số điện thoại</th>
         <th>补交金额</th>
     </tr></thead>
 

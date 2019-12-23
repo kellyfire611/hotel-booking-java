@@ -8,14 +8,14 @@
 
 <%--<%--%>
 <%--Map<String, String[]> map =request.getParameterMap() ;--%>
-<%--int mop = Integer.parseInt(map.get("mop")[0]) ; //通过mop选项来控制页面显示的内容--%>
+<%--int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang--%>
 
 <%--%>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -23,7 +23,7 @@
 
         function sub() {
 
-            alert("提交成功,返回显示服务员列表页!")
+            alert("Gởi dữ liệu thành công, Quay về trang Danh sách!")
             window.location.href="/systemManagement/waiterShow.jsp"
         }
 
@@ -32,12 +32,12 @@
         }
 
         function del(waiterid) {
-            var f=confirm("是否确定删除？");
+            var f=confirm("Bạn có chắc chắn muốn Xóa dữ liệu?");
             if(f){
 
                 window.location.href="/systemManagement/waiterShow.jsp?mop=7&waiterID="+waiterid;
             }else{
-                alert("您取消删除");
+                alert("Hủy bỏ Xóa dữ liệu");
             }
 
         }
@@ -52,17 +52,17 @@
 <div class="pusher">
     <div class="ui container">
 
-        <h2 class="ui header">编辑服务员信息</h2>
+        <h2 class="ui header">Danh sách Nhân viên</h2>
         <table class="ui selectable celled table">
             <thead>
-            <tr class="center aligned"><th name="waiterID">工号</th>
-                <th name="waiterName">姓名</th>
-                <th name="waiterBirthday">生日</th>
-                <th name="waiterIDCard">身份证号</th>
-                <th name="waiterPassword">密码</th>
-                <th name="waiterJoinDate">入职时间</th>
-                <th name="waiterPhoneNumber">手机号码</th>
-                <th name="remarks">备注</th>
+            <tr class="center aligned"><th name="waiterID">Mã Nhân viên</th>
+                <th name="waiterName">Tên</th>
+                <th name="waiterBirthday">Ngày sinh</th>
+                <th name="waiterIDCard">Card ID</th>
+                <th name="waiterPassword">Mật khẩu</th>
+                <th name="waiterJoinDate">Ngày bắt đầu làm việc</th>
+                <th name="waiterPhoneNumber">Số điện thoại</th>
+                <th name="remarks">Ghi chú</th>
                 <th></th>
                 <th></th>
             </tr></thead>
@@ -95,10 +95,10 @@
                 </td>
 
                 <td>
-                    <div class="ui button" tabindex="0"  onclick="edit('<%=(waiters.get(i).getWaiterID())%>')">编辑</div>
+                    <div class="ui button" tabindex="0"  onclick="edit('<%=(waiters.get(i).getWaiterID())%>')">Sửa</div>
                 </td>
                 <td>
-                    <div class="ui button" tabindex="0" onclick="del('<%=(waiters.get(i).getWaiterID())%>')">删除</div>
+                    <div class="ui button" tabindex="0" onclick="del('<%=(waiters.get(i).getWaiterID())%>')">Xóa</div>
                 </td>
             </tr>
             <%}%>

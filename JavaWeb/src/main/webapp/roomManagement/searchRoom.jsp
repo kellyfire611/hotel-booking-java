@@ -46,21 +46,21 @@
     <link rel="stylesheet" type="text/css" href="/semantic/dist/components/message.css">
     <script>
         function fun() {
-            var obj = document.getElementsByName("size1");//选择所有name="id"的对象，返回数组
+            var obj = document.getElementsByName("size1");//选择所有name="id"的对象，Quay về数组
             var v='';//如果这样定义var v;变量v中会默认被赋个null值
             for(var i=0;i<obj.length;i++){
                 if(obj[i].checked) {//取到对象数组后，我们来循环检测它是不是被选中
                     v+=('size1='+obj[i].value);
                 }  //如果选中，将value添加到变量v中
             }
-             obj = document.getElementsByName("size2");//选择所有name="id"的对象，返回数组
+             obj = document.getElementsByName("size2");//选择所有name="id"的对象，Quay về数组
            //如果这样定义var v;变量v中会默认被赋个null值
             for(var i=0;i<obj.length;i++){
                 if(obj[i].checked) {//取到对象数组后，我们来循环检测它是不是被选中
                     v+=('&size2='+obj[i].value);
                 }  //如果选中，将value添加到变量v中
             }
-             obj = document.getElementsByName("size3");//选择所有name="id"的对象，返回数组
+             obj = document.getElementsByName("size3");//选择所有name="id"的对象，Quay về数组
             //如果这样定义var v;变量v中会默认被赋个null值
             for(var i=0;i<obj.length;i++){
                 if(obj[i].checked) {//取到对象数组后，我们来循环检测它是不是被选中

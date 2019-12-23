@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-//用于统计数据时获取连续的日期
+//用于统计数据时获取连续的ngày期
 public class TraverseDate {
 
     private static transient int gregorianCutoverYear = 1582;

@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -198,19 +198,19 @@
                             <div class="two fields">
 
                                 <div class="field">
-                                    <input type="text" id="name" name="name" placeholder="姓名">
+                                    <input type="text" id="name" name="name" placeholder="Tên">
                                 </div>
                             </div>
                         </div>
                         <%--<h4 class="ui dividing header">Billing Information</h4>--%>
                         <div class="fields">
                             <div class="seven wide field">
-                                <label>身份证号</label>
-                                <input type="text" id="idcard" name="idcard" maxlength="18" placeholder="身份证号">
+                                <label>Card ID</label>
+                                <input type="text" id="idcard" name="idcard" maxlength="18" placeholder="Card ID">
                             </div>
                             <%--<div class="six wide field">--%>
-                            <%--<label>出生日期</label>--%>
-                            <%--&lt;%&ndash;<input type="text" name="card[cvc]" maxlength="3" placeholder="出生日期">&ndash;%&gt;--%>
+                            <%--<label>Ngày tháng năm sinh</label>--%>
+                            <%--&lt;%&ndash;<input type="text" name="card[cvc]" maxlength="3" placeholder="Ngày tháng năm sinh">&ndash;%&gt;--%>
                             <%--<input type="date" value="2018-01-01" id="birthdata"/>--%>
                             <%--</div>--%>
                             <div class="six wide field">
@@ -227,8 +227,8 @@
                         </div>
                         <div class="fields">
                             <div class="seven wide field">
-                                <label>手机号</label>
-                                <input type="text" id="phonenumber" name="phonenumber" maxlength="16" placeholder="手机号">
+                                <label>Số điện thoại</label>
+                                <input type="text" id="phonenumber" name="phonenumber" maxlength="16" placeholder="Số điện thoại">
                             </div>
                         </div>
                         <div class="ui right submit floated button" tabindex="0"  >Submit Order</div>
@@ -238,7 +238,7 @@
 
                     %>
 
-                    <h4 class="ui dividing header">订单确认</h4>
+                    <h4 class="ui dividing header">订单Xác nhận</h4>
                     <table class="ui table">
                         <thead>
                         <tr><th class="six wide">Name</th>
@@ -274,14 +274,14 @@
                     </div>
                     <%} else if (op == 4) {%>
                     <h4 class="ui dividing header">支付成功</h4>
-                    <div class="ui right button" onclick="returnMainPage()">返回</div>
+                    <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                     <%}%>
                 </div>
             </div>
         </div>
     </div>
 
-    <%--<h1>欢迎宾馆管理员登录！</h1>--%>
+    <%--<h1>欢迎Quản trị Khách sạnĐăng nhập！</h1>--%>
 
 </div>
 </body>
@@ -312,8 +312,8 @@
                     identifier: 'idcard',
                     rules: [
                         {
-                            type: 'regExp[/^[0-9]{17}[0-9|X]$/]',
-                            prompt: '身份证号不符合规范'
+                            type: 'regExp[/^[0-9]{9,17}$/]',
+                            prompt: 'Card ID không đúng định dạng'
                         }
                     ]
                 }
@@ -322,8 +322,8 @@
                     identifier: 'phonenumber',
                     rules: [
                         {
-                            type: 'regExp[/^1[3|4|5|8][0-9]\\d{4,8}$/]',
-                            prompt: '手机号不符合规范'
+                            type: 'regExp[/^0\\d{9,11}$/]',
+                            prompt: 'Số điện thoại không đúng định dạng'
                         }
                     ]
                 }

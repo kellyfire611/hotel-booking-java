@@ -17,19 +17,19 @@
 <%
 
     Map<String, String[]> map =request.getParameterMap() ;
-    int mop = Integer.parseInt(map.get("mop")[0]) ; //通过mop选项来控制页面显示的内容
+    int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang
 
     Waiter waiter= null ;
     if(mop==4 &&  map.get("waiterID")!=null){
         String waiterid =map.get("waiterID")[0] ;
-        waiter =getWaiter(waiterid)   ;// 根据waiterid来构造waiter ;
+        waiter =getWaiter(waiterid)   ;// Get waiter bởi ID ;
     }
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -38,7 +38,8 @@
             var waiterID = document.getElementById("waiterID").value
             var waiterName = document.getElementById("waiterName").value
             var waiterIDCard = document.getElementById("waiterIDCard").value;
-            var waiterBirthday = waiterIDCard.substring(6, 10) + '-' + waiterIDCard.substring(10, 12) + '-' + waiterIDCard.substring(12, 14);
+            // var waiterBirthday = waiterIDCard.substring(6, 10) + '-' + waiterIDCard.substring(10, 12) + '-' + waiterIDCard.substring(12, 14);
+            var waiterBirthday = document.getElementById("waiterBirthday").value
             var waiterPassword = document.getElementById("waiterPassword").value
             var waiterJoinDate = document.getElementById("waiterJoinDate").value
             var waiterPhoneNumber = document.getElementById("waiterPhoneNumber").value
@@ -52,9 +53,9 @@
                 "&waiterPhoneNumber="+waiterPhoneNumber+
                 "&remarks="+remarks;
             if(/^[a-z0-9A-Z]{1,10}$/.test(waiterID)
-                && /^[0-9]{17}[0-9|X]$/.test(waiterIDCard)
+                && /^[0-9]{9,17}$/.test(waiterIDCard)
                 && /^[a-z0-9A-Z]{1,18}$/.test(waiterPassword)
-                && /^1[3|4|5|8][0-9]\d{4,8}$/.test(waiterPhoneNumber)
+                && /^0\d{9,11}$/.test(waiterPhoneNumber)
             ){
                 window.location.href="/systemManagement/waiterAdd.jsp?mop=5&" +url;
             }
@@ -93,7 +94,7 @@
                     <div class="<%=(mop<=4)?"active step ":"completed step"%>" >
                         <i class="add user icon"></i>
                         <div class="content">
-                            <div class="title">新增信息填写</div>
+                            <div class="title">Điền thông tin Thêm mới</div>
                             <%--<div class="description">Choose your shipping options</div>--%>
                         </div>
                     </div>
@@ -101,7 +102,7 @@
                     <div class="<%=(mop>=5)?"active step ":"step"%>">
                         <i class="adjust icon"></i>
                         <div class="content">
-                            <div class="title">新增信息确认</div>
+                            <div class="title">Xác nhận thông tin Thêm mới</div>
                             <%--<div class="description">Enter billing information</div>--%>
                         </div>
                     </div>
@@ -109,7 +110,7 @@
                     <div class="<%=(mop==6)?"active step ":"step"%>">
                         <i class="minus icon"></i>
                         <div class="content">
-                            <div class="title">新增信息提交</div>
+                            <div class="title">Hoàn tất thông tin Thêm mới</div>
                             <%--<div class="description">Verify order details</div>--%>
                         </div>
                     </div>
@@ -122,39 +123,45 @@
                 <form class="ui form" onsubmit="return sub1(this)">
                     <div class="two fields">
                         <div class="field">
-                            <label>工号</label>
-                            <input type="text" id="waiterID" name="waiterID" value="<%=(waiter==null)?"":waiter.getWaiterID()%>" placeholder="工号">
+                            <label>Mã Nhân viên</label>
+                            <input type="text" id="waiterID" name="waiterID" value="<%=(waiter==null)?"":waiter.getWaiterID()%>" placeholder="Mã Nhân viên">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label>姓名</label>
-                            <input type="text" id="waiterName" name="waiterName" value="<%=(waiter==null)?"":waiter.getWaiterName()%>" placeholder="姓名">
+                            <label>Tên</label>
+                            <input type="text" id="waiterName" name="waiterName" value="<%=(waiter==null)?"":waiter.getWaiterName()%>" placeholder="Tên">
                         </div>
                     </div>
                     <%--<div class="four fields">--%>
                     <%--<div class="six wide field">--%>
-                    <%--<label>出生日期</label>--%>
-                    <%--&lt;%&ndash;<input type="text" name="card[cvc]" maxlength="3" placeholder="出生日期">&ndash;%&gt;--%>
+                    <%--<label>Ngày tháng năm sinh</label>--%>
+                    <%--&lt;%&ndash;<input type="text" name="card[cvc]" maxlength="3" placeholder="Ngày tháng năm sinh">&ndash;%&gt;--%>
                     <%--<input type="date" value="2018-01-01" value="<%=(waiter==null)?"":waiter.getWaiterBirthday()%>"  id="waiterBirthday"/>--%>
                     <%--</div>--%>
                     <%--</div>--%>
                     <div class="two fields">
                         <div class=" field">
-                            <label>身份证</label>
-                            <input type="text" id="waiterIDCard" name="waiterIDCard"value="<%=(waiter==null)?"":waiter.getWaiterIDCard()%>"  placeholder="身份证">
+                            <label>Card ID</label>
+                            <input type="text" id="waiterIDCard" name="waiterIDCard"value="<%=(waiter==null)?"":waiter.getWaiterIDCard()%>"  placeholder="Card ID">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label>密码</label>
-                            <input type="text" id="waiterPassword" name="waiterPassword" value="<%=(waiter==null)?"":waiter.getWaiterPassword()%>"  placeholder="密码">
+                            <label>Mật khẩu</label>
+                            <input type="text" id="waiterPassword" name="waiterPassword" value="<%=(waiter==null)?"":waiter.getWaiterPassword()%>"  placeholder="Mật khẩu">
                         </div>
                     </div>
                     <div class="four fields">
                         <div class="six wide field">
-                            <label>加入日期</label>
-                            <%--<input type="text" name="card[cvc]" maxlength="3" placeholder="加入日期">--%>
+                            <label>Ngày tháng năm sinh</label>
+                            <input type="date" value="2018-01-01" value="<%=(waiter==null)?"":waiter.getWaiterBirthday()%>" id="waiterBirthday"/>
+                        </div>
+                    </div>
+                    <div class="four fields">
+                        <div class="six wide field">
+                            <label>Ngày bắt đầu làm việc</label>
+                            <%--<input type="text" name="card[cvc]" maxlength="3" placeholder="Ngày bắt đầu làm việc">--%>
                             <input type="date" value="2018-01-01" value="<%=(waiter==null)?"":waiter.getWaiterJoinDate()%>" id="waiterJoinDate"/>
 
 
@@ -162,65 +169,65 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label>手机号</label>
-                            <input type="text" id="waiterPhoneNumber"  name="waiterPhoneNumber" value="<%=(waiter==null)?"":waiter.getWaiterPhoneNumber()%>" placeholder="手机号">
+                            <label>Số điện thoại</label>
+                            <input type="text" id="waiterPhoneNumber"  name="waiterPhoneNumber" value="<%=(waiter==null)?"":waiter.getWaiterPhoneNumber()%>" placeholder="Số điện thoại">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label>备注</label>
-                            <input type="text" id="remarks" name="last-name" value="<%=(waiter==null)?"":waiter.getRemarks()%>" placeholder="备注">
+                            <label>Ghi chú</label>
+                            <input type="text" id="remarks" name="last-name" value="<%=(waiter==null)?"":waiter.getRemarks()%>" placeholder="Ghi chú">
                         </div>
                     </div>
-                    <div class="ui right submit  floated button" tabindex="0" >提交</div>
+                    <div class="ui right submit  floated button" tabindex="0" >Gởi dữ liệu</div>
                 </form>
                 <%} else if (mop == 5) {%>
 
-                <h2 class="ui dividing header">待添加员工信息确认</h2>
+                <h2 class="ui dividing header">Xác nhận thông tin vừa Thêm mới</h2>
                 <form class="ui form">
                     <table class="ui table">
                         <%--<thead>--%>
                         <%--<tr>--%>
-                        <%--<th class="six wide">工号</th>--%>
+                        <%--<th class="six wide">Mã Nhân viên</th>--%>
                         <%--</tr></thead>--%>
                         <tbody>
                         <tr>
-                            <td>工号</td>
+                            <td>Mã Nhân viên</td>
                             <td><%=request.getParameter("waiterID")%></td>
                         </tr>
                         <tr>
-                            <td>姓名</td>
+                            <td>Tên</td>
                             <td><%=request.getParameter("waiterName")%></td>
                         </tr>
                         <tr>
-                            <td>出生日期</td>
+                            <td>Ngày tháng năm sinh</td>
                             <td><%=request.getParameter("waiterBirthday")%></td>
                         </tr>
                         <tr>
-                            <td>身份证</td>
+                            <td>Card ID</td>
                             <td><%=request.getParameter("waiterIDCard")%></td>
                         </tr>
 
                         <tr>
-                            <td>密码</td>
+                            <td>Mật khẩu</td>
                             <td><%=request.getParameter("waiterPassword")%></td>
                         </tr>
                         <tr>
-                            <td>加入日期</td>
+                            <td>Ngày bắt đầu làm việc</td>
                             <td><%=request.getParameter("waiterJoinDate")%></td>
                         </tr>
                         <tr>
-                            <td>手机号</td>
+                            <td>Số điện thoại</td>
                             <td><%=request.getParameter("waiterPhoneNumber")%></td>
                         </tr>
                         <tr>
-                            <td>备注</td>
+                            <td>Ghi chú</td>
                             <td><%=request.getParameter("remarks")%></td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <div class="ui button" onclick="ensure()">确认</div>
+                    <div class="ui button" onclick="ensure()">Xác nhận</div>
                 </form>
 
                 <%} else if (mop == 6) {
@@ -242,9 +249,9 @@
                     Query.insertWaiter(waiter);
 
                 %>
-                <h2 class="ui diving heade">添加成功</h2>
+                <h2 class="ui diving heade">Thêm mới dữ liệu Thành công</h2>
 
-                <div class="ui right button" onclick="returnm()">返回</div>
+                <div class="ui right button" onclick="returnm()">Quay về</div>
                 <%}%>
 
             </div>
@@ -266,7 +273,7 @@
                     rules: [
                         {
                             type: 'regExp[/^[a-z0-9A-Z]{1,10}$/]',
-                            prompt: 'ID不符合规范'
+                            prompt: 'Mã nhân viên không đúng định dạng'
                         }
                     ]
                 }
@@ -274,8 +281,8 @@
                     identifier: 'waiterIDCard',
                     rules: [
                         {
-                            type: 'regExp[/^[0-9]{17}[0-9|X]$/]',
-                            prompt: '身份证号不符合规范'
+                            type: 'regExp[/^[0-9]{9,17}$/]',
+                            prompt: 'Card ID không đúng định dạng'
                         }
                     ]
                 },waiterPassword: {
@@ -283,7 +290,7 @@
                     rules: [
                         {
                             type: 'regExp[/^[a-z0-9A-Z]{1,18}$/]',
-                            prompt: '密码不符合规范'
+                            prompt: 'Mật khẩu không đúng định dạng'
                         }
                     ]
                 }
@@ -292,8 +299,8 @@
                     identifier: 'waiterPhoneNumber',
                     rules: [
                         {
-                            type: 'regExp[/^1[3|4|5|8][0-9]\\d{4,8}$/]',
-                            prompt: '手机号不符合规范'
+                            type: 'regExp[/^0\\d{9,11}$/]',
+                            prompt: 'Số điện thoại không đúng định dạng'
                         }
                     ]
                 }

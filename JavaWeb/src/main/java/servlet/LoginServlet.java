@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
                 //登陆成功
                 HttpSession session = request.getSession();
                 if(admin.equals("1")) {
-                    System.out.println("正在进入宾馆管理界面");
+                    System.out.println("正在进入宾馆Quản lý界面");
 
                     Connection connection =null ;
                     session.setAttribute("hoteladmin",userid);
@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("/roomOrder.jsp?op=1");
 
                 } else {
-                    System.out.println("正在进入系统管理页面");
+                    System.out.println("正在进入系统Quản lý页面");
 
                     session.setAttribute("systemadmin",userid);
                     session.setAttribute("systempassword",userpassword);
@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 
             }
             else {
-                request.getSession().setAttribute("error","账号和密码不匹配!");
+                request.getSession().setAttribute("error","Tài khoản hoặc Mật khẩu không chính xác!");
                 response.sendRedirect("/index.jsp");
             }
         } catch (Exception e) {

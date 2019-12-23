@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 @WebServlet(name = "AdministrationManage")
 public class AdministrationManage extends HttpServlet{
-    //  本servlet用于办理三种业务：新增服务员  编辑服务员  删除服务员
+    //  本servlet用于办理三种业务：新增服务员  Sửa服务员  Xóa服务员
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -49,7 +49,7 @@ public class AdministrationManage extends HttpServlet{
             response.sendRedirect("/systemManagement/waiterUpdate.jsp?mop=6");
         }else if(mop==7){
             response.sendRedirect("/systemManagement/waiterShow.jsp?mop=7");
-        } else if (mop == 10) {//业务数据统计
+        } else if (mop == 10) {//Báo cáo Thống kê
             response.sendRedirect("/systemManagement/statistics.jsp?mop=10");
         }
 

@@ -129,14 +129,14 @@
     <thead>
     <tr class="center aligned"><th class="sorted descending">订单号</th>
         <th>订单状态</th>
-        <th>客户姓名</th>
+        <th>客户Tên</th>
         <th>创建时间</th>
         <th>预定房间</th>
         <th>房间类型</th>
         <th>入住时间</th>
         <th>离店时间</th>
         <th>入住天数</th>
-        <th>手机号码</th>
+        <th>Số điện thoại</th>
         <th>价格</th>
     </tr></thead>
 

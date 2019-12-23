@@ -13,7 +13,7 @@
     }
 
 
-    if(GCON.status==1){ //修改权限
+    if(GCON.status==1){ //Hiệu chỉnh Quyền
         DataBase.setConnection(DataBase.MAP.get(GCON.HOTELUSERNAME));
         GCON.status=0 ;
     }
@@ -26,7 +26,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -64,7 +64,7 @@
             var hours=now.getHours();
             var minutes=now.getMinutes();
             var seconds=now.getSeconds();
-            document.getElementById("div").innerHTML=year+"年"+fix(month, 2)+"月"+fix(day, 2)+"日"+fix(hours, 2)+" : "+fix(minutes, 2)+" : "+fix(seconds, 2);
+            document.getElementById("div").innerHTML=year+"năm"+fix(month, 2)+"tháng"+fix(day, 2)+"ngày"+fix(hours, 2)+" : "+fix(minutes, 2)+" : "+fix(seconds, 2);
         }
 
         function fix(num, length) {
@@ -89,7 +89,7 @@
     </div>
     <div class="ui simple dropdown item">
         <i class="building icon"></i>
-        客房管理
+        客房Quản lý
         <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item" href="/RoomManage?op=1"><i class="search icon"></i>查询房间</a>
@@ -118,10 +118,10 @@
     <div class="right menu">
         <div class="ui simple dropdown item">
             <i class="user icon"></i>
-            <%="宾馆管理员: " + session.getAttribute("hoteladmin")%>  <%-- 后期换成session("name")  --%>
+            <%="Quản trị Khách sạn: " + session.getAttribute("hoteladmin")%>  <%-- 后期换成session("name")  --%>
             <i class="dropdown icon"></i>
             <div class="menu">
-                <a class="item" href="/ServiceManage?op=2"><i class="sign out icon"></i>注销</a>
+                <a class="item" href="/ServiceManage?op=2"><i class="sign out icon"></i>Đăng xuất</a>
             </div>
         </div>
     </div>

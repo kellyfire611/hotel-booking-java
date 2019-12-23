@@ -57,7 +57,7 @@ public class OrderView {
         this.orderTime = orderTime;
     }
 
-    //        <th>手机号码</th>
+    //        <th>Số điện thoại</th>
     private String customerPhoneNumber;
 //        <th>订单价格</th>
     private int price;

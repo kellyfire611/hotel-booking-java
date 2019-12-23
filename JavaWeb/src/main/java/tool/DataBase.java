@@ -38,7 +38,7 @@ public class DataBase {
     }
 
 
-    //返回数据库连接
+    //Quay về数据库连接
     public static Connection getConnection() throws Exception {
         //如果之前未连接
         if (connection == null) {

@@ -56,7 +56,7 @@ public class ServiceManage extends HttpServlet {
         if(op==1) {
             String id = map.get("idcard")[0].toString() ;
             //用户登记  查询折扣
-            //根据身份证查询用户是否存在
+            //根据Card ID查询用户是否存在
             Double discount ;
 
             if(isIDexists(id)){
@@ -98,7 +98,7 @@ public class ServiceManage extends HttpServlet {
             }
             response.sendRedirect(url);
         }else if(op==2){
-            //注销当前的登录用户  ;
+            //Đăng xuất当前的Đăng nhập用户  ;
             request.getSession().removeAttribute("hoteladmin");
             response.sendRedirect("/index.jsp");
         }
@@ -135,13 +135,13 @@ public class ServiceManage extends HttpServlet {
         else if(op==4){
             // 续费
             /**
-             * 提交续费订单
-             * 订单提交后要修改order表的退房日期 ;
+             * Gởi dữ liệu续费订单
+             * 订单Gởi dữ liệu后要修改order表的退房ngày期 ;
              */
             TimeExtension renew = (TimeExtension) request.getSession().getAttribute("renew");
             //插入续费订单 ;
             Query.addRenew(renew) ;
-            //修改相应的order日期 ;
+            //修改相应的orderngày期 ;
             Date newdate = renew.getNewExpiryDate() ;
             updateNewDate(newdate,renew.getOrderNumber()) ;
             response.sendRedirect("/roomOrder.jsp?op=1") ;
@@ -154,7 +154,7 @@ public class ServiceManage extends HttpServlet {
 //            System.out.println("退房成功");
 //            response.sendRedirect("/hotelAdmin.jsp") ;
         } else if (op == 10) {
-            //注销当前管理员用户
+            //Đăng xuất当前Quản lý员用户
             request.getSession().removeAttribute("systemadmin");
             response.sendRedirect("/index.jsp");
 

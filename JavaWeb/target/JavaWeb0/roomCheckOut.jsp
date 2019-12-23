@@ -18,7 +18,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -144,7 +144,7 @@
                     </tr>
                     <tr>
 
-                        <td>住户身份证</td>
+                        <td>住户Card ID</td>
                         <td><%=order.getCustomerIDCard()%></td>
 
                     </tr>
@@ -186,7 +186,7 @@
                     </tr>
                     <tr>
 
-                        <td>备注</td>
+                        <td>Ghi chú</td>
                         <td><%=order.getRemarks()%></td>
 
                     </tr>
@@ -198,8 +198,8 @@
 
                 <div class="ui right button" >
                     <%--<% if(op==2)System.out.println("打印订单编号:"+order.getOrderNumber() );%>--%>
-                    <%--<a href="ServiceManage?op=5&orderNumber=<%=order.getOrderNumber()%>">确认退房</a>--%>
-                    <a href="/roomCheckOut.jsp?op=3&orderNumber=<%=order.getOrderNumber()%>">确认退房</a>
+                    <%--<a href="ServiceManage?op=5&orderNumber=<%=order.getOrderNumber()%>">Xác nhận退房</a>--%>
+                    <a href="/roomCheckOut.jsp?op=3&orderNumber=<%=order.getOrderNumber()%>">Xác nhận退房</a>
                 </div>
                 <%}else if (op == 3) {
                     String orderNumber= map.get("orderNumber")[0] ;
@@ -207,7 +207,7 @@
                     checkOutRoom(orderNumber) ;
                 %>
                 <h4 class="ui dividing header">退房成功</h4>
-                <div class="ui right button" onclick="returnMainPage()">返回</div>
+                <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                 <%}%>
             </div>
             <%--<h1>欢迎续费</h1>--%>

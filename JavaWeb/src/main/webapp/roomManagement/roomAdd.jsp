@@ -77,7 +77,7 @@
                     <div class="<%=(op == 3) ? "active step ":(op== 2)?"step":"completed step"%>">
                         <i class="check circle icon"></i>
                         <div class="content">
-                            <div class="title">信息确认</div>
+                            <div class="title">信息Xác nhận</div>
                         </div>
                     </div>
 
@@ -108,22 +108,22 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label>备注</label>
-                        <input type="text" id="remarks" placeholder="备注信息">
+                        <label>Ghi chú</label>
+                        <input type="text" id="remarks" placeholder="Ghi chú信息">
                     </div>
-                    <div class="ui submit button">提交</div>
+                    <div class="ui submit button">Gởi dữ liệu</div>
                 </form>
 
                 <%} else if (op == 3) {
                 %>
 
-                <h2 class="ui dividing header">待添加客房信息确认</h2>
+                <h2 class="ui dividing header">待添加客房信息Xác nhận</h2>
                 <form class="ui form">
                     <table class="ui table">
                         <thead>
                         <tr><th class="six wide">房间号</th>
                             <th class="six wide">房间类型</th>
-                            <th class="six wide">备注</th>
+                            <th class="six wide">Ghi chú</th>
                         </tr></thead>
                         <tbody>
                         <tr>
@@ -134,7 +134,7 @@
                         </tbody>
                     </table>
 
-                    <div class="ui button" onclick="ensureButtonClicked()">确认</div>
+                    <div class="ui button" onclick="ensureButtonClicked()">Xác nhận</div>
                 </form>
 
                 <%} else if (op == 4) {
@@ -145,14 +145,14 @@
                     newRoom.setRemarks(request.getParameter("remarks"));
                     Query.insertRoom(newRoom);
                 %>
-                <h4 class="ui dividing header">添加成功</h4>
-                <div class="ui right button" onclick="returnMainPage()">返回</div>
+                <h4 class="ui dividing header">Thêm mới dữ liệu Thành công</h4>
+                <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                 <%}%>
             </div>
         </div>
     </div>
 
-    <%--<h1>欢迎宾馆管理员登录！</h1>--%>
+    <%--<h1>欢迎Quản trị Khách sạnĐăng nhập！</h1>--%>
 
 </div>
 

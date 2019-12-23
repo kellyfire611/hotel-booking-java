@@ -11,7 +11,7 @@ import java.util.Map;
 
 @WebServlet(name = "OrderManage")
 public class OrderManage extends HttpServlet {
-    //  此servlet用于 管理订单
+    //  此servlet用于 Quản lý订单
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

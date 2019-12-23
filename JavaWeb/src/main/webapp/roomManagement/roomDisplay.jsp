@@ -31,7 +31,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -60,7 +60,7 @@
     </style>
     <script>
         function fun() {
-            var obj = document.getElementsByName("size1");//选择所有name="id"的对象，返回数组
+            var obj = document.getElementsByName("size1");//选择所有name="id"的对象，Quay về数组
             var v='';//如果这样定义var v;变量v中会默认被赋个null值
             for(var i=0;i<obj.length;i++){
                 if(obj[i].checked) {//取到对象数组后，我们来循环检测它是不是被选中

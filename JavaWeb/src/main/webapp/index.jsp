@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>宾馆管理系统登录</title>
+  <title>Quản lý Khách sạn</title>
   <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
   <script src="/semantic/dist/jquery.min.js"></script>
   <script src="/semantic/dist/semantic.js"></script>
@@ -32,7 +32,7 @@
                     rules: [
                         {
                             type: 'regExp[/^[a-z0-9A-Z]{1,10}$/]',
-                            prompt: '用户名不符合规范！'
+                            prompt: 'Tên tài khoản không đúng định dạng'
                         }
                     ]
                 },
@@ -41,7 +41,7 @@
                     rules: [
                         {
                             type: 'regExp[/^[a-z0-9A-Z]{1,10}$/]',
-                            prompt: '密码不符合规范'
+                            prompt: 'Mật khẩu không đúng định dạng'
                         }
                     ]
                 }
@@ -63,15 +63,15 @@
 <body>
 <div class="ui middle aligned center aligned grid">
   <div class="column">
-    <h1 class="ui blue header">宾馆管理系统登录</h1>
+    <h1 class="ui blue header">Quản lý Khách sạn</h1>
     <form class="ui large form" id="form1" method="post" action="/LoginServlet">
       <div class="ui form segment"  align="center">
         <%--<div class="field">--%>
         <%--<div class="ui dropdown">--%>
         <%--&lt;%&ndash;fluid search&ndash;%&gt;--%>
         <%--<select class="ui fluid search dropdown" name="admin">--%>
-        <%--<option value="0">系统admin</option>--%>
-        <%--<option value="1">宾馆admin</option>--%>
+        <%--<option value="0">Quản trị Hệ thống</option>--%>
+        <%--<option value="1">Quản trị Khách sạn</option>--%>
         <%--</select>--%>
         <%--</div>--%>
         <%--</div>--%>
@@ -83,32 +83,32 @@
             <div class="field" align="center">
               <div class="ui radio checkbox">
                 <input type="radio" name="admin" value="0" checked="checked">
-                <label><i class="user icon"></i>系统管理员</label>
+                <label><i class="user icon"></i>Quản trị Hệ thống</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
                 <input type="radio" name="admin" value="1">
-                <label><i class="users icon"></i>宾馆管理员</label>
+                <label><i class="users icon"></i>Quản trị Khách sạn</label>
               </div>
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" id="id" name="id" placeholder="用户名">
+              <input type="text" id="id" name="id" placeholder="Tên tài khoản">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" id="password" name="password" placeholder="密码">
+              <input type="password" id="password" name="password" placeholder="Mật khẩu">
             </div>
           </div>
           <div >
-            <%--<input   onclick="fun()" value="登录" class="ui primary button">--%>
-            <input  type="submit"  value="登录" class="ui fluid large blue submit button">
-            <%--<div class="ui fluid large button">登录</div>--%>
+            <%--<input   onclick="fun()" value="Đăng nhập" class="ui primary button">--%>
+            <input  type="submit"  value="Đăng nhập" class="ui fluid large blue submit button">
+            <%--<div class="ui fluid large button">Đăng nhập</div>--%>
           </div>
         </div>
 

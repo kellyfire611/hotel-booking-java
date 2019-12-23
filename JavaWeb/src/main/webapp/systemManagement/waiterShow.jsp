@@ -15,17 +15,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Map<String, String[]> map =request.getParameterMap() ;
-    int mop = Integer.parseInt(map.get("mop")[0]) ; //通过mop选项来控制页面显示的内容
+    int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang
     Waiter waiter= null ;
     if(mop==7 &&  map.get("waiterID")!=null){
         String waiterid =map.get("waiterID")[0] ;
-        waiter = Query.getWaiter(waiterid);// 根据waiterid来构造waiter ;
+        waiter = Query.getWaiter(waiterid);// Get waiter bởi ID ;
         Query.deleteWaiter(waiter);
     }
     ArrayList<Waiter> waiters = Query.getAllWaiters();
 
 
-    //---------------------------构造管理员数据------------------------------//
+    //---------------------------Khởi tạo dữ liệu Administrator------------------------------//
 
     ArrayList<Waiter> allWaiters = Query.getAllWaiters();
 
@@ -35,25 +35,25 @@
 
     for (int i = 0; i < allWaiters.size(); i++) {
         Waiter w = allWaiters.get(i);
-//                jsonWaiterValues.append("{\"name\": \"姓名\", \"value\": \"" + w.getWaiterName() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Tên\", \"value\": \"" + w.getWaiterName() + "\"},\n");
 //                jsonWaiterValues.append("{\"name\": \"WaiterID\", \"value\": \"" + w.getWaiterID() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"系统密码\", \"value\": \"" + w.getWaiterPassword() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"手机号码\", \"value\": \"" + w.getWaiterPhoneNumber() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"身份证号码\", \"value\": \"" + w.getWaiterIDCard() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"生日\", \"value\": \"" + w.getWaiterBirthday().toString() + "\"}\n");
+//                jsonWaiterValues.append("{\"name\": \"Mật khẩu QTHT\", \"value\": \"" + w.getWaiterPassword() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Số điện thoại\", \"value\": \"" + w.getWaiterPhoneNumber() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Số CMND\", \"value\": \"" + w.getWaiterIDCard() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Ngày sinh\", \"value\": \"" + w.getWaiterBirthday().toString() + "\"}\n");
 //                jsonData.append("{\n\"name\" : \"" + w.getWaiterName() + "\",\n" +
 //                            "\"children\" : [\n" + jsonWaiterValues.toString() + "]\n}");
-//        jsonWaiterValues.append("{\"name\": \"" + w.getWaiterName() + "\", \"value\" :\"姓名\"},\n");
+//        jsonWaiterValues.append("{\"name\": \"" + w.getWaiterName() + "\", \"value\" :\"Tên\"},\n");
         jsonWaiterValues.append("{\"name\": \"WaiterID : " + w.getWaiterID() + "\", \"value\" :\"WaiterID\"},\n");
-        jsonWaiterValues.append("{\"name\": \"密码 : " + w.getWaiterPassword() + "\", \"value\" :\"系统密码\"},\n");
-        jsonWaiterValues.append("{\"name\": \"手机号 : " + w.getWaiterPhoneNumber() + "\", \"value\" :\"手机号码\"},\n");
-        jsonWaiterValues.append("{\"name\": \"身份证 : " + w.getWaiterIDCard() + "\", \"value\" :\"身份证号码\"},\n");
-        jsonWaiterValues.append("{\"name\": \"生日 : " + w.getWaiterBirthday().toString() + "\", \"value\" :\"生日\"},\n");
+        jsonWaiterValues.append("{\"name\": \"Mật khẩu : " + w.getWaiterPassword() + "\", \"value\" :\"Mật khẩu QTHT\"},\n");
+        jsonWaiterValues.append("{\"name\": \"Số điện thoại : " + w.getWaiterPhoneNumber() + "\", \"value\" :\"Số điện thoại\"},\n");
+        jsonWaiterValues.append("{\"name\": \"Card ID : " + w.getWaiterIDCard() + "\", \"value\" :\"Số CMND\"},\n");
+        jsonWaiterValues.append("{\"name\": \"Ngày sinh : " + w.getWaiterBirthday().toString() + "\", \"value\" :\"Ngày sinh\"},\n");
 //                jsonWaiterValues.append("{\"name\": \"WaiterID\", \"value\": \"" + w.getWaiterID() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"系统密码\", \"value\": \"" + w.getWaiterPassword() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"手机号码\", \"value\": \"" + w.getWaiterPhoneNumber() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"身份证号码\", \"value\": \"" + w.getWaiterIDCard() + "\"},\n");
-//                jsonWaiterValues.append("{\"name\": \"生日\", \"value\": \"" + w.getWaiterBirthday().toString() + "\"}\n");
+//                jsonWaiterValues.append("{\"name\": \"Mật khẩu QTHT\", \"value\": \"" + w.getWaiterPassword() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Số điện thoại\", \"value\": \"" + w.getWaiterPhoneNumber() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Số CMND\", \"value\": \"" + w.getWaiterIDCard() + "\"},\n");
+//                jsonWaiterValues.append("{\"name\": \"Ngày sinh\", \"value\": \"" + w.getWaiterBirthday().toString() + "\"}\n");
         jsonData.append("{\n\"name\" : \"" + w.getWaiterName() + "\",\n" +
                 "\"children\" : [\n" + jsonWaiterValues.toString() + "]\n}");
 
@@ -69,7 +69,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>

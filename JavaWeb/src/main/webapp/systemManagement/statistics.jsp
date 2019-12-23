@@ -56,7 +56,7 @@
     String weekEndDate = weekView.get(0).getOrderTime().toString();
 
     ArrayList<String> orderDateSequence = (ArrayList<String>)TraverseDate.getEveryday(weekBeginDate, weekEndDate);
-    //日期->房间->预定数量
+    //ngày期->房间->预定数量
     TreeMap<String, TreeMap<String, Integer>> weekData =  new TreeMap<String, TreeMap<String, Integer>>();
 
     for (int i = 0; i < orderDateSequence.size(); i++) {
@@ -177,7 +177,7 @@
         roomNumFull.add(roomCounts.get(key).getFullNum());
     }
 
-    //盈利折线图，每日订单数以及营收
+    //盈利折线图，每ngày订单数以及营收
     ArrayList<InComeView> allIncomeViews = Query.getInComeView();
     String beginDate = allIncomeViews.get(0).getDate().toString();
     String endDate = allIncomeViews.get(allIncomeViews.size() - 1).getDate().toString();
@@ -185,13 +185,13 @@
     //保存原始数据
     Map<String, InComeView> incomeDatas = new TreeMap<String, InComeView>();
 
-    //得到正确的日期序列，保存日期
+    //得到正确的ngày期序列，保存ngày期
     ArrayList<String> xDate = (ArrayList<String>)TraverseDate.getEveryday(beginDate, endDate);
 
     for (String d : xDate) {
         incomeDatas.put(d, new InComeView(d, 0, 0));
     }
-    //日期自动排序
+    //ngày期自动排序
     for (int i = 0; i < allIncomeViews.size(); i++) {
         if (incomeDatas.containsKey(allIncomeViews.get(i).getDate())) {
             incomeDatas.put(allIncomeViews.get(i).getDate(), new InComeView(allIncomeViews.get(i).getDate(),
@@ -214,7 +214,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>业务数据统计</title>
+    <title>Báo cáo Thống kê</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -399,7 +399,7 @@
                         },
                         series : [
                             {
-                                name: '姓名',
+                                name: 'Tên',
                                 type: 'pie',
                                 radius : '55%',
                                 center: ['40%', '50%'],
@@ -467,11 +467,11 @@
                         }],
                         title: [{
                             left: 'center',
-                            text: '每日退房订单量'
+                            text: '每ngày退房订单量'
                         }, {
                             top: '55%',
                             left: 'center',
-                            text: '每日营业额'
+                            text: '每ngày营业额'
                         }],
                         tooltip: {
                             trigger: 'axis'

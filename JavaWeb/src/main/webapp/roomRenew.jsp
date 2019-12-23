@@ -45,7 +45,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>宾馆管理系统</title>
+    <title>Quản lý Khách sạn</title>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
     <script src="/semantic/dist/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
@@ -77,7 +77,7 @@
 
         function fun1() {
 
-            alert("续费成功,返回首页!")
+            alert("续费成功,Quay về首页!")
             window.location.href="/ServiceManage?op=4";
         }
 
@@ -175,7 +175,7 @@
                 <% } else if(op==2){ %>
 
 
-                <h4 class="ui dividing header">订单确认</h4>
+                <h4 class="ui dividing header">订单Xác nhận</h4>
                 <table class="ui table">
                     <thead>
                     <tr><th class="six wide">Name</th>
@@ -220,7 +220,7 @@
 
             </div>
             <%--<h1>欢迎续费</h1>--%>
-            <%--  续费房间号 下拉列表   续费时长 缴纳金额  续费要改相应的order表格的退房日期 --%>
+            <%--  续费房间号 下拉列表   续费时长 缴纳金额  续费要改相应的order表格的退房ngày期 --%>
 
 </body>
 </html>

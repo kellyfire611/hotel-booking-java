@@ -1,14 +1,14 @@
 ########################
-# 1. Create 系统管理员 table
+# 1. Create Quản trị Hệ thống table
 ########################
 
 CREATE TABLE systemAdministrator
 (
 	# 用户ID
 	userID varchar(10), # varchar 
-	# 用户名
+	# Tên tài khoản
 	userName VARCHAR(32) NOT NULL,
-	# 登录密码
+	# Đăng nhậpMật khẩu
 	userPassword VARCHAR(32) NOT NULL,
 	# 主键
 	PRIMARY KEY (userID)
@@ -20,21 +20,21 @@ CREATE TABLE systemAdministrator
 
 CREATE TABLE waiter
 (
-	# 工号
+	# Mã Nhân viên
 	waiterID varchar(10), #varchar
-	# 姓名
+	# Tên
 	waiterName VARCHAR(32) NOT NULL,
-	# 出生日期
+	# Ngày tháng năm sinh
 	waiterBirthday DATE NOT NULL,
-	# 身份证
+	# Card ID
 	waiterIDCard CHAR(18) NOT NULL UNIQUE,
-	# 系统登录密码
+	# 系统Đăng nhậpMật khẩu
 	waiterPassword VARCHAR(32) NOT NULL,
-	# 入职日期
+	# 入职ngày期
 	waiterJoinDate DATE NOT NULL,
 	# 手机
 	waiterPhoneNumber CHAR(11) UNIQUE,
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),
 	# 主键
 	PRIMARY KEY (waiterID)
@@ -51,7 +51,7 @@ CREATE TABLE VIPLevel
 	discount decimal(10,2) unsigned,
 	# 等级对应消费金额
 	totalAmount bigint, # bigint
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),
 	# 主键
 	PRIMARY KEY (level)
@@ -80,21 +80,21 @@ CREATE TABLE roomTypeAndPrice
 
 CREATE TABLE customers
 (
-	# 顾客身份证
+	# 顾客Card ID
 	customerIDCard CHAR(18),
 	# 性别
 	customerGender CHAR(4) check (customerGender ='男' or customerGender='女'),  # 限制 男或女  
-	# 姓名
+	# Tên
 	customerName VARCHAR(16) NOT NULL,  
-	# 出生日期
+	# Ngày tháng năm sinh
 	customerBirthday DATE, 
 	# 会员等级
 	customerVIPLevel smallint, # 改成 smallint 
-	# 手机号码
+	# Số điện thoại
 	customerPhoneNumber CHAR(11) , 
 	# 消费金额
 	totalAmount INT UNSIGNED,  
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),  
 	# 主键
 	PRIMARY KEY (customerIDCard),
@@ -115,7 +115,7 @@ CREATE TABLE room
 	roomType VARCHAR(32) NOT NULL,
 	# 状态
 	roomStatus CHAR(6) check (roomStatus='空' or roomStatus='非空'), # 空/非空 
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),
 	# 主键
 	PRIMARY KEY (roomNumber),
@@ -137,7 +137,7 @@ CREATE TABLE orders
 	orderNumber CHAR(32) NOT NULL  , 
 	# 订单状态
 	orderStatus CHAR(18) check (value in ('预订中','已入住','已退房')) ,
-	# 客户身份证
+	# 客户Card ID
 	customerIDCard CHAR(18),
 	# 入住房间号
 	roomNumber CHAR(6) NOT NULL,
@@ -147,9 +147,9 @@ CREATE TABLE orders
 	checkOutTime DATE NOT NULL,
 	# 需付金额(由于可能续费，不能作为外键)
 	totalMoney INT UNSIGNED NOT NULL,
-	# 服务员工号
+	# 服务员Mã Nhân viên
 	waiterID VARCHAR(10) NOT NULL,
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),
 	orderTime DATE NOT NULL,
 	# 主键
@@ -178,7 +178,7 @@ CREATE TABLE orderTracking
 	checkInTime DATE,
 	# 实际退房时间
 	checkOutTime DATE,
-	# 备注
+	# Ghi chú
 	remarks VARCHAR(32),
 	# 主键
 	PRIMARY KEY (orderNumber),
@@ -189,7 +189,7 @@ CREATE TABLE orderTracking
 
 ########################
 # 9. Create 续费延长 table
-# 客户需要续费延长时，直接更新订单表中的日期以及金额
+# 客户需要续费延长时，直接更新订单表中的ngày期以及金额
 # 由于订单状态未变，跟踪表中无法体现该订单续费了，所以增加此续费表
 ########################
 	
@@ -199,9 +199,9 @@ CREATE TABLE timeExtension
 	operatingID INT UNSIGNED AUTO_INCREMENT,
 	# 操作的订单号(是记录中的订单号，外码，参照订单表)
 	orderNumber CHAR(32),
-	# 住房原到期日期
+	# 住房原到期ngày期
 	oldExpiryDate DATE NOT NULL,
-	# 住房新到期日期
+	# 住房新到期ngày期
 	newExpiryDate DATE NOT NULL,
 	# 需要添加的金额
 	addedMoney INT UNSIGNED NOT NULL,
@@ -256,7 +256,7 @@ WHERE
 # 创建续费订单视图
 CREATE VIEW timeExtensionOrdersView
 AS
-# 选择订单号，顾客名，手机号码，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
+# 选择订单号，顾客名，Số điện thoại，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
 SELECT 
     tt.orderNumber,
     ct.customerName,
@@ -454,13 +454,13 @@ delimiter ;
 
 # 创建room 中roomtype和roomstatus 的混合索引
 create index indexRoomTypeStatus on room (roomType, roomStatus);
-# 创建系统管理员id和password的混合索引
+# 创建Quản trị Hệ thốngid和password的混合索引
 create index indexSystemAdminIDPassword on systemadministrator (userID, userPassword);
-# 创建宾馆管理员id和password的混合索引
+# 创建Quản trị Khách sạnid和password的混合索引
 create index indexWaiterIDPassword on waiter (waiterID, waiterPassword);
-# 创建customers中姓名的索引
+# 创建customers中Tên的索引
 create index indexCustomerName on customers (customerName);
-# 创建customers中手机号的索引
+# 创建customers中Số điện thoại的索引
 create index indexCustomerPhoneNumber on customers (customerPhoneNumber);
 # 创建customers中VIP等级的索引
 create index indexCustomerVIPLevel on customers (customerVIPLevel);
@@ -489,7 +489,7 @@ INSERT INTO `viplevel` VALUES (5, 0.95, 3000, NULL);
 INSERT INTO `viplevel` VALUES (6, 0.94, 5000, NULL);
 
 
-# 插入系统管理员
+# 插入Quản trị Hệ thống
 INSERT INTO `systemadministrator` VALUES ('chiron', 'yf', '3342');
 INSERT INTO `systemadministrator` VALUES ('lqq', '李巧巧', '1234');
 INSERT INTO `systemadministrator` VALUES ('lx', '李轩', '1234');
