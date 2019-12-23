@@ -29,7 +29,7 @@ public class Query {
                 list.add( resultSet.getInt("count(*)")) ;
             }
             preparedStatement = connection.prepareStatement(
-                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='非空' and c.roomType='"+roomType+"'");
+                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='非空' ");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

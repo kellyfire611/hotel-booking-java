@@ -26,9 +26,10 @@ import static tool.Query.*;
 @WebServlet(name = "ServiceManage")
 public class ServiceManage extends HttpServlet {
 
-    //  本servlet用于办理三种业务： 订房  退房  续费
+    //  本servlet用于办理三种业务： Đặt phòng  退房  续费
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
     }
 
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +48,8 @@ public class ServiceManage extends HttpServlet {
 //    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
 
         Map<String, String[]> map = request.getParameterMap() ;
         String queryString ="" ;
@@ -55,7 +57,7 @@ public class ServiceManage extends HttpServlet {
         int op = Integer.parseInt( values[0] ) ;
         if(op==1) {
             String id = map.get("idcard")[0].toString() ;
-            //用户登记  查询折扣
+            //Người dùng đăng ký phòng  查询折扣
             //根据Card ID查询用户是否存在
             Double discount ;
 

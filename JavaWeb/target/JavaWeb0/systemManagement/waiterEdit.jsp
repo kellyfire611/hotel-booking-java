@@ -4,14 +4,14 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="static tool.Query.searchEmptyRooms" %>
 <%@ page import="tool.Query" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%--<%--%>
 <%--Map<String, String[]> map =request.getParameterMap() ;--%>
 <%--int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang--%>
 
 <%--%>--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <html>
 <head>
     <meta charset="UTF-8">

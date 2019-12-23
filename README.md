@@ -12,7 +12,7 @@
 
 ## 项目成员
 - [chironyf](https://github.com/chironyf)(数据可视化展示、添加房间、订单Quản lý等)
-- [李轩](https://github.com/994047477)(订房退房、续费、房间查询预览等)
+- [李轩](https://github.com/994047477)(Đặt phòng退房、续费、房间查询预览等)
 - [ZoeQ](https://github.com/ZoeQ)(Nhân viênSửa、添加等)
 
 ## 关系模式

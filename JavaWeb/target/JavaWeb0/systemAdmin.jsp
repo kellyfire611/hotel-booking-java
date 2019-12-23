@@ -3,7 +3,7 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="tool.DataBase" %>
 <%@ page import="static tool.DataBase.MAP" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     if (session.getAttribute("systemadmin") == null) {

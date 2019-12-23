@@ -5,14 +5,13 @@
   Time: 08:41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="entity.*" %>
 <%@ page import="static tool.Query.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="config.GCON" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="tool.Query" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Map<String, String[]> map = request.getParameterMap() ;
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容

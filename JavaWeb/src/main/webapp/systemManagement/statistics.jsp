@@ -14,7 +14,7 @@
   Time: 13:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     //预定订单数量
@@ -39,7 +39,7 @@
     }
 
 
-//--------------酒店不同房型订房数量时间线------------------ //
+//--------------酒店不同房型Đặt phòng数量时间线------------------ //
 
     ArrayList<String> weekRoomType = new ArrayList<String>();
 

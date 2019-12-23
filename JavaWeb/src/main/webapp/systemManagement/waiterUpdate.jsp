@@ -6,7 +6,7 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="static tool.Query.getWaiter" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -25,7 +25,6 @@
         waiter =getWaiter(waiterid)   ;// Get waiter bởi ID ;
     }
 %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -59,7 +58,7 @@
                 && /^0\d{9,11}$/.test(waiterPhoneNumber)
             ){
 
-                window.location.href=encodeURI("/systemManagement/waiterUpdate.jsp?mop=5&" +url);
+                window.location.href=("/systemManagement/waiterUpdate.jsp?mop=5&" +url);
             }return false ;
 
         }
@@ -74,7 +73,7 @@
                 window.location.href.split("&")[6] + "&" +
                 window.location.href.split("&")[7] + "&" +
                 window.location.href.split("&")[8];
-            window.location.href= encodeURI("/systemManagement/waiterUpdate.jsp?mop=6&" +urln);
+            window.location.href= ("/systemManagement/waiterUpdate.jsp?mop=6&" +urln);
         }
 
         function returnm() {

@@ -6,7 +6,7 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="static tool.Query.getWaiter" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -25,7 +25,6 @@
         waiter =getWaiter(waiterid)   ;// Get waiter bởi ID ;
     }
 %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">

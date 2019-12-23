@@ -5,7 +5,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="tool.DataBase" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     if (session.getAttribute("hoteladmin") == null) {
@@ -82,7 +82,7 @@
         业务办理
         <i class="dropdown icon"></i>
         <div class="menu">
-            <a class="item" href="/roomOrder.jsp?op=1"><i class="arrow right icon"></i>订房</a>
+            <a class="item" href="/roomOrder.jsp?op=1"><i class="arrow right icon"></i>Đặt phòng</a>
             <a class="item" href="/roomRenew.jsp?op=1"><i class="spinner icon"></i>续费</a>
             <a class="item" href="/roomCheckOut.jsp?op=1"><i class="arrow left icon"></i>退房</a>
         </div>

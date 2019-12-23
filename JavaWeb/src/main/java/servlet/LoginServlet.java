@@ -17,6 +17,8 @@ import tool.DataBase ;
 @WebServlet(name="LoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
         Connection conn;
         Statement stmt ;
         String userid =request.getParameter("id");
@@ -84,6 +86,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
         System.out.print("LoginServlet");
 
     }

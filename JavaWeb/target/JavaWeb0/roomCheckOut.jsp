@@ -4,7 +4,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="static tool.Query.searchFullRooms" %>
 <%@ page import="static tool.Query.*" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Map<String, String[]> map =request.getParameterMap() ;
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容

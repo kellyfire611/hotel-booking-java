@@ -4,7 +4,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="static tool.Query.searchEmptyRooms" %>
 <%@ page import="static tool.Query.*" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Map<String, String[]> map =request.getParameterMap() ;
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容
@@ -78,7 +78,7 @@
 <body>
 <div class="pusher">
     <div class="ui container">
-        <h2 class="ui header">订房</h2>
+        <h2 class="ui header">Đặt phòng</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical steps">
@@ -86,7 +86,7 @@
                     <div class="<%=(op<=1)?"active step ":"completed step"%>" >
                         <i class="building icon"></i>
                         <div class="content">
-                            <div class="title">选定房型</div>
+                            <div class="title">Chọn Loại phòng</div>
                             <%--<div class="description">Choose your shipping options</div>--%>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="<%=(op==2)?"active step ":(op==1)?"step":"completed step"%>">
                         <i class="user icon"></i>
                         <div class="content">
-                            <div class="title">用户登记</div>
+                            <div class="title">Người dùng đăng ký phòng</div>
                             <%--<div class="description">Enter billing information</div>--%>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                     <div class="<%=(op==3|| op==4)?"active step ":"step"%>">
                         <i class="info icon"></i>
                         <div class="content">
-                            <div class="title">订单支付</div>
+                            <div class="title">Xác nhận thông tin</div>
                             <%--<div class="description">Verify order details</div>--%>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                         ArrayList<RoomTypeAndPrice> allRooms = getAllRooms();
 
                         for(RoomTypeAndPrice rtp : allRooms){
-                            ArrayList<Integer> list = getNumofRoom(rtp.getRoomType());//list[0]非空  list[1]空
+                            ArrayList<Integer> list = getNumofRoom(rtp.getRoomType());//list [0] is not empty list [1] is empty
                     %>
                     <div class="column">
                         <div class="ui card">

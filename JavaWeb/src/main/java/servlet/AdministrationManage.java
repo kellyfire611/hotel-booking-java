@@ -17,6 +17,8 @@ public class AdministrationManage extends HttpServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap() ;
         String queryString ="" ;
         String[] values =map.get("mop") ; // mop=4/5/6

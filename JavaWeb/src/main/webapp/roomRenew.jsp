@@ -6,7 +6,7 @@
 <%@ page import="static tool.Query.*" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Map<String, String[]> map =request.getParameterMap() ;
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容
@@ -122,7 +122,7 @@
                     <div class="<%=(op==2)?"active step ":(op==1)?"step":"completed step"%>">
                         <i class="info icon"></i>
                         <div class="content">
-                            <div class="title">订单支付</div>
+                            <div class="title">Xác nhận thông tin</div>
                             <%--<div class="description">Enter billing information</div>--%>
                         </div>
                     </div>

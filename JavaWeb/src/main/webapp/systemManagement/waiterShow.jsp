@@ -4,7 +4,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="static tool.Query.searchEmptyRooms" %>
 <%@ page import="tool.Query" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -12,7 +12,6 @@
   Time: 14:41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Map<String, String[]> map =request.getParameterMap() ;
     int mop = Integer.parseInt(map.get("mop")[0]) ; //sử dụng mop option để điều khiển nội dung trang

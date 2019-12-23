@@ -13,10 +13,13 @@ import java.util.Map;
 public class OrderManage extends HttpServlet {
     //  此servlet用于 Quản lý订单
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap();
         String[] values =map.get("op");
         if (values[0].equals("1")) {
