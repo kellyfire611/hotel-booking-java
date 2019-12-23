@@ -27,13 +27,13 @@ CREATE TABLE waiter
 	# Ngày tháng năm sinh
 	waiterBirthday DATE NOT NULL,
 	# Card ID
-	waiterIDCard CHAR(18) NOT NULL UNIQUE,
+	waiterIDCard CHAR(18) NOT NULL,
 	# 系统Đăng nhậpMật khẩu
 	waiterPassword VARCHAR(32) NOT NULL,
 	# 入职ngày期
 	waiterJoinDate DATE NOT NULL,
 	# 手机
-	waiterPhoneNumber CHAR(11) UNIQUE,
+	waiterPhoneNumber CHAR(11),
 	# Ghi chú
 	remarks VARCHAR(32),
 	# 主键

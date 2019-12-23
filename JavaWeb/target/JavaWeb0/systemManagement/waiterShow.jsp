@@ -63,7 +63,7 @@
         jsonWaiterValues = new StringBuilder("");
     }
     jsonData.insert(0, "{\n" +
-            " \"name\": \"员工\",\n" +
+            " \"name\": \"Nhân viên\",\n" +
             " \"children\": [\n").append("\n]\n}");
 %>
 <html>

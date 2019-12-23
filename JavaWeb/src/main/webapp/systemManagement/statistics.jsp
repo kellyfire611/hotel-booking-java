@@ -108,7 +108,7 @@
 
 
 //---------------------------------------------//
-    //员工绩效
+    //Nhân viên绩效
     HashMap<String, Integer> waiterCommission = new HashMap<String, Integer>();
 
     ArrayList<Waiter> allWaiters = Query.getAllWaiters();
@@ -371,7 +371,7 @@
                 </script>
 
             </div>
-            <%--//员工业绩统计--%>
+            <%--//Nhân viên业绩统计--%>
             <div class="seven wide column">
                 <div id="waiter" style="width: 90%;height:36%;"></div>
                 <script>
@@ -381,7 +381,7 @@
 
                     waiterOption = {
                         title : {
-                            text: '员工业绩统计',
+                            text: 'Nhân viên业绩统计',
                             subtext: '处理订单数量',
                             x:'left'
                         },
