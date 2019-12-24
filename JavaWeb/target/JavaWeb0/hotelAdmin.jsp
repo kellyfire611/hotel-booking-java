@@ -81,22 +81,22 @@ response.setContentType("text/html;charset=UTF-8");
 
     <div class="ui simple dropdown item">
         <i class="tasks icon"></i>
-        业务办理
+        Nghiệp vụ
         <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item" href="/roomOrder.jsp?op=1"><i class="arrow right icon"></i>Đặt phòng</a>
-            <a class="item" href="/roomRenew.jsp?op=1"><i class="spinner icon"></i>续费</a>
-            <a class="item" href="/roomCheckOut.jsp?op=1"><i class="arrow left icon"></i>退房</a>
+            <a class="item" href="/roomRenew.jsp?op=1"><i class="spinner icon"></i>Gia hạn</a>
+            <a class="item" href="/roomCheckOut.jsp?op=1"><i class="arrow left icon"></i>Trả phòng</a>
         </div>
     </div>
     <div class="ui simple dropdown item">
         <i class="building icon"></i>
-        客房Quản lý
+        Quản lý Phòng
         <i class="dropdown icon"></i>
         <div class="menu">
-            <a class="item" href="/RoomManage?op=1"><i class="search icon"></i>查询房间</a>
-            <a class="item" href="/RoomManage?op=2"><i class="plus icon"></i>增加房间</a>
-            <a class="item" href="/roomManagement/roomDisplay.jsp"><i class="zoom out icon"></i>房间概览</a>
+            <a class="item" href="/RoomManage?op=1"><i class="search icon"></i>Kiểm tra Phòng</a>
+            <a class="item" href="/RoomManage?op=2"><i class="plus icon"></i>Thêm mới Phòng</a>
+            <a class="item" href="/roomManagement/roomDisplay.jsp"><i class="zoom out icon"></i>Tổng quan Phòng</a>
         </div>
     </div>
     <div class="ui simple dropdown item">

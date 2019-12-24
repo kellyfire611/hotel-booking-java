@@ -39,7 +39,7 @@ public class GCON {
 
 
     //----------------------jsp-----------------------//
-    //客房Quản lý
+    //Quản lý Phòng
     public static final String SEARCH_ROOM = "1";
 
     public static final String ADD_ROOM = "2";

@@ -72,7 +72,7 @@ response.setContentType("text/html;charset=UTF-8");
 
 
     <div class="ui container">
-        <h2 class="ui header">退房</h2>
+        <h2 class="ui header">Trả phòng</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical steps">
@@ -80,7 +80,7 @@ response.setContentType("text/html;charset=UTF-8");
                     <div class="<%=(op<=1)?"active step ":"completed step"%>" >
                         <i class="building icon"></i>
                         <div class="content">
-                            <div class="title">选择房号</div>
+                            <div class="title">Nhập số phòng</div>
 
                         </div>
                     </div>
@@ -88,7 +88,7 @@ response.setContentType("text/html;charset=UTF-8");
                     <div class="<%=(op==2)?"active step ":(op==1)?"step":"completed step"%>">
                         <i class="info icon"></i>
                         <div class="content">
-                            <div class="title">订单信息</div>
+                            <div class="title">Thông tin xác nhận</div>
                             <%--<div class="description">Enter billing information</div>--%>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ response.setContentType("text/html;charset=UTF-8");
                                     ArrayList<String> list = searchFullRooms();
                                     if(list.size()==0){
                                 %>
-                                <option value="无房可退">无房可退</option>
+                                <option value="Không tim thấy phòng Checkout">Không tim thấy phòng Checkout</option>
                                 <%
                                     }
                                     for(String str : list){
@@ -119,7 +119,7 @@ response.setContentType("text/html;charset=UTF-8");
                                 <option value=<%=str%>> <%=str%> </option>
                                 <% } %>
                             </select>
-                            <%--<input type="text" name="roomid" placeholder="房间号">--%>
+                            <%--<input type="text" name="roomid" placeholder="Số phòng">--%>
                         </div>
                     </div>
                     <br/>
@@ -128,9 +128,9 @@ response.setContentType("text/html;charset=UTF-8");
                 <% }
                 else if(op==2){%>
 
-                <%--  房间号 居住时间  --%>
+                <%--  Số phòng 居住时间  --%>
 
-                <h4 class="ui dividing header">订单信息</h4>
+                <h4 class="ui dividing header">Thông tin xác nhận</h4>
                 <table class="ui table">
                     <thead>
                     <tr><th class="six wide">Name</th>
@@ -164,13 +164,13 @@ response.setContentType("text/html;charset=UTF-8");
                     </tr>
                     <tr>
 
-                        <td>入住时间</td>
+                        <td>Ngày vào</td>
                         <td><%=order.getCheckInTime()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>退房时间</td>
+                        <td>Trả phòng时间</td>
                         <td><%=order.getCheckOutTime()%></td>
 
                     </tr>
@@ -182,7 +182,7 @@ response.setContentType("text/html;charset=UTF-8");
                     </tr>
                     <tr>
 
-                        <td>订单总金额(含续费)</td>
+                        <td>订单总金额(含Gia hạn)</td>
                         <td><%=order.getTotalMoney()%></td>
 
                     </tr>
@@ -196,24 +196,24 @@ response.setContentType("text/html;charset=UTF-8");
                 </table>
 
 
-                <h4 class="ui dividing header">完成退房</h4>
+                <h4 class="ui dividing header">完成Trả phòng</h4>
 
                 <div class="ui right button" >
                     <%--<% if(op==2)System.out.println("打印订单编号:"+order.getOrderNumber() );%>--%>
-                    <%--<a href="ServiceManage?op=5&orderNumber=<%=order.getOrderNumber()%>">Xác nhận退房</a>--%>
-                    <a href="/roomCheckOut.jsp?op=3&orderNumber=<%=order.getOrderNumber()%>">Xác nhận退房</a>
+                    <%--<a href="ServiceManage?op=5&orderNumber=<%=order.getOrderNumber()%>">Xác nhậnTrả phòng</a>--%>
+                    <a href="/roomCheckOut.jsp?op=3&orderNumber=<%=order.getOrderNumber()%>">Xác nhậnTrả phòng</a>
                 </div>
                 <%}else if (op == 3) {
                     String orderNumber= map.get("orderNumber")[0] ;
                     System.out.println("订单:"+orderNumber);
                     checkOutRoom(orderNumber) ;
                 %>
-                <h4 class="ui dividing header">退房成功</h4>
+                <h4 class="ui dividing header">Trả phòng成功</h4>
                 <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                 <%}%>
             </div>
-            <%--<h1>欢迎续费</h1>--%>
-            <%--  续费房间号 下拉列表   续费时长 缴纳金额  --%>
+            <%--<h1>欢迎Gia hạn</h1>--%>
+            <%--  Gia hạnSố phòng 下拉列表   Gia hạn时长 缴纳金额  --%>
 
 </body>
 </html>
@@ -227,7 +227,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[0-9]{6}$/]',
-                            prompt: '房间号不符合规范'
+                            prompt: 'Số phòng không đúng định dạng'
                         }
                     ]
                 }

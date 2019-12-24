@@ -506,7 +506,7 @@ INSERT INTO `waiter` (`waiterID`, `waiterName`, `waiterBirthday`, `waiterIDCard`
 # 创建收入视图
 create view incomeView
 as
-# 选择退房时间，总金额，订单数量
+# 选择Trả phòng时间，总金额，订单数量
 select checkOutTime co, sum(totalMoney) tot, count(*) num from orders 
 where orders.orderNumber
 in (
@@ -543,7 +543,7 @@ WHERE
 # 创建Tình hình Renew视图
 CREATE VIEW timeExtensionOrdersView
 AS
-# 选择订单号，顾客名，Số điện thoại，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
+# 选择Mã đơn hàng，顾客名，Số điện thoại，Số phòng，Ngày vào，旧的Ngày hết hạn，新的Ngày hết hạn以及增加的金额
 SELECT 
     tt.orderNumber,
     ct.customerName,
@@ -667,7 +667,7 @@ delimiter ;
 -- ----------------------------
 -- Triggers structure for table orders
 -- ----------------------------
-# 创建插入订单后对订单信息进行更新的触发器
+# 创建插入订单后对Thông tin xác nhận进行更新的触发器
 DROP TRIGGER IF EXISTS `insertOrderStatusToTrackingTrigger`;
 delimiter ;;
 CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR EACH ROW begin 

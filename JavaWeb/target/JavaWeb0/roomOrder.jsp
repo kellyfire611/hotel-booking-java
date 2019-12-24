@@ -178,7 +178,7 @@ response.setContentType("text/html;charset=UTF-8");
 
 
                                     </select>
-                                    <%--<input type="text" name="roomid" placeholder="房间号">--%>
+                                    <%--<input type="text" name="roomid" placeholder="Số phòng">--%>
                                 </div>
 
 
@@ -307,7 +307,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[0-9]{6}$/]',
-                            prompt: '房间号不符合规范'
+                            prompt: 'Số phòng không đúng định dạng'
                         }
                     ]
                 },idcard: {

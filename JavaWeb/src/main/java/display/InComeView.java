@@ -5,7 +5,7 @@ public class InComeView {
     int AllPrice ;
 
     String date ;
-    //新增退房订单数量
+    //新增Trả phòng订单数量
     private int checkOutNumber;
 
     public void setAllPrice(int allPrice) {

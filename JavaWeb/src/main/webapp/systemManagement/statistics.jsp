@@ -21,7 +21,7 @@
     int bookedOrderNumber = 0;
     //Tình hình Check-in数量
     int checkInOrderNumber = 0;
-    //退房订单数量
+    //Trả phòng订单数量
     int checkOutOrderNumber = 0;
     //Tình hình Renew数量
     int timeExtensionOrderNumber = Query.getAllTimeExtensionOrders().size();
@@ -270,7 +270,7 @@
                             <%--data:['订单量']--%>
                         <%--},--%>
                         <%--xAxis: {--%>
-                            <%--data: ["已预订", "Đã_đăng_ký","Đã thanh toán","续费"]--%>
+                            <%--data: ["已预订", "Đã_đăng_ký","Đã thanh toán","Gia hạn"]--%>
                         <%--},--%>
                         <%--yAxis: {},--%>
                         <%--series: [{--%>
@@ -492,7 +492,7 @@ var mainContainerincomeChart = document.getElementById("income");
                         }],
                         title: [{
                             left: 'center',
-                            text: '每ngày退房订单量'
+                            text: '每ngàyTrả phòng订单量'
                         }, {
                             top: '55%',
                             left: 'center',

@@ -183,7 +183,7 @@ public class Query {
         return null ;
     }
 
-    //根据房间的型号查询房间的相关信息
+    //根据房间的型号Kiểm tra Phòng的相关信息
     public  static HashMap<String,RoomTypeAndPrice> getRoomTypeMap(){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -221,12 +221,12 @@ public class Query {
             connection =  DataBase.getConnection();
             String sql  ;
             if(!search.equals("")){
-                sql ="select * from room where roomNumber like '%"+search+"%' and hotelID='"+hotelID+"'" ;
+                sql ="select * from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomNumber like '%"+search+"%' and hotelID='"+hotelID+"'" ;
 
             }else if(s.equals("")||s.equals("Tất_cả"))
-                sql="select * from room where hotelID='"+hotelID+"' " ;
+                sql="select * from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where hotelID='"+hotelID+"' " ;
             else
-                sql="select * from room where roomStatus='"+s+"' and hotelID='"+hotelID+"'";
+                sql="select * from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomStatus='"+s+"' and hotelID='"+hotelID+"'";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -252,7 +252,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='đã_có_người_thuê' and hotelID='"+hotelID+"' " ;
+            String sql ="select roomNumber from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomStatus='đã_có_người_thuê' and hotelID='"+hotelID+"' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -271,7 +271,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='còn_trống' and roomType='"+roomtype+"' and hotelID='"+hotelID+"' " ;
+            String sql ="select roomNumber from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomStatus='còn_trống' and roomType='"+roomtype+"' and hotelID='"+hotelID+"' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -324,7 +324,7 @@ public class Query {
             preparedStatement = connection.prepareStatement(GCON.SQL_ALL_ORDERS + " WHERE hotelID='"+hotelID+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
-            //获取数据库中订单信息
+            //获取数据库中Thông tin xác nhận
             while (resultSet.next()) {
 //                    public Order(String orderNumber,
 //                        String orderStatus,
@@ -381,7 +381,7 @@ public class Query {
 
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
-            //获取数据库中订单信息
+            //获取数据库中Thông tin xác nhận
             int i = 0;
             while (resultSet.next()) {
                 SystemAdministrator systemAdministrator = new SystemAdministrator(resultSet.getString("userID"),
@@ -444,7 +444,7 @@ public class Query {
 
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
-            //获取数据库中订单信息
+            //获取数据库中Thông tin xác nhận
             while (resultSet.next()) {
 //                    public Waiter(String waiterID,
 //                        String waiterName,
@@ -556,7 +556,7 @@ public class Query {
                 );
             else
                 preparedStatement = connection.prepareStatement(
-                        "select * from roomtypeandprice where hotelID='"+hotelID+"' roomType like '%"+s1+"%' and roomType like '%"+s2+
+                        "select * from roomtypeandprice where hotelID='"+hotelID+"' and roomType like '%"+s1+"%' and roomType like '%"+s2+
                                 "%'"
                 );
             //获取结果数据集
@@ -827,7 +827,7 @@ public class Query {
     }
 
 
-    //插入一条订单信息
+    //插入一条Thông tin xác nhận
     public static void insertOrder(Order order) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

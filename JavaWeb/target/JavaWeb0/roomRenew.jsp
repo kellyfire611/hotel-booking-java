@@ -14,13 +14,13 @@ response.setContentType("text/html;charset=UTF-8");
     int op = Integer.parseInt(map.get("op")[0]) ; //通过op选项来控制页面显示的内容
     TimeExtension renew=null ;
     if(op==2){
-        /**现在获得的只有 房间号 和 续费天数
-         * 需要通过房间号先获得Tình hình Renew的订单号,
-         * 通过订单号获得获得房间编号、房间入住和到期时间
+        /**现在获得的只有 Số phòng 和 Gia hạn天数
+         * 需要通过Số phòng先获得Tình hình Renew的Mã đơn hàng,
+         * 通过Mã đơn hàng获得获得房间编号、房间入住和Ngày hết hạn
          * 通过房间编号获得房间价格
          *
          */
-        //查询原订单号
+        //查询原Mã đơn hàng
         Order order = getOrder(map.get("roomid")[0]);
         String orderid =order.getOrderNumber() ;
         //查询员订单截止时间
@@ -79,7 +79,7 @@ response.setContentType("text/html;charset=UTF-8");
 
         function fun1() {
 
-            alert("续费成功,Quay về首页!")
+            alert("Gia hạn成功,Quay về首页!")
             window.location.href="/ServiceManage?op=4";
         }
 
@@ -108,7 +108,7 @@ response.setContentType("text/html;charset=UTF-8");
 
 
     <div class="ui container">
-        <h2 class="ui header">房间续费</h2>
+        <h2 class="ui header">Gia hạn Phòng</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical steps">
@@ -116,7 +116,7 @@ response.setContentType("text/html;charset=UTF-8");
                     <div class="<%=(op<=1)?"active step ":"completed step"%>" >
                         <i class="building icon"></i>
                         <div class="content">
-                            <div class="title">选择房号</div>
+                            <div class="title">Nhập số phòng</div>
                             <%--<div class="description">Choose your shipping options</div>--%>
                         </div>
                     </div>
@@ -157,10 +157,10 @@ response.setContentType("text/html;charset=UTF-8");
                                 <option value=<%=str%>> <%=str%> </option>
                                 <% } %>
                             </select>
-                            <%--<input type="text" name="roomid" placeholder="房间号">--%>
+                            <%--<input type="text" name="roomid" placeholder="Số phòng">--%>
                         </div>
                     </div>
-                    <h4 class="ui dividing header">续费时间</h4>
+                    <h4 class="ui dividing header">Thời gian gia hạn</h4>
                     <div class="eight wide field">
                         <label>Time</label>
                         <div class=" fields">
@@ -193,7 +193,7 @@ response.setContentType("text/html;charset=UTF-8");
                         <td><%=renew.getOrderNumber() %></td>
                     </tr>
                     <tr>
-                        <td>原到期时间</td>
+                        <td>原Ngày hết hạn</td>
                         <td><%=renew.getOldExpiryDate() %></td>
                     </tr>
                     <tr>
@@ -201,7 +201,7 @@ response.setContentType("text/html;charset=UTF-8");
                         <td><%=renew.getAddedMoney() %></td>
                     </tr>
                     <tr>
-                        <td>现到期时间</td>
+                        <td>现Ngày hết hạn</td>
                         <td><%=renew.getNewExpiryDate() %></td>
                     </tr>
                     </tbody>
@@ -221,8 +221,8 @@ response.setContentType("text/html;charset=UTF-8");
                 <%}%>
 
             </div>
-            <%--<h1>欢迎续费</h1>--%>
-            <%--  续费房间号 下拉列表   续费时长 缴纳金额  续费要改相应的order表格的退房ngày期 --%>
+            <%--<h1>欢迎Gia hạn</h1>--%>
+            <%--  Gia hạnSố phòng 下拉列表   Gia hạn时长 缴纳金额  Gia hạn要改相应的order表格的Trả phòngngày期 --%>
 
 </body>
 </html>
@@ -245,7 +245,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[0-9]{6}$/]',
-                            prompt: '房间号不符合规范'
+                            prompt: 'Số phòng không đúng định dạng'
                         }
                     ]
                 }

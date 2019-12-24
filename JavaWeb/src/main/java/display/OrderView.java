@@ -2,18 +2,18 @@ package display;
 
 import java.sql.Date;
 
-//将要显示的订单信息（多个表查询得到）
+//将要显示的Thông tin xác nhận（多个表查询得到）
 public class OrderView {
 
-//        <tr><th>订单号</th>
+//        <tr><th>Mã đơn hàng</th>
     private String orderNumder;
 //        <th>Đặt phòng客户</th>
     private String customer;
-//        <th>Đặt phòng房间</th>
+//        <th>Đặt phòng</th>
     private String  roomNumber;
-//        <th>房间类型</th>
+//        <th>Loại phòng</th>
     private String roomType;
-//        <th>入住时间</th>
+//        <th>Ngày vào</th>
     private Date checkInTime;
 
     private Date checkOutTime;
@@ -30,7 +30,7 @@ public class OrderView {
         this.orderStatus = orderStatus;
     }
 
-    //入住天数
+    //Tổng ngày
     private int days;
 
     public int getDays() {

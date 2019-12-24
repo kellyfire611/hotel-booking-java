@@ -129,15 +129,15 @@
 %>
 <table class="ui sortable celled table">
     <thead>
-    <tr class="center aligned"><th class="sorted descending">订单号</th>
-        <th>订单Tình trạng</th>
-        <th>客户Tên</th>
-        <th>创建时间</th>
-        <th>Đặt phòng房间</th>
-        <th>房间类型</th>
-        <th>入住时间</th>
-        <th>离店时间</th>
-        <th>入住天数</th>
+    <tr class="center aligned"><th class="sorted descending">Mã đơn hàng</th>
+        <th>Tình trạng Đơn hàng</th>
+        <th>Họ tên khách hàng</th>
+        <th>Ngày tạo</th>
+        <th>Đặt phòng</th>
+        <th>Loại phòng</th>
+        <th>Ngày vào</th>
+        <th>Ngày ra</th>
+        <th>Tổng ngày</th>
         <th>Số điện thoại</th>
         <th>Giá</th>
     </tr></thead>
@@ -216,16 +216,16 @@
         <th colspan="11">
             <div class="ui right floated pagination menu">
                 <a class="icon item">
-                    <h4>当前页&nbsp;:&nbsp;<%=currentPageNumber%>/<%=maxPageNumber%></h4>
+                    <h4>Trang hiện tại&nbsp;:&nbsp;<%=currentPageNumber%>/<%=maxPageNumber%></h4>
                 </a>
                 <a class="icon item">
                     <div class="ui mini icon input">
-                        <input type="text" placeholder="输入页码" id="pageIndex">
+                        <input type="text" placeholder="Nhập số trang" id="pageIndex">
                         <i class="search icon"></i>
                     </div>
                     <a class="icon item" onclick="jump(<%=maxPageNumber%>)">
                         <i class="reply icon"></i>
-                        <label>&nbsp;跳转</label>
+                        <label>&nbsp;Đi đến</label>
                     </a>
                 </a>
                 <%if (!pageIndexNegative) {%>
@@ -236,12 +236,12 @@
                 <%} else {%>
                 <a class="icon item">
                     <i class="smile icon"></i>
-                    <label>第一页</label>
+                    <label>Trang đầu</label>
                 </a>
                 <%}%>
                 <%if (!pageIndexFlow) {%>
                 <a class="icon item" onclick="nextPage(<%=maxPageNumber%>)">
-                    <label>下一页&nbsp;</label>
+                    <label>Trang kế&nbsp;</label>
                     <i class="right chevron icon"></i>
                 </a>
                 <%} else {%>

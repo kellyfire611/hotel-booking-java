@@ -58,11 +58,11 @@ CREATE TABLE VIPLevel
 ) ENGINE=InnoDB;
 
 ########################
-# 4. Create 房间类型与价格 table
+# 4. Create Loại phòng与价格 table
 ########################
 CREATE TABLE roomTypeAndPrice
 (
-	# 房间类型（主码）
+	# Loại phòng（主码）
 	roomType VARCHAR(32),
 	# Giá
 	price INT UNSIGNED NOT NULL,
@@ -109,9 +109,9 @@ CREATE TABLE customers
 ########################
 CREATE TABLE room
 (
-	# 房间号（主码）
+	# Số phòng（主码）
 	roomNumber CHAR(6),
-	# 房间类型
+	# Loại phòng
 	roomType VARCHAR(32) NOT NULL,
 	# Tình trạng
 	roomStatus CHAR(255) check (roomStatus='còn_trống' or roomStatus='đã_có_người_thuê'), # còn_trống/đã_có_người_thuê 
@@ -126,26 +126,26 @@ CREATE TABLE room
 
 
 ########################
-# 7. Create 订单信息 table
+# 7. Create Thông tin xác nhận table
 # 已预订，Đã_đăng_ký，Đã thanh toán/已完成
 # 三种订单都在里面
 ########################
 
 CREATE TABLE orders
 (
-	# 订单号
+	# Mã đơn hàng
 	orderNumber CHAR(32) NOT NULL  , 
-	# 订单Tình trạng
+	# Tình trạng Đơn hàng
 	orderStatus CHAR(18) check (value in ('预订中','Đã_đăng_ký','Đã thanh toán')) ,
 	# 客户Card ID
 	customerIDCard CHAR(18),
-	# 入住房间号
+	# 入住Số phòng
 	roomNumber CHAR(6) NOT NULL,
-	# 入住时间
+	# Ngày vào
 	checkInTime DATE NOT NULL,
-	# 离店时间
+	# Ngày ra
 	checkOutTime DATE NOT NULL,
-	# 需付金额(由于可能续费，不能作为外键)
+	# 需付金额(由于可能Gia hạn，不能作为外键)
 	totalMoney INT UNSIGNED NOT NULL,
 	# 服务员Mã Nhân viên
 	waiterID VARCHAR(10) NOT NULL,
@@ -170,13 +170,13 @@ CREATE TABLE orders
 
 CREATE TABLE orderTracking
 (
-	# 订单号
+	# Mã đơn hàng
 	orderNumber CHAR(32),
 	# Đặt phòng时间（订单表中一旦有Tình hình Đặt phòng加入，那么本表新增一条记录，本字段不可能为còn_trống）
 	orderTime DATE NOT NULL,
-	# 实际入住时间
+	# 实际Ngày vào
 	checkInTime DATE,
-	# 实际退房时间
+	# 实际Trả phòng时间
 	checkOutTime DATE,
 	# Ghi chú
 	remarks VARCHAR(32),
@@ -188,16 +188,16 @@ CREATE TABLE orderTracking
 ) ENGINE=InnoDB;
 
 ########################
-# 9. Create 续费延长 table
-# 客户需要续费延长时，直接更新订单表中的ngày期以及金额
-# 由于订单Tình trạng未变，跟踪表中无法体现该订单续费了，所以增加此续费表
+# 9. Create Gia hạn延长 table
+# 客户需要Gia hạn延长时，直接更新订单表中的ngày期以及金额
+# 由于Tình trạng Đơn hàng未变，跟踪表中无法体现该订单Gia hạn了，所以增加此Gia hạn表
 ########################
 	
 CREATE TABLE timeExtension    
 (
 	# 操作记录号
 	operatingID INT UNSIGNED AUTO_INCREMENT,
-	# 操作的订单号(是记录中的订单号，外码，参照订单表)
+	# 操作的Mã đơn hàng(是记录中的Mã đơn hàng，外码，参照订单表)
 	orderNumber CHAR(32),
 	# 住房原到期ngày期
 	oldExpiryDate DATE NOT NULL,
@@ -219,7 +219,7 @@ CREATE TABLE timeExtension
 # 创建收入视图
 create view incomeView
 as
-# 选择退房时间，总金额，订单数量
+# 选择Trả phòng时间，总金额，订单数量
 select checkOutTime co, sum(totalMoney) tot, count(*) num from orders 
 where orders.orderNumber
 in (
@@ -256,7 +256,7 @@ WHERE
 # 创建Tình hình Renew视图
 CREATE VIEW timeExtensionOrdersView
 AS
-# 选择订单号，顾客名，Số điện thoại，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
+# 选择Mã đơn hàng，顾客名，Số điện thoại，Số phòng，Ngày vào，旧的Ngày hết hạn，新的Ngày hết hạn以及增加的金额
 SELECT 
     tt.orderNumber,
     ct.customerName,
@@ -380,7 +380,7 @@ delimiter ;
 -- ----------------------------
 -- Triggers structure for table orders
 -- ----------------------------
-# 创建插入订单后对订单信息进行更新的触发器
+# 创建插入订单后对Thông tin xác nhận进行更新的触发器
 DROP TRIGGER IF EXISTS `insertOrderStatusToTrackingTrigger`;
 delimiter ;;
 CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR EACH ROW begin 

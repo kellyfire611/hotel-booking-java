@@ -27,7 +27,7 @@ import static tool.Query.*;
 @WebServlet(name = "ServiceManage")
 public class ServiceManage extends HttpServlet {
 
-    //  本servlet用于办理三种业务： Đặt phòng  退房  续费
+    //  本servlet用于办理三种业务： Đặt phòng  Trả phòng  Gia hạn
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 response.setContentType("text/html;charset=UTF-8");
 request.setCharacterEncoding("utf-8");
@@ -144,10 +144,10 @@ HttpSession session = request.getSession();
             response.sendRedirect("/roomOrder.jsp?op=4") ;
         }
         else if(op==4){
-            // 续费
+            // Gia hạn
             /**
              * Gởi dữ liệuTình hình Renew
-             * 订单Gởi dữ liệu后要修改order表的退房ngày期 ;
+             * 订单Gởi dữ liệu后要修改order表的Trả phòngngày期 ;
              */
             TimeExtension renew = (TimeExtension) request.getSession().getAttribute("renew");
             //插入Tình hình Renew ;
@@ -158,11 +158,11 @@ HttpSession session = request.getSession();
             response.sendRedirect("/roomOrder.jsp?op=1") ;
         }
         else if(op==5){
-            //退房
+            //Trả phòng
 //            String orderNumber= map.get("orderNumber")[0] ;
 //            System.out.println("订单:"+orderNumber);
 //            checkOutRoom(orderNumber) ;
-//            System.out.println("退房成功");
+//            System.out.println("Trả phòng成功");
 //            response.sendRedirect("/hotelAdmin.jsp") ;
         } else if (op == 10) {
             //Đăng xuất当前Quản lý员用户

@@ -18,7 +18,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>客房Quản lý</title>
+    <title>Quản lý Phòng</title>
 </head>
 <%@include file="/hotelAdmin.jsp"%>
 <body>

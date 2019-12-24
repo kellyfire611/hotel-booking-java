@@ -22,7 +22,7 @@ response.setContentType("text/html;charset=UTF-8");
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>添加客房</title>
+    <title>Thêm Phòng</title>
     <script>
 
         function returnMainPage() {
@@ -63,7 +63,7 @@ response.setContentType("text/html;charset=UTF-8");
 <div class="pusher">
 
     <div class="ui container">
-        <h2 class="ui header">添加客房</h2>
+        <h2 class="ui header">Thêm Phòng</h2>
         <div class="ui column grid">
             <div class="four wide column">
                 <div class="ui vertical steps">
@@ -71,14 +71,14 @@ response.setContentType("text/html;charset=UTF-8");
                     <div class="<%=(op == 2) ? "active step ":"completed step"%>" >
                         <i class="add circle icon"></i>
                         <div class="content">
-                            <div class="title">客房信息</div>
+                            <div class="title">Thông tin Phòng</div>
                         </div>
                     </div>
 
                     <div class="<%=(op == 3) ? "active step ":(op== 2)?"step":"completed step"%>">
                         <i class="check circle icon"></i>
                         <div class="content">
-                            <div class="title">信息Xác nhận</div>
+                            <div class="title">Thông tin Xác nhận</div>
                         </div>
                     </div>
 
@@ -88,18 +88,18 @@ response.setContentType("text/html;charset=UTF-8");
 
             <div class="eleven wide  column" >
 
-                <%//添加客房信息
+                <%//Thêm Phòng信息
                     if (op == 2) {
                 %>
                 <form class="ui form" onsubmit="return submitNewRoomInfo(this)">
-                    <h2 class="ui dividing header">填写新增客房信息</h2>
+                    <h2 class="ui dividing header">Nhập thông tin Thêm mới Phòng</h2>
                     <div class="two fields">
                         <div class="field">
-                            <label>房间号</label>
-                            <input type="text" id="roomNumber" name="roomid" placeholder="输入房间号">
+                            <label>Số phòng</label>
+                            <input type="text" id="roomNumber" name="roomid" placeholder="Nhập số phòng">
                         </div>
                         <div class="field">
-                            <label>房间类型</label>
+                            <label>Loại phòng</label>
                             <% ArrayList<RoomTypeAndPrice> rooms = getAllRooms();%>
                             <select class="ui fluid dropdown" id="roomType">
                                 <%for(RoomTypeAndPrice room :rooms){%>
@@ -110,7 +110,7 @@ response.setContentType("text/html;charset=UTF-8");
                     </div>
                     <div class="field">
                         <label>Ghi chú</label>
-                        <input type="text" id="remarks" placeholder="Ghi chú信息">
+                        <input type="text" id="remarks" placeholder="Nhập Ghi chú">
                     </div>
                     <div class="ui submit button">Gởi dữ liệu</div>
                 </form>
@@ -118,12 +118,12 @@ response.setContentType("text/html;charset=UTF-8");
                 <%} else if (op == 3) {
                 %>
 
-                <h2 class="ui dividing header">待添加客房信息Xác nhận</h2>
+                <h2 class="ui dividing header">待Thêm PhòngThông tin Xác nhận</h2>
                 <form class="ui form">
                     <table class="ui table">
                         <thead>
-                        <tr><th class="six wide">房间号</th>
-                            <th class="six wide">房间类型</th>
+                        <tr><th class="six wide">Số phòng</th>
+                            <th class="six wide">Loại phòng</th>
                             <th class="six wide">Ghi chú</th>
                         </tr></thead>
                         <tbody>
@@ -169,7 +169,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[0-9]{6}$/]',
-                            prompt: '房间号不符合规范'
+                            prompt: 'Số phòng không đúng định dạng'
                         }
                     ]
                 }

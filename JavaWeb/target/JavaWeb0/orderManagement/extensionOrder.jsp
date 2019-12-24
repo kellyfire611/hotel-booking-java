@@ -126,12 +126,12 @@
 <table class="ui sortable celled table">
     <thead>
     <tr class="center aligned">
-        <th class="sorted descending">订单号</th>
-        <th>客户Tên</th>
+        <th class="sorted descending">Mã đơn hàng</th>
+        <th>Họ tên khách hàng</th>
         <th>房间</th>
-        <th>入住时间</th>
-        <th>原离店时间</th>
-        <th>新离店时间</th>
+        <th>Ngày vào</th>
+        <th>原Ngày ra</th>
+        <th>新Ngày ra</th>
         <th>Số điện thoại</th>
         <th>补交金额</th>
     </tr></thead>
@@ -191,16 +191,16 @@
         <th colspan="11">
             <div class="ui right floated pagination menu">
                 <a class="icon item">
-                    <h4>当前页&nbsp;:&nbsp;<%=currentPageNumber%>/<%=maxPageNumber%></h4>
+                    <h4>Trang hiện tại&nbsp;:&nbsp;<%=currentPageNumber%>/<%=maxPageNumber%></h4>
                 </a>
                 <a class="icon item">
                     <div class="ui mini icon input">
-                        <input type="text" placeholder="输入页码" id="pageIndex">
+                        <input type="text" placeholder="Nhập số trang" id="pageIndex">
                         <i class="search icon"></i>
                     </div>
                     <a class="icon item" onclick="jump(<%=maxPageNumber%>)">
                         <i class="reply icon"></i>
-                        <label>&nbsp;跳转</label>
+                        <label>&nbsp;Đi đến</label>
                     </a>
                 </a>
                 <%if (!pageIndexNegative) {%>
@@ -211,12 +211,12 @@
                 <%} else {%>
                 <a class="icon item">
                     <i class="smile icon"></i>
-                    <label>第一页</label>
+                    <label>Trang đầu</label>
                 </a>
                 <%}%>
                 <%if (!pageIndexFlow) {%>
                 <a class="icon item" onclick="nextPage(<%=maxPageNumber%>)">
-                    <label>下一页&nbsp;</label>
+                    <label>Trang kế&nbsp;</label>
                     <i class="right chevron icon"></i>
                 </a>
                 <%} else {%>
@@ -240,7 +240,7 @@
         <br>
         <br>
         <br>
-        <h1 class="ui red header"><i class="folder open icon"></i>没有Tình hình Renew!!!</h1>
+        <h1 class="ui red header"><i class="folder open icon"></i>Không có dữ liệu gia hạn</h1>
     </div>
 </div>
 

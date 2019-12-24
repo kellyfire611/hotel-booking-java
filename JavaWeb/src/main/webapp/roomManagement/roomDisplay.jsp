@@ -144,8 +144,8 @@ response.setContentType("text/html;charset=UTF-8");
                             <% if(roominfo.getRoomStatus().equals("đã_có_người_thuê")){
                                 OrderView view = Query.getFullOrderViews(roominfo.getRoomNumber());
                             %>
-                            入住用户:<%=view.getCustomer()%><br>
-                            到期时间:<%=view.getCheckOutTime()%><br>
+                            Họ tên Người thuê:<%=view.getCustomer()%><br>
+                            Ngày hết hạn:<%=view.getCheckOutTime()%><br>
                             <%} %>
                         </div>
                     </div>
