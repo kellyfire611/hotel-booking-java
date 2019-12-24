@@ -20,7 +20,7 @@ response.setContentType("text/html;charset=UTF-8");
          * 通过房间编号获得房间价格
          *
          */
-        //查询原Mã đơn hàng
+        //查询Mã đơn hàng
         Order order = getOrder(map.get("roomid")[0]);
         String orderid =order.getOrderNumber() ;
         //查询员订单截止时间
@@ -177,7 +177,7 @@ response.setContentType("text/html;charset=UTF-8");
                 <% } else if(op==2){ %>
 
 
-                <h4 class="ui dividing header">订单Xác nhận</h4>
+                <h4 class="ui dividing header">Thông tin Xác nhận</h4>
                 <table class="ui table">
                     <thead>
                     <tr><th class="six wide">Name</th>
@@ -185,37 +185,37 @@ response.setContentType("text/html;charset=UTF-8");
                     </tr></thead>
                     <tbody>
                     <tr>
-                        <td>Tình hình Renew编号</td>
+                        <td>Thông tin Gia hạn</td>
                         <td><%=renew.getOperatingID() %></td>
                     </tr>
                     <tr>
-                        <td>原订单编号</td>
+                        <td>Mã đơn hàng</td>
                         <td><%=renew.getOrderNumber() %></td>
                     </tr>
                     <tr>
-                        <td>原Ngày hết hạn</td>
+                        <td>Ngày hết hạn</td>
                         <td><%=renew.getOldExpiryDate() %></td>
                     </tr>
                     <tr>
-                        <td>支付金额</td>
+                        <td>Tổng tiền thanh toán</td>
                         <td><%=renew.getAddedMoney() %></td>
                     </tr>
                     <tr>
-                        <td>现Ngày hết hạn</td>
+                        <td>Ngày hết hạn mới</td>
                         <td><%=renew.getNewExpiryDate() %></td>
                     </tr>
                     </tbody>
                 </table>
 
 
-                <h4 class="ui dividing header">完成支付</h4>
+                <h4 class="ui dividing header">Hoàn tất Thanh toán</h4>
                 <div class="ui right floated labeled button" tabindex="0">
                     <a class="ui basic right pointing label">
                         <%-- 去数据库查询价格 * 天数 *相应的折扣 --%>
                         $<%=renew.getAddedMoney() %>
                     </a>
                     <div class="ui right button" onclick="fun1()">
-                        <i class="shopping icon"></i> 支付
+                        <i class="shopping icon"></i> Thanh toán
                     </div>
                 </div>
                 <%}%>
@@ -236,7 +236,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[1-9][0-9]?$/]',
-                            prompt: '时间不符合规范'
+                            prompt: 'Thời gian không đúng định dạng'
                         }
                     ]
                 }

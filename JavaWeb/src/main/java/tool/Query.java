@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Query {
     static String hotelID = "HOT001";
 
-    //房间指定型号对应的còn_trống和đã_có_người_thuê房间数量
+    //房间指定型号对应的còn_trống和đã_có_người_thuê间数量
     public static ArrayList<Integer> getNumofRoom(String roomType){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -271,7 +271,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomStatus='còn_trống' and roomType='"+roomtype+"' and hotelID='"+hotelID+"' " ;
+            String sql ="select roomNumber from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType where roomStatus='còn_trống' and room.roomType='"+roomtype+"' and hotelID='"+hotelID+"' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -345,12 +345,13 @@ public class Query {
                         resultSet.getString("remarks"),
                         resultSet.getDate("orderTime")
                         ,resultSet.getString("hotelID")
-                        ,resultSet.getInt("serviceID_1")
-                        ,resultSet.getFloat("price_1")
-                        ,resultSet.getInt("serviceID_2")
-                        ,resultSet.getFloat("price_2")
-                        ,resultSet.getInt("serviceID_3")
-                        ,resultSet.getFloat("price_3"));
+                        );
+                orderItem.setServiceID_1(resultSet.getInt("serviceID_1"));
+                orderItem.setPrice_1(resultSet.getFloat("price_1"));
+                orderItem.setServiceID_2(resultSet.getInt("serviceID_2"));
+                orderItem.setPrice_2(resultSet.getFloat("price_2"));
+                orderItem.setServiceID_3(resultSet.getInt("serviceID_3"));
+                orderItem.setPrice_3(resultSet.getFloat("price_3"));
                 allOrders.add(orderItem);
             }
 
@@ -661,7 +662,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="update orders set orderStatus='Đã thanh toán' where orderNumber='"+orderNumber+"'" ;
+            String sql ="update orders set orderStatus='Đã_thanh_toán' where orderNumber='"+orderNumber+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
         } catch(Exception exception) {
@@ -680,7 +681,7 @@ public class Query {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                return new Order( resultSet.getString("orderNumber"),
+                Order o = new Order( resultSet.getString("orderNumber"),
                         resultSet.getString("orderStatus")
                         ,resultSet.getString("customerIDCard")
                         ,resultSet.getString("roomNumber")
@@ -691,13 +692,14 @@ public class Query {
                         ,resultSet.getString("remarks")
                         ,resultSet.getDate("orderTime")
                         ,resultSet.getString("hotelID")
-                        ,resultSet.getInt("serviceID_1")
-                        ,resultSet.getFloat("price_1")
-                        ,resultSet.getInt("serviceID_2")
-                        ,resultSet.getFloat("price_2")
-                        ,resultSet.getInt("serviceID_3")
-                        ,resultSet.getFloat("price_3")
                 ) ;
+                o.setServiceID_1(resultSet.getInt("serviceID_1"));
+                o.setPrice_1(resultSet.getFloat("price_1"));
+                o.setServiceID_2(resultSet.getInt("serviceID_2"));
+                o.setPrice_2(resultSet.getFloat("price_2"));
+                o.setServiceID_3(resultSet.getInt("serviceID_3"));
+                o.setPrice_3(resultSet.getFloat("price_3"));
+                return o;
             }
 
         } catch(Exception exception) {
@@ -844,13 +846,13 @@ public class Query {
                     order.getWaiterID()+"','"+
                     order.getRemarks() + "','"+
                     order.getOrderTime()+ "','"+hotelID+ "'"
-                    + "," + order.getServiceID_1()
-                    + "," + order.getPrice_1()
-                    + "," + order.getServiceID_2()
-                    + "," + order.getPrice_2()
-                    + "," + order.getServiceID_3()
-                    + "," + order.getPrice_3()
-                    + "')");
+                    + "," + (order.getServiceID_1() == 0? null : order.getServiceID_1())
+                    + "," + (order.getPrice_1() == 0? null : order.getPrice_1())
+                    + "," + (order.getServiceID_2() == 0 ? null: order.getServiceID_2())
+                    + "," + (order.getPrice_2() == 0? null : order.getPrice_2())
+                    + "," + (order.getServiceID_3() == 0? null:order.getServiceID_3())
+                    + "," + (order.getPrice_3()==0? null:order.getPrice_3())
+                    + ")");
 
             preparedStatement.execute();
 

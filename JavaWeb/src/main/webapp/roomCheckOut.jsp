@@ -14,7 +14,7 @@ response.setContentType("text/html;charset=UTF-8");
     if(op==2){
         System.out.println("房间编号:"+map.get("roomid")[0]);
         order =getOrder(map.get("roomid")[0]) ;
-        System.out.println("订单编号:"+order.getOrderNumber());
+        System.out.println("Mã đơn hàng:"+order.getOrderNumber());
     }
 %>
 <html>
@@ -140,25 +140,25 @@ response.setContentType("text/html;charset=UTF-8");
 
                     <tr>
 
-                        <td>订单编号</td>
+                        <td>Mã đơn hàng</td>
                         <td><%=order.getOrderNumber()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>住户Card ID</td>
+                        <td>Số CMND khách hàng</td>
                         <td><%=order.getCustomerIDCard()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>房号</td>
+                        <td>Số phòng</td>
                         <td><%=order.getRoomNumber()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>订单生成时间</td>
+                        <td>Ngày tạo Đơn hàng</td>
                         <td><%=order.getOrderTime()%></td>
 
                     </tr>
@@ -170,19 +170,19 @@ response.setContentType("text/html;charset=UTF-8");
                     </tr>
                     <tr>
 
-                        <td>Trả phòng时间</td>
+                        <td>Ngày trả phòng</td>
                         <td><%=order.getCheckOutTime()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>服务人员编号</td>
+                        <td>Nhân viên phụ trách</td>
                         <td><%=order.getWaiterID()%></td>
 
                     </tr>
                     <tr>
 
-                        <td>订单总金额(含Gia hạn)</td>
+                        <td>Tổng tiền (bao gồm Gia hạn)</td>
                         <td><%=order.getTotalMoney()%></td>
 
                     </tr>
@@ -196,10 +196,10 @@ response.setContentType("text/html;charset=UTF-8");
                 </table>
 
 
-                <h4 class="ui dividing header">完成Trả phòng</h4>
+                <h4 class="ui dividing header">Hoàn tất Trả phòng</h4>
 
                 <div class="ui right button" >
-                    <%--<% if(op==2)System.out.println("打印订单编号:"+order.getOrderNumber() );%>--%>
+                    <%--<% if(op==2)System.out.println("打印Mã đơn hàng:"+order.getOrderNumber() );%>--%>
                     <%--<a href="ServiceManage?op=5&orderNumber=<%=order.getOrderNumber()%>">Xác nhậnTrả phòng</a>--%>
                     <a href="/roomCheckOut.jsp?op=3&orderNumber=<%=order.getOrderNumber()%>">Xác nhậnTrả phòng</a>
                 </div>

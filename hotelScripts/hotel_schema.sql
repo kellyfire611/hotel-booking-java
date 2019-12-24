@@ -506,7 +506,7 @@ INSERT INTO `waiter` (`waiterID`, `waiterName`, `waiterBirthday`, `waiterIDCard`
 # 创建收入视图
 create view incomeView
 as
-# 选择Trả phòng时间，总金额，订单数量
+# 选择Ngày trả phòng，总金额，订单数量
 select checkOutTime co, sum(totalMoney) tot, count(*) num from orders 
 where orders.orderNumber
 in (
@@ -678,7 +678,7 @@ CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime where orderNumber=new.orderNumber ;
-				elseif new.orderStatus='Đã thanh toán' 
+				elseif new.orderStatus='Đã_thanh_toán' 
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime,checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
@@ -687,7 +687,7 @@ CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR
 				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;
@@ -706,7 +706,7 @@ CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FO
 				if new.orderStatus='Đã_đăng_ký'
 					then
 					update orderTracking set checkInTime=new.checkInTime  where orderNumber=new.orderNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update orderTracking set checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
@@ -714,7 +714,7 @@ CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FO
 				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;

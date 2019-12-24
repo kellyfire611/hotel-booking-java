@@ -129,17 +129,33 @@ request.setCharacterEncoding("utf-8");
             System.out.println(date);
             System.out.println(date1);
 HttpSession session = request.getSession();
+
+            
+
             Order order =new Order(orderNumber,"Đã_đăng_ký",map.get("idcard")[0],
                     map.get("roomid")[0],date,date1, (int)Double.parseDouble(map.get("pay")[0]) ,request.getSession().getAttribute("hoteladmin").toString(),
                     "",date,
-                    session.getAttribute("hotelID").toString(),
-                    Integer.parseInt(map.get("serviceID_1")[0]),
-                    Float.parseFloat(map.get("price_1")[0]),
-                    Integer.parseInt(map.get("serviceID_2")[0]),
-                    Float.parseFloat(map.get("price_2")[0]),
-                    Integer.parseInt(map.get("serviceID_3")[0]),
-                    Float.parseFloat(map.get("price_3")[0])
+                    session.getAttribute("hotelID").toString()
             ) ;
+            if(map.get("serviceID_1") != null) {
+                order.setServiceID_1(Integer.parseInt(map.get("serviceID_1")[0]));
+            }
+            if(map.get("price_1") != null) {
+                order.setPrice_1(Float.parseFloat(map.get("price_1")[0]));
+            }
+            if(map.get("serviceID_2") != null) {
+                order.setServiceID_2(Integer.parseInt(map.get("serviceID_2")[0]));
+            }
+            if(map.get("price_2") != null) {
+                order.setPrice_2(Float.parseFloat(map.get("price_2")[0]));
+            }
+            if(map.get("serviceID_3") != null) {
+                order.setServiceID_3(Integer.parseInt(map.get("serviceID_3")[0]));
+            }
+            if(map.get("price_3") != null) {
+                order.setPrice_3(Float.parseFloat(map.get("price_3")[0]));
+            }
+            
             insertOrder(order);
             response.sendRedirect("/roomOrder.jsp?op=4") ;
         }

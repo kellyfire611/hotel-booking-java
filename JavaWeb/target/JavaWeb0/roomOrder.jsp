@@ -57,12 +57,13 @@ response.setContentType("text/html;charset=UTF-8");
             var year=idcard.substring(6,10)
             var month = idcard.substring(10,12)
             var day =idcard.substring(12,14)
-            var birthdata = year+'-'+month+'-'+day
+//            var birthdata = year+'-'+month+'-'+day
+            var birthdata = document.getElementById("birthdata").value
             var sex = document.getElementById("sex").value
             var phonenumber = document.getElementById("phonenumber").value
             var time = document.getElementById("time").value
-            if( /^[0-9]{6}$/.test(room) && /^[1-9][0-9]?$/.test(time) && /^[0-9]{17}[0-9|X]$/.test(idcard)
-                && /^1[3|4|5|8][0-9]\d{4,8}$/.test(phonenumber) ){
+            if( /^[0-9]{6}$/.test(room) && /^[1-9][0-9]?$/.test(time) && /^[0-9]{9,17}$/.test(idcard)
+                && /^\d{9,11}$/.test(phonenumber) ){
                 var url = "&roomid=" + room + "&name=" + name + "&idcard=" + idcard
                     + "&birthdata=" + birthdata + "&sex=" + sex + "&phonenumber=" + phonenumber + "&time=" + time
 
@@ -144,7 +145,7 @@ response.setContentType("text/html;charset=UTF-8");
                                     </div>
                                 </div>
                             </div>
-                            <a class="ui orange right ribbon label" href="<%=list.get(1)==0?"":"/roomOrder.jsp?op=2&roomtype="+rtp.getRoomType()%>">
+                            <a class="ui orange right ribbon label" href="<%=list.get(0)==0?"":"/roomOrder.jsp?op=2&roomtype="+rtp.getRoomType()%>">
                                 $<%=rtp.getPrice()%>/ngày
                             </a>
                         </div>
@@ -186,17 +187,17 @@ response.setContentType("text/html;charset=UTF-8");
                         </div>
                         <h4 class="ui dividing header">Thời gian đặt phòng</h4>
                         <div class="field">
-                            <label>time</label>
+                            <label>Số ngày thuê</label>
                             <div class="two fields">
                                 <div class="field">
-                                    <input type="text" maxlength="5" id="time" name="time" placeholder="Thời gian đặt phòng">
+                                    <input type="text" maxlength="5" id="time" name="time" placeholder="Số ngày thuê phòng">
 
                                 </div>
                             </div>
                         </div>
                         <h4 class="ui dividing header">Thông tin cá nhân</h4>
                         <div class="field">
-                            <label>Name</label>
+                            <label>Họ tên</label>
                             <div class="two fields">
 
                                 <div class="field">
@@ -207,8 +208,8 @@ response.setContentType("text/html;charset=UTF-8");
                         <%--<h4 class="ui dividing header">Billing Information</h4>--%>
                         <div class="fields">
                             <div class="seven wide field">
-                                <label>Card ID</label>
-                                <input type="text" id="idcard" name="idcard" maxlength="18" placeholder="Card ID">
+                                <label>Số CMND</label>
+                                <input type="text" id="idcard" name="idcard" maxlength="18" placeholder="Số CMND">
                             </div>
                             <%--<div class="six wide field">--%>
                             <%--<label>Ngày tháng năm sinh</label>--%>
@@ -233,6 +234,12 @@ response.setContentType("text/html;charset=UTF-8");
                                 <input type="text" id="phonenumber" name="phonenumber" maxlength="16" placeholder="Số điện thoại">
                             </div>
                         </div>
+                        <div class="fields">
+                            <div class="seven wide field">
+                                <label>Ngày sinh</label>
+                                <input type="date" value="2018-01-01" value="" id="birthdata" name="birthdata"/>
+                            </div>
+                        </div>
                         <div class="ui right submit floated button" tabindex="0"  >Đặt phòng</div>
                     </form>
                     <%}
@@ -240,7 +247,7 @@ response.setContentType("text/html;charset=UTF-8");
 
                     %>
 
-                    <h4 class="ui dividing header">订单Xác nhận</h4>
+                    <h4 class="ui dividing header">Thông tin Xác nhận</h4>
                     <table class="ui table">
                         <thead>
                         <tr><th class="six wide">Name</th>
@@ -264,18 +271,18 @@ response.setContentType("text/html;charset=UTF-8");
                     </table>
 
 
-                    <h4 class="ui dividing header">完成支付</h4>
+                    <h4 class="ui dividing header">Hoàn tất Thanh toán</h4>
                     <div class="ui right floated labeled button" tabindex="0">
                         <a class="ui basic right pointing label">
                             <%-- 去数据库查询价格 * 天数 *相应的折扣 --%>
                             $<%=map.get("pay")[0]%>
                         </a>
                         <div class="ui right button">
-                            <i class="shopping icon"></i> <a href="ServiceManage?<%=request.getQueryString()%>">支付</a>
+                            <i class="shopping icon"></i> <a href="ServiceManage?<%=request.getQueryString()%>">Thanh toán</a>
                         </div>
                     </div>
                     <%} else if (op == 4) {%>
-                    <h4 class="ui dividing header">支付成功</h4>
+                    <h4 class="ui dividing header">Thanh toán成功</h4>
                     <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                     <%}%>
                 </div>
@@ -298,7 +305,7 @@ response.setContentType("text/html;charset=UTF-8");
                     rules: [
                         {
                             type: 'regExp[/^[1-9][0-9]?$/]',
-                            prompt: '时间不符合规范'
+                            prompt: 'Thời gian không đúng định dạng'
                         }
                     ]
                 }

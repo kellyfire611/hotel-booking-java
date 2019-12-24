@@ -20,15 +20,15 @@ USE `hotel`;
 CREATE TABLE IF NOT EXISTS `customers` (
   `customerIDCard` char(18) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customerGender` char(4) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customerName` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customerName` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customerBirthday` date DEFAULT NULL,
   `customerVIPLevel` smallint(6) DEFAULT NULL,
-  `customerPhoneNumber` char(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customerPhoneNumber` char(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `totalAmount` int(10) unsigned DEFAULT NULL,
-  `remarks` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remarks` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hotelID` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`customerIDCard`),
-  KEY `indexCustomerName` (`customerName`),
+  KEY `indexCustomerName` (`customerName`(191)),
   KEY `indexCustomerPhoneNumber` (`customerPhoneNumber`),
   KEY `indexCustomerVIPLevel` (`customerVIPLevel`),
   KEY `FK_customers_hotels` (`hotelID`),
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`customerVIPLevel`) REFERENCES `viplevel` (`level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.customers: ~100 rows (approximately)
+-- Dumping data for table hotel.customers: ~102 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`customerIDCard`, `customerGender`, `customerName`, `customerBirthday`, `customerVIPLevel`, `customerPhoneNumber`, `totalAmount`, `remarks`, `hotelID`) VALUES
 	('10611671', 'Nữ', 'Dr. Javier Strom', '1978-07-21', 1, '881-770-273', 151493, 'Ut qui doloremque et ad.', 'HOT002'),
@@ -68,8 +68,10 @@ INSERT INTO `customers` (`customerIDCard`, `customerGender`, `customerName`, `cu
 	('31607595', 'Nam', 'Dr. Donavon Bins', '1977-09-08', 3, '854.586.516', 828, 'Pariatur cumque optio quidem fac', 'HOT002'),
 	('31868779', 'Nam', 'Nicolette Schnei', '1990-06-07', 1, '1-215-815-8', 82, 'Quidem soluta nisi quam perspici', 'HOT002'),
 	('3306547', 'Nữ', 'Eli Luettgen', '2007-07-24', 1, '780-303-725', 16, 'Ut odit sed cumque accusamus.', 'HOT002'),
-	('34788312', 'Nam', 'Everardo Ernser', '2008-08-14', 3, '(583) 832-3', 62587921, 'In molestiae tenetur autem.', 'HOT001'),
+	('34788312', 'Nam', 'Everardo Ernser', '2008-08-14', 3, '(583) 832-3', 62588865, 'In molestiae tenetur autem.', 'HOT001'),
 	('36172919', 'Nam', 'Mrs. Dejah DuBuq', '1992-05-04', 1, '841.319.520', 8, 'Odio et laborum sed voluptas mag', 'HOT001'),
+	('362209684', 'Nam', 'Dương Nguyễn Phú Cường 2', '2018-01-31', 4, '0915659223', 1302, '', 'HOT001'),
+	('362209685', 'Nam', 'Dương Nguyễn Phú Cường', '2018-01-31', 3, '0915659223', 930, '', 'HOT001'),
 	('37021866', 'Nam', 'Deron Hane', '2002-03-20', 1, '941.366.773', 8, 'Harum qui soluta eos suscipit qu', 'HOT001'),
 	('3777761', 'Nữ', 'Prof. Deondre Fr', '1970-05-13', 1, '+1720488763', 3, 'Expedita alias a aut et esse qui', 'HOT002'),
 	('39353269', 'Nữ', 'Dr. Leopoldo Fei', '2003-01-23', 3, '(327) 997-4', 948, 'Eaque non dolor aliquid repudian', 'HOT001'),
@@ -195,35 +197,37 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`waiterID`) REFERENCES `waiter` (`waiterID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.orders: ~26 rows (approximately)
+-- Dumping data for table hotel.orders: ~28 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`orderNumber`, `orderStatus`, `customerIDCard`, `roomNumber`, `checkInTime`, `checkOutTime`, `totalMoney`, `waiterID`, `remarks`, `orderTime`, `hotelID`, `serviceID_1`, `price_1`, `serviceID_2`, `price_2`, `serviceID_3`, `price_3`) VALUES
+	('016', 'Đã_đăng_ký', '362209685', '000001', '2019-12-25', '2019-12-30', 930, 'dnpcuong', '', '2019-12-25', 'HOT001', NULL, NULL, NULL, NULL, NULL, NULL),
+	('017', 'Đã_thanh_toán', '362209684', '000007', '2019-12-25', '2020-01-01', 1302, 'dnpcuong', '', '2019-12-25', 'HOT001', NULL, NULL, NULL, NULL, NULL, NULL),
 	('14755271', 'Đã_đăng_ký', '4815046', '000038', '2019-12-12', '2020-01-11', 88375523, 'tkadung', 'Suscipit molestiae delectus duci', '2019-12-12', 'HOT002', 5, 55.0000, 2, 15.0000, 5, 55.0000),
 	('17922951', 'Đã_thanh_toán', '47036826', '000056', '2019-10-30', '2019-11-23', 5397976, 'mtcnhung', 'Et blanditiis quia in enim.', '2019-10-30', 'HOT002', 1, 5.0000, 4, 15.0000, 3, 20.0000),
-	('18972179', 'Đã_thanh_toán', '57672859', '000022', '2019-12-07', '2020-01-28', 40, 'tkadung', 'Et in exercitationem quo et.', '2019-12-07', 'HOT001', 5, 55.0000, 4, 15.0000, 3, 20.0000),
+	('18972179', 'Đã_thanh_toán', '57672859', '000022', '2019-12-07', '2020-01-28', 40, 'lhsang', 'Et in exercitationem quo et.', '2019-12-07', 'HOT001', 5, 55.0000, 4, 15.0000, 3, 20.0000),
 	('2745121', 'Đã_đăng_ký', '10611671', '000070', '2019-12-14', '2020-02-05', 151493, 'tkadung', 'Est perferendis cupiditate sit a', '2019-12-14', 'HOT002', 2, 15.0000, 2, 15.0000, 1, 5.0000),
-	('32680230', 'Đã_thanh_toán', '31868779', '000086', '2019-12-03', '2019-12-15', 78, 'lhsang', 'Fugiat corporis deserunt cumque ', '2019-12-03', 'HOT002', 2, 15.0000, 6, 99.0000, 4, 15.0000),
+	('32680230', 'Đã_thanh_toán', '31868779', '000086', '2019-12-03', '2019-12-15', 78, 'tkadung', 'Fugiat corporis deserunt cumque ', '2019-12-03', 'HOT002', 2, 15.0000, 6, 99.0000, 4, 15.0000),
 	('36110712', 'Đã_thanh_toán', '39432224', '000002', '2019-10-30', '2020-01-21', 9, 'tkadung', 'Est necessitatibus nisi alias.', '2019-10-30', 'HOT002', 2, 15.0000, 5, 55.0000, 3, 20.0000),
-	('39421557', 'Đã_thanh_toán', '78760830', '000021', '2019-10-29', '2020-02-12', 4, 'dnpcuong', 'Incidunt et maxime id non incidu', '2019-10-29', 'HOT002', 5, 55.0000, 3, 20.0000, 5, 55.0000),
+	('39421557', 'Đã_thanh_toán', '78760830', '000021', '2019-10-29', '2020-02-12', 4, 'mtcnhung', 'Incidunt et maxime id non incidu', '2019-10-29', 'HOT002', 5, 55.0000, 3, 20.0000, 5, 55.0000),
 	('4193633', 'Đã_thanh_toán', '88554074', '000025', '2019-10-06', '2019-12-12', 49869808, 'mtcnhung', 'Incidunt qui quibusdam nam dolor', '2019-10-06', 'HOT002', 5, 55.0000, 1, 5.0000, 5, 55.0000),
 	('44766236', 'Đã_đăng_ký', '50065385', '000028', '2019-11-19', '2019-12-04', 8317944, 'mtcnhung', 'Eos officiis rerum tenetur et eo', '2019-11-19', 'HOT002', 2, 15.0000, 2, 15.0000, 1, 5.0000),
 	('51087738', 'Đã_thanh_toán', '40761622', '000059', '2019-11-18', '2019-12-19', 24, 'dnpcuong', 'Voluptatem quos maxime necessita', '2019-11-18', 'HOT001', 2, 15.0000, 4, 15.0000, 6, 99.0000),
 	('51730156', 'Đã_thanh_toán', '52868933', '000066', '2019-12-06', '2020-01-28', 842, 'lhsang', 'Et et quia beatae voluptatibus.', '2019-12-06', 'HOT001', 3, 20.0000, 3, 20.0000, 5, 55.0000),
-	('52839588', 'Đã_đăng_ký', '71468389', '000070', '2019-10-05', '2019-12-10', 4, 'lhsang', 'Voluptatem iste itaque suscipit ', '2019-10-05', 'HOT002', 3, 20.0000, 3, 20.0000, 5, 55.0000),
-	('55173543', 'Đã_đăng_ký', '11474395', '000078', '2019-12-18', '2020-01-09', 0, 'dnpcuong', 'Deleniti sint soluta quia.', '2019-12-18', 'HOT002', 4, 15.0000, 5, 55.0000, 6, 99.0000),
+	('52839588', 'Đã_đăng_ký', '71468389', '000070', '2019-10-05', '2019-12-10', 4, 'tkadung', 'Voluptatem iste itaque suscipit ', '2019-10-05', 'HOT002', 3, 20.0000, 3, 20.0000, 5, 55.0000),
+	('55173543', 'Đã_đăng_ký', '11474395', '000078', '2019-12-18', '2020-01-09', 0, 'mtcnhung', 'Deleniti sint soluta quia.', '2019-12-18', 'HOT002', 4, 15.0000, 5, 55.0000, 6, 99.0000),
 	('55716730', 'Đã_thanh_toán', '90178641', '000053', '2019-12-01', '2019-12-18', 73545991, 'dnpcuong', 'Sed officia quaerat et molestiae', '2019-12-01', 'HOT001', 3, 20.0000, 3, 20.0000, 3, 20.0000),
 	('59074599', 'Đã_thanh_toán', '871054', '000102', '2019-11-09', '2020-02-10', 10, 'lhsang', 'Sint impedit soluta inventore.', '2019-11-09', 'HOT001', 1, 5.0000, 4, 15.0000, 4, 15.0000),
-	('63749951', 'Đã_thanh_toán', '82137940', '000023', '2019-11-05', '2020-03-22', 2, 'lhsang', 'Dolore totam numquam recusandae ', '2019-11-05', 'HOT002', 2, 15.0000, 3, 20.0000, 5, 55.0000),
-	('6885640', 'Đã_thanh_toán', '9117576', '000025', '2019-11-10', '2020-02-20', 1883819, 'tkadung', 'Sapiente id adipisci quia fuga.', '2019-11-10', 'HOT001', 6, 99.0000, 1, 5.0000, 1, 5.0000),
-	('72481059', 'Đã_đăng_ký', '18763615', '000019', '2019-11-07', '2020-02-01', 1, 'mtcnhung', 'Iste sed itaque reiciendis reici', '2019-11-07', 'HOT001', 4, 15.0000, 4, 15.0000, 1, 5.0000),
+	('63749951', 'Đã_thanh_toán', '82137940', '000023', '2019-11-05', '2020-03-22', 2, 'tkadung', 'Dolore totam numquam recusandae ', '2019-11-05', 'HOT002', 2, 15.0000, 3, 20.0000, 5, 55.0000),
+	('6885640', 'Đã_thanh_toán', '9117576', '000025', '2019-11-10', '2020-02-20', 1883819, 'lhsang', 'Sapiente id adipisci quia fuga.', '2019-11-10', 'HOT001', 6, 99.0000, 1, 5.0000, 1, 5.0000),
+	('72481059', 'Đã_đăng_ký', '18763615', '000019', '2019-11-07', '2020-02-01', 1, 'dnpcuong', 'Iste sed itaque reiciendis reici', '2019-11-07', 'HOT001', 4, 15.0000, 4, 15.0000, 1, 5.0000),
 	('76349293', 'Đã_thanh_toán', '81906630', '000044', '2019-11-07', '2019-12-21', 7, 'dnpcuong', 'Nulla occaecati doloremque ad vo', '2019-11-07', 'HOT001', 4, 15.0000, 3, 20.0000, 6, 99.0000),
-	('77357287', 'Đã_thanh_toán', '97291505', '000027', '2019-10-18', '2019-12-05', 5159, 'tkadung', 'Natus est veritatis vero fuga se', '2019-10-18', 'HOT001', 6, 99.0000, 2, 15.0000, 3, 20.0000),
-	('79120855', 'Đã_đăng_ký', '45792068', '000070', '2019-10-24', '2020-03-04', 232469335, 'tkadung', 'Perspiciatis earum asperiores ex', '2019-10-24', 'HOT001', 5, 55.0000, 1, 5.0000, 3, 20.0000),
-	('80992644', 'Đã_đăng_ký', '89790009', '000071', '2019-11-27', '2020-01-31', 219548, 'tkadung', 'Iusto eveniet ea ipsa dicta quas', '2019-11-27', 'HOT001', 3, 20.0000, 1, 5.0000, 3, 20.0000),
+	('77357287', 'Đã_thanh_toán', '97291505', '000027', '2019-10-18', '2019-12-05', 5159, 'lhsang', 'Natus est veritatis vero fuga se', '2019-10-18', 'HOT001', 6, 99.0000, 2, 15.0000, 3, 20.0000),
+	('79120855', 'Đã thanh toán', '45792068', '000070', '2019-10-24', '2020-03-04', 232469335, 'dnpcuong', 'Perspiciatis earum asperiores ex', '2019-10-24', 'HOT001', 5, 55.0000, 1, 5.0000, 3, 20.0000),
+	('80992644', 'Đã_đăng_ký', '89790009', '000071', '2019-11-27', '2020-01-31', 219548, 'dnpcuong', 'Iusto eveniet ea ipsa dicta quas', '2019-11-27', 'HOT001', 3, 20.0000, 1, 5.0000, 3, 20.0000),
 	('83445318', 'Đã_đăng_ký', '98535545', '000054', '2019-10-15', '2019-11-29', 26729, 'dnpcuong', 'Facilis ut tempore dolorem et te', '2019-10-15', 'HOT001', 3, 20.0000, 5, 55.0000, 6, 99.0000),
-	('84309537', 'Đã_đăng_ký', '18763615', '000021', '2019-12-09', '2020-02-18', 778, 'mtcnhung', 'Est praesentium voluptatem tempo', '2019-12-09', 'HOT001', 2, 15.0000, 3, 20.0000, 2, 15.0000),
+	('84309537', 'Đã thanh toán', '18763615', '000021', '2019-12-09', '2020-02-18', 778, 'dnpcuong', 'Est praesentium voluptatem tempo', '2019-12-09', 'HOT001', 2, 15.0000, 3, 20.0000, 2, 15.0000),
 	('90224612', 'Đã_thanh_toán', '88620785', '000080', '2019-10-10', '2020-01-17', 4410, 'lhsang', 'Repellat nihil ea id laudantium ', '2019-10-10', 'HOT001', 3, 20.0000, 4, 15.0000, 6, 99.0000),
-	('98808451', 'Đã_đăng_ký', '34788312', '000048', '2019-12-19', '2020-01-25', 62066282, 'tkadung', 'Atque et ut molestias qui.', '2019-12-19', 'HOT001', 6, 99.0000, 1, 5.0000, 1, 5.0000);
+	('98808451', 'Đã_đăng_ký', '34788312', '000048', '2019-12-19', '2020-01-28', 62067226, 'lhsang', 'Atque et ut molestias qui.', '2019-12-19', 'HOT001', 6, 99.0000, 1, 5.0000, 1, 5.0000);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Dumping structure for table hotel.ordertracking
@@ -237,8 +241,10 @@ CREATE TABLE IF NOT EXISTS `ordertracking` (
   CONSTRAINT `ordertracking_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.ordertracking: ~0 rows (approximately)
+-- Dumping data for table hotel.ordertracking: ~1 rows (approximately)
 /*!40000 ALTER TABLE `ordertracking` DISABLE KEYS */;
+INSERT INTO `ordertracking` (`orderNumber`, `orderTime`, `checkInTime`, `checkOutTime`, `remarks`) VALUES
+	('017', '2019-12-25', '2019-12-25', '2019-12-25', NULL);
 /*!40000 ALTER TABLE `ordertracking` ENABLE KEYS */;
 
 -- Dumping structure for table hotel.room
@@ -255,13 +261,13 @@ CREATE TABLE IF NOT EXISTS `room` (
 -- Dumping data for table hotel.room: ~107 rows (approximately)
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
-	('000001', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
+	('000001', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
 	('000002', 'HT2-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000003', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000004', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
 	('000005', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000006', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
-	('000007', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
+	('000007', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
 	('000008', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000009', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000010', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
@@ -275,7 +281,7 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000018', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
 	('000019', 'HT1-Tiêu_chuẩn(Đôi)', 'đã_có_người_thuê', NULL),
 	('000020', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
-	('000021', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
+	('000021', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000022', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000023', 'HT2-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000024', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
@@ -324,7 +330,7 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000067', 'HT2-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000068', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
 	('000069', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
-	('000070', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
+	('000070', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000071', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
 	('000072', 'HT2-Doanh_nhân_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000073', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
@@ -444,10 +450,12 @@ CREATE TABLE IF NOT EXISTS `timeextension` (
   PRIMARY KEY (`operatingID`),
   KEY `orderNumber` (`orderNumber`),
   CONSTRAINT `timeextension_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.timeextension: ~0 rows (approximately)
+-- Dumping data for table hotel.timeextension: ~1 rows (approximately)
 /*!40000 ALTER TABLE `timeextension` DISABLE KEYS */;
+INSERT INTO `timeextension` (`operatingID`, `orderNumber`, `oldExpiryDate`, `newExpiryDate`, `addedMoney`) VALUES
+	(1, '98808451', '2020-01-25', '2020-01-28', 944);
 /*!40000 ALTER TABLE `timeextension` ENABLE KEYS */;
 
 -- Dumping structure for table hotel.viplevel
@@ -504,12 +512,12 @@ INSERT INTO `waiter` (`waiterID`, `waiterName`, `waiterBirthday`, `waiterIDCard`
 CREATE TABLE `customerviplevelinfo` (
 	`customerIDCard` CHAR(18) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`customerGender` CHAR(4) NULL COLLATE 'utf8mb4_unicode_ci',
-	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(500) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`customerBirthday` DATE NULL,
 	`customerVIPLevel` SMALLINT(6) NULL,
-	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerPhoneNumber` CHAR(50) NULL COLLATE 'utf8mb4_unicode_ci',
 	`totalAmount` INT(10) UNSIGNED NULL,
-	`remarks` VARCHAR(32) NULL COLLATE 'utf8mb4_unicode_ci',
+	`remarks` VARCHAR(500) NULL COLLATE 'utf8mb4_unicode_ci',
 	`hotelID` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`discount` DECIMAL(10,2) UNSIGNED NOT NULL
 ) ENGINE=MyISAM;
@@ -527,13 +535,13 @@ CREATE TABLE `incomeview` (
 CREATE TABLE `orderviews` (
 	`orderNumber` CHAR(32) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`orderStatus` CHAR(18) NULL COLLATE 'utf8mb4_unicode_ci',
-	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(500) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`roomNumber` CHAR(6) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`roomType` VARCHAR(32) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`orderTime` DATE NOT NULL,
 	`checkInTime` DATE NOT NULL,
 	`checkOutTime` DATE NOT NULL,
-	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerPhoneNumber` CHAR(50) NULL COLLATE 'utf8mb4_unicode_ci',
 	`totalMoney` INT(10) UNSIGNED NOT NULL,
 	`hotelID` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci'
 ) ENGINE=MyISAM;
@@ -554,8 +562,8 @@ CREATE TABLE `roominfo` (
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `timeextensionordersview` (
 	`orderNumber` CHAR(32) NULL COLLATE 'utf8mb4_unicode_ci',
-	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(500) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerPhoneNumber` CHAR(50) NULL COLLATE 'utf8mb4_unicode_ci',
 	`roomNumber` CHAR(6) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`checkInTime` DATE NOT NULL,
 	`oldExpiryDate` DATE NOT NULL,
@@ -620,23 +628,23 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 DELIMITER //
 CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR EACH ROW begin 
-				if new.orderStatus='Đặt phòng中'
+				if new.orderStatus='Đặt_phòng'
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
-				elseif new.orderStatus='Đã đăng ký'
+				elseif new.orderStatus='Đã_đăng_ký'
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime where orderNumber=new.orderNumber ;
-				elseif new.orderStatus='Đã thanh toán' 
+				elseif new.orderStatus='Đã_thanh_toán' 
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime,checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;
@@ -678,18 +686,18 @@ SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 DELIMITER //
 CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FOR EACH ROW begin 
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update orderTracking set checkInTime=new.checkInTime  where orderNumber=new.orderNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update orderTracking set checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='Đã thanh toán'
+				elseif new.orderStatus='_thanh_to'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;

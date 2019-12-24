@@ -44,9 +44,11 @@ public class Order {
                  Date checkOutTime,
                  int totalMoney,String waiterID
             ,String remarks,Date orderTime,
-            String hotelID, int serviceID_1, float price_1,
-            int serviceID_2, float price_2,
-            int serviceID_3, float price_3) {
+            String hotelID
+//            int serviceID_1, float price_1,
+//            int serviceID_2, float price_2,
+//            int serviceID_3, float price_3
+    ) {
         this.orderNumber = orderNumber;
         this.orderStatus = orderStatus;
         this.customerIDCard = customerIDCard;
@@ -58,12 +60,12 @@ public class Order {
         this.remarks = remarks;
         this.orderTime =orderTime ;
         this.hotelID=hotelID;
-        this.serviceID_1=serviceID_1;
-        this.price_1=price_1;
-        this.serviceID_2=serviceID_2;
-        this.price_2=price_2;
-        this.serviceID_3=serviceID_3;
-        this.price_3=price_3;
+//        this.serviceID_1=serviceID_1;
+//        this.price_1=price_1;
+//        this.serviceID_2=serviceID_2;
+//        this.price_2=price_2;
+//        this.serviceID_3=serviceID_3;
+//        this.price_3=price_3;
     }
 
     public void setOrderTime(Date orderTime) {

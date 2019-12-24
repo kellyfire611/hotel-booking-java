@@ -31,7 +31,7 @@
     for (int i = 0; i < allOrders.size(); i++) {
         if (allOrders.get(i).getOrderStatus().equals("Đã_đăng_ký")) {
             checkInOrderNumber++;
-        } else if (allOrders.get(i).getOrderStatus().equals("Đã thanh toán")) {
+        } else if (allOrders.get(i).getOrderStatus().equals("Đã_thanh_toán")) {
             checkOutOrderNumber++;
         } else if (allOrders.get(i).getOrderStatus().equals("已预订")) {
             bookedOrderNumber++;
@@ -43,11 +43,11 @@
 
     ArrayList<String> weekRoomType = new ArrayList<String>();
 
-    weekRoomType.add("商务间(Đơn/Đôi)");
-    weekRoomType.add("大床房(Đơn/Đôi)");
-    weekRoomType.add("标准间(Đơn)");
-    weekRoomType.add("标准间(Đôi)");
-    weekRoomType.add("高档套房(Đơn/Đôi)");
+    weekRoomType.add("Doanh_nhân_(Đơn/Đôi)");
+    weekRoomType.add("Nữ_hoàng_(Đơn/Đôi)");
+    weekRoomType.add("Tiêu_chuẩn_(Đơn)");
+    weekRoomType.add("Tiêu_chuẩn_(Đôi)");
+    weekRoomType.add("VIP_(Đơn/Đôi)");
     //获取所有的订单，view根据视图倒序排列
     ArrayList<OrderView> weekView = Query.getAllOrderViews("");
 
@@ -270,7 +270,7 @@
                             <%--data:['订单量']--%>
                         <%--},--%>
                         <%--xAxis: {--%>
-                            <%--data: ["已预订", "Đã_đăng_ký","Đã thanh toán","Gia hạn"]--%>
+                            <%--data: ["已预订", "Đã_đăng_ký","Đã_thanh_toán","Gia hạn"]--%>
                         <%--},--%>
                         <%--yAxis: {},--%>
                         <%--series: [{--%>
@@ -335,35 +335,35 @@
                             {
                                 name:<%=genrp.get(0)%>,
                                 type:'line',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 areaStyle: {normal: {}},
                                 data:<%=r0%>
                             },
                             {
                                 name:<%=genrp.get(1)%>,
                                 type:'line',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 areaStyle: {normal: {}},
                                 data:<%=r1%>
                             },
                             {
                                 name:<%=genrp.get(2)%>,
                                 type:'line',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 areaStyle: {normal: {}},
                                 data:<%=r2%>
                             },
                             {
                                 name:<%=genrp.get(3)%>,
                                 type:'line',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 areaStyle: {normal: {}},
                                 data:<%=r3%>
                             },
                             {
                                 name:<%=genrp.get(4)%>,
                                 type:'line',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 label: {
                                     normal: {
                                         show: true,
@@ -381,7 +381,7 @@
                 </script>
 
             </div>
-            <%--//Nhân viên业绩统计--%>
+            <%--//Năng suất Nhân viên--%>
             <div class="seven wide">
                 <div id="waiter" style="width: 90%;height:36%;"></div>
                 <script>
@@ -399,13 +399,13 @@ var mainContainerwaiterChart = document.getElementById("waiter");
 
                     waiterOption = {
                         title : {
-                            text: 'Nhân viên业绩统计',
-                            subtext: '处理订单数量',
+                            text: 'Năng suất Nhân viên',
+                            subtext: 'Xử lý theo số lượng Đơn hàng',
                             x:'left'
                         },
                         tooltip : {
                             trigger: 'item',
-                            formatter: "{a} : {b} <br/> 处理订单量 : {c} ({d}%)"
+                            formatter: "{a} : {b} <br/> Xử lý Đơn hàng : {c} ({d}%)"
                         },
                         legend: {
                             type: 'scroll',
@@ -492,11 +492,11 @@ var mainContainerincomeChart = document.getElementById("income");
                         }],
                         title: [{
                             left: 'center',
-                            text: '每ngàyTrả phòng订单量'
+                            text: 'Thành tiền mỗi ngày'
                         }, {
                             top: '55%',
                             left: 'center',
-                            text: '每ngày营业额'
+                            text: 'Mỗi ngày'
                         }],
                         tooltip: {
                             trigger: 'axis'
@@ -551,7 +551,7 @@ var mainContainerroomChart = document.getElementById("rooms");
 
                     roomOption = {
                         title : {
-                            text: '房间统计'
+                            text: 'Thống kê tình hình Phòng'
                         },
                         tooltip : {
                             trigger: 'axis',
@@ -560,7 +560,7 @@ var mainContainerroomChart = document.getElementById("rooms");
                             }
                         },
                         legend: {
-                            data: ['còn_trống房', 'đã_có_người_thuê房']
+                            data: ['còn_trống', 'đã_có_người_thuê']
                         },
                         grid: {
                             left: '3%',
@@ -577,9 +577,9 @@ var mainContainerroomChart = document.getElementById("rooms");
                         },
                         series: [
                             {
-                                name: 'còn_trống房',
+                                name: 'còn_trống',
                                 type: 'bar',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 label: {
                                     normal: {
                                         show: true,
@@ -589,9 +589,9 @@ var mainContainerroomChart = document.getElementById("rooms");
                                 data: <%=roomNumEmpty%>
                             },
                             {
-                                name: 'đã_có_người_thuê房',
+                                name: 'đã_có_người_thuê',
                                 type: 'bar',
-                                stack: '总量',
+                                stack: 'Tổng',
                                 label: {
                                     normal: {
                                         show: true,

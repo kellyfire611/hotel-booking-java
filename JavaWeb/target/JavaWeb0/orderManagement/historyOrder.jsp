@@ -90,7 +90,7 @@
 
 <%
 
-    ArrayList<OrderView> orderViews = Query.getAllOrderViews("Đã thanh toán");
+    ArrayList<OrderView> orderViews = Query.getAllOrderViews("Đã_thanh_toán");
 
     //如果订单đã_có_người_thuê
     if (orderViews.size() != 0) {
