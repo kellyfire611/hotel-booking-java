@@ -78,6 +78,15 @@
 
 
         <div class="field" align="center">
+            <div class="field" align="center">
+              <div class="ui">
+                  <label><i class="user icon"></i>Khách sạn</label>
+                  <select name="hotelID">
+                      <option value="HOT001">Khách sạn Victoria Cần Thơ</option>
+                      <option value="HOT002">Khách sạn Vinperl Cần Thơ</option>
+                  </select>
+              </div>
+            </div>
           <div class="inline fields">
             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <div class="field" align="center">

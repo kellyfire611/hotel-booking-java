@@ -19,6 +19,7 @@ public class Waiter {
     private String waiterPhoneNumber;
 
     private String remarks;
+    private String hotelID;
 
     public Waiter() {
 
@@ -31,7 +32,8 @@ public class Waiter {
                   String waiterPassword,
                   Date waiterJoinDate,
                   String waiterPhoneNumber,
-                  String remarks) {
+                  String remarks,
+                  String hotelID) {
         this.waiterID = waiterID;
         this.waiterName = waiterName;
         this.waiterBirthday = waiterBirthday;
@@ -40,6 +42,7 @@ public class Waiter {
         this.waiterJoinDate = waiterJoinDate;
         this.waiterPhoneNumber = waiterPhoneNumber;
         this.remarks = remarks;
+        this.hotelID = hotelID;
     }
 
     public String getWaiterID() {
@@ -104,5 +107,19 @@ public class Waiter {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    /**
+     * @return the hotelID
+     */
+    public String getHotelID() {
+        return hotelID;
+    }
+
+    /**
+     * @param hotelID the hotelID to set
+     */
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
     }
 }

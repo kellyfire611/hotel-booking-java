@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.sql.Date;
@@ -127,10 +128,18 @@ request.setCharacterEncoding("utf-8");
             date1 =new Date(date2.getTime()) ;
             System.out.println(date);
             System.out.println(date1);
-
-            Order order =new Order(orderNumber,"Đã đăng ký",map.get("idcard")[0],
+HttpSession session = request.getSession();
+            Order order =new Order(orderNumber,"Đã_đăng_ký",map.get("idcard")[0],
                     map.get("roomid")[0],date,date1, (int)Double.parseDouble(map.get("pay")[0]) ,request.getSession().getAttribute("hoteladmin").toString(),
-                    "",date) ;
+                    "",date,
+                    session.getAttribute("hotelID").toString(),
+                    Integer.parseInt(map.get("serviceID_1")[0]),
+                    Float.parseFloat(map.get("price_1")[0]),
+                    Integer.parseInt(map.get("serviceID_2")[0]),
+                    Float.parseFloat(map.get("price_2")[0]),
+                    Integer.parseInt(map.get("serviceID_3")[0]),
+                    Float.parseFloat(map.get("price_3")[0])
+            ) ;
             insertOrder(order);
             response.sendRedirect("/roomOrder.jsp?op=4") ;
         }

@@ -9,6 +9,7 @@ public class RoomTypeAndPrice {
     private String desc;
 
     private String url;
+    private String hotelID;
 
     public RoomTypeAndPrice() {
 
@@ -17,11 +18,13 @@ public class RoomTypeAndPrice {
     public RoomTypeAndPrice(String roomType,
                             int price,
                             String desc,
-                            String url) {
+                            String url,
+                            String hotelID) {
         this.roomType = roomType;
         this.price = price;
         this.desc = desc;
         this.url =url ;
+        this.hotelID=hotelID;
     }
 
     public String getRoomType() {
@@ -54,5 +57,19 @@ public class RoomTypeAndPrice {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    /**
+     * @return the hotelID
+     */
+    public String getHotelID() {
+        return hotelID;
+    }
+
+    /**
+     * @param hotelID the hotelID to set
+     */
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
     }
 }

@@ -91,7 +91,7 @@
 
 <%
 
-    ArrayList<OrderView> orderViews = Query.getAllOrderViews("Đã đăng ký");
+    ArrayList<OrderView> orderViews = Query.getAllOrderViews("Đã_đăng_ký");
 
     //如果订单đã_có_người_thuê
     if (orderViews.size() != 0) {

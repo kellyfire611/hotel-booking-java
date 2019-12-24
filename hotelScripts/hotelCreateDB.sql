@@ -127,7 +127,7 @@ CREATE TABLE room
 
 ########################
 # 7. Create 订单信息 table
-# 已预订，Đã đăng ký，Đã thanh toán/已完成
+# 已预订，Đã_đăng_ký，Đã thanh toán/已完成
 # 三种订单都在里面
 ########################
 
@@ -136,7 +136,7 @@ CREATE TABLE orders
 	# 订单号
 	orderNumber CHAR(32) NOT NULL  , 
 	# 订单Tình trạng
-	orderStatus CHAR(18) check (value in ('预订中','Đã đăng ký','Đã thanh toán')) ,
+	orderStatus CHAR(18) check (value in ('预订中','Đã_đăng_ký','Đã thanh toán')) ,
 	# 客户Card ID
 	customerIDCard CHAR(18),
 	# 入住房间号
@@ -387,7 +387,7 @@ CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR
 				if new.orderStatus='Đặt phòng中'
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
-				elseif new.orderStatus='Đã đăng ký'
+				elseif new.orderStatus='Đã_đăng_ký'
 					then
 					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime where orderNumber=new.orderNumber ;
@@ -397,7 +397,7 @@ CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR
 					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime,checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
 				elseif new.orderStatus='Đã thanh toán'
@@ -416,7 +416,7 @@ delimiter ;;
 # 创建对订单完整性进行控制的触发器
 CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FOR EACH ROW begin 
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update orderTracking set checkInTime=new.checkInTime  where orderNumber=new.orderNumber ;
 				elseif new.orderStatus='Đã thanh toán'
@@ -424,7 +424,7 @@ CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FO
 					update orderTracking set checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
 				
-				if new.orderStatus='Đã đăng ký'
+				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
 				elseif new.orderStatus='Đã thanh toán'

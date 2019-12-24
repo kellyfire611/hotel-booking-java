@@ -29,7 +29,7 @@
     ArrayList<OrderView> allOrders = Query.getAllOrderViews("");
 
     for (int i = 0; i < allOrders.size(); i++) {
-        if (allOrders.get(i).getOrderStatus().equals("Đã đăng ký")) {
+        if (allOrders.get(i).getOrderStatus().equals("Đã_đăng_ký")) {
             checkInOrderNumber++;
         } else if (allOrders.get(i).getOrderStatus().equals("Đã thanh toán")) {
             checkOutOrderNumber++;
@@ -270,7 +270,7 @@
                             <%--data:['订单量']--%>
                         <%--},--%>
                         <%--xAxis: {--%>
-                            <%--data: ["已预订", "Đã đăng ký","Đã thanh toán","续费"]--%>
+                            <%--data: ["已预订", "Đã_đăng_ký","Đã thanh toán","续费"]--%>
                         <%--},--%>
                         <%--yAxis: {},--%>
                         <%--series: [{--%>

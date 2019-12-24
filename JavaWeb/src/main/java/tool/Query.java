@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 //数据库查询功能
 public class Query {
+    static String hotelID = "HOT001";
 
     //房间指定型号对应的còn_trống和đã_có_người_thuê房间数量
     public static ArrayList<Integer> getNumofRoom(String roomType){
@@ -19,21 +20,33 @@ public class Query {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         ArrayList<Integer>list =new ArrayList<Integer>() ;
+        
         try{
             connection =  DataBase.getConnection();
             preparedStatement = connection.prepareStatement(
-                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='còn_trống' and c.roomType='"+roomType+"'");
+                    //"select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='còn_trống' and c.roomType='"+roomType+"'");
+                    "select * from  (select room.roomType,roomStatus ,count(*) from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType AND roomtypeandprice.hotelID ='"+hotelID+"' group by room.roomType,roomStatus) c where c.roomStatus='còn_trống' and c.roomType='"+roomType+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                list.add( resultSet.getInt("count(*)")) ;
+            if (resultSet.isBeforeFirst() == false) {
+                list.add(0);
+            }
+            else {
+                while (resultSet.next()) {
+                    list.add( resultSet.getInt("count(*)")) ;
+                }
             }
             preparedStatement = connection.prepareStatement(
-                    "select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='đã_có_người_thuê' and c.roomType='"+roomType+"'");
+                    //"select * from  (select roomType,roomStatus ,count(*) from room group by roomType,roomStatus) c where c.roomStatus='đã_có_người_thuê' and c.roomType='"+roomType+"'");
+                    "select * from  (select room.roomType,roomStatus ,count(*) from room JOIN roomtypeandprice ON room.roomType = roomtypeandprice.roomType AND roomtypeandprice.hotelID ='"+hotelID+"' group by room.roomType,roomStatus) c where c.roomStatus='đã_có_người_thuê' and c.roomType='"+roomType+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                list.add( resultSet.getInt("count(*)")) ;
+            if (resultSet.isBeforeFirst() == false) {
+                list.add(0);
+            } else {
+                while (resultSet.next()) {
+                    list.add( resultSet.getInt("count(*)")) ;
+                }
             }
 
             return list ;
@@ -43,7 +56,7 @@ public class Query {
         return null ;
     }
 
-    //获得Đã đăng ký的orderview
+    //获得Đã_đăng_ký的orderview
     public static OrderView getFullOrderViews(String roomid) {
         ArrayList<OrderView> fullOrderViews = new ArrayList<OrderView>();
         Connection connection = null;
@@ -53,7 +66,7 @@ public class Query {
         try {
             connection =  DataBase.getConnection();
 
-            preparedStatement = connection.prepareStatement("select * from orderviews where roomNumber='"+roomid+"' and orderStatus='Đã đăng ký'");
+            preparedStatement = connection.prepareStatement("select * from orderviews where roomNumber='"+roomid+"' and orderStatus='Đã_đăng_ký' and hotelID='"+hotelID+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
 
@@ -87,7 +100,7 @@ public class Query {
         try {
             connection =  DataBase.getConnection();
             statement = connection.createStatement();
-            statement.execute("DELETE  FROM waiter where waiterID='" + waiter.getWaiterID() + "'");
+            statement.execute("DELETE  FROM waiter where waiterID='" + waiter.getWaiterID() + "' and hotelID='"+hotelID+"'");
 
         } catch(Exception exception) {
             exception.printStackTrace();
@@ -149,7 +162,7 @@ public class Query {
 
         try {
             connection =  DataBase.getConnection();
-            String sql ="select * from waiter where waiterID='"+waiterID+"'" ;
+            String sql ="select * from waiter where waiterID='"+waiterID+"' and hotelID='"+hotelID+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -160,7 +173,8 @@ public class Query {
                 ,resultSet.getString("waiterPassword")
                 ,resultSet.getDate("waiterJoinDate")
                 ,resultSet.getString("waiterPhoneNumber")
-                ,resultSet.getString("remarks")) ;
+                ,resultSet.getString("remarks")
+                ,resultSet.getString("hotelID")) ;
                 return waiter ;
             }
         } catch(Exception exception) {
@@ -177,7 +191,7 @@ public class Query {
         HashMap<String,RoomTypeAndPrice> map =new HashMap<String, RoomTypeAndPrice>() ;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select * from roomtypeandprice " ;
+            String sql ="select * from roomtypeandprice WHERE hotelID='"+hotelID+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -185,7 +199,9 @@ public class Query {
                        new  RoomTypeAndPrice(resultSet.getString("roomType")
                         ,Integer.parseInt(resultSet.getString("price")),
                         resultSet.getString("desc"),
-                        resultSet.getString("url")) );
+                        resultSet.getString("url"),
+                                resultSet.getString("hotelID")
+                       ) );
 
             }
         } catch(Exception exception) {
@@ -205,12 +221,12 @@ public class Query {
             connection =  DataBase.getConnection();
             String sql  ;
             if(!search.equals("")){
-                sql ="select * from room where roomNumber like '%"+search+"%'" ;
+                sql ="select * from room where roomNumber like '%"+search+"%' and hotelID='"+hotelID+"'" ;
 
             }else if(s.equals("")||s.equals("Tất_cả"))
-                sql="select * from room " ;
+                sql="select * from room where hotelID='"+hotelID+"' " ;
             else
-                sql="select * from room where roomStatus='"+s+"'";
+                sql="select * from room where roomStatus='"+s+"' and hotelID='"+hotelID+"'";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -236,7 +252,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='đã_có_người_thuê' " ;
+            String sql ="select roomNumber from room where roomStatus='đã_có_người_thuê' and hotelID='"+hotelID+"' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -255,7 +271,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select roomNumber from room where roomStatus='còn_trống' and roomType='"+roomtype+"'" ;
+            String sql ="select roomNumber from room where roomStatus='còn_trống' and roomType='"+roomtype+"' and hotelID='"+hotelID+"' " ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -275,7 +291,7 @@ public class Query {
 
         try {
             connection =  DataBase.getConnection();
-            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_ROOMS);
+            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_ROOMS + " WHERE hotelID='"+hotelID+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
 
@@ -284,7 +300,8 @@ public class Query {
                         resultSet.getString("roomtype"),
                         resultSet.getInt("price"),
                         resultSet.getString("desc"),
-                        resultSet.getString("url")
+                        resultSet.getString("url"),
+                        resultSet.getString("hotelID")
                 );
                 allRooms.add(roomTypeAndPrice);
             }
@@ -304,7 +321,7 @@ public class Query {
 
         try {
             connection =  DataBase.getConnection();
-            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_ORDERS);
+            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_ORDERS + " WHERE hotelID='"+hotelID+"'");
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
             //获取数据库中订单信息
@@ -326,7 +343,14 @@ public class Query {
                         resultSet.getInt("totalMoney"),
                         resultSet.getString("waiterID"),
                         resultSet.getString("remarks"),
-                        resultSet.getDate("orderTime"));
+                        resultSet.getDate("orderTime")
+                        ,resultSet.getString("hotelID")
+                        ,resultSet.getInt("serviceID_1")
+                        ,resultSet.getFloat("price_1")
+                        ,resultSet.getInt("serviceID_2")
+                        ,resultSet.getFloat("price_2")
+                        ,resultSet.getInt("serviceID_3")
+                        ,resultSet.getFloat("price_3"));
                 allOrders.add(orderItem);
             }
 
@@ -416,7 +440,7 @@ public class Query {
                 System.out.println("查询---数据库连接成功");
             }
 
-            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_WAITERS);
+            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_WAITERS + " WHERE hotelID='"+hotelID+"'");
 
             //获取结果数据集
             resultSet = preparedStatement.executeQuery();
@@ -437,7 +461,9 @@ public class Query {
                         resultSet.getString("waiterPassword"),
                         resultSet.getDate("waiterJoinDate"),
                         resultSet.getString("waiterPhoneNumber"),
-                        resultSet.getString("remarks"));
+                        resultSet.getString("remarks"),
+                        resultSet.getString("hotelID")
+                );
                 allWaiters.add(waiter);
             }
 
@@ -458,9 +484,9 @@ public class Query {
         try {
             connection =  DataBase.getConnection();
             if (orderStatus.equals("")) {
-                preparedStatement = connection.prepareStatement("select * from orderviews");
+                preparedStatement = connection.prepareStatement("select * from orderviews where hotelID='"+hotelID+"'");
             } else {
-                preparedStatement = connection.prepareStatement("select * from orderviews where orderStatus = '" + orderStatus + "'");
+                preparedStatement = connection.prepareStatement("select * from orderviews where orderStatus = '" + orderStatus + "' and hotelID='"+hotelID+"'");
             }
 
             //获取结果数据集
@@ -525,12 +551,12 @@ public class Query {
             connection =  DataBase.getConnection();
             if(!s3.equals(""))
                 preparedStatement = connection.prepareStatement(
-                        "select * from roomtypeandprice where roomType like '%"+s1+"%' and roomType like '%"+s2+
+                        "select * from roomtypeandprice where hotelID='"+hotelID+"' and roomType like '%"+s1+"%' and roomType like '%"+s2+
                                 "%' and  price BETWEEN "+arr[0]+" and "+arr[1]
                 );
             else
                 preparedStatement = connection.prepareStatement(
-                        "select * from roomtypeandprice where roomType like '%"+s1+"%' and roomType like '%"+s2+
+                        "select * from roomtypeandprice where hotelID='"+hotelID+"' roomType like '%"+s1+"%' and roomType like '%"+s2+
                                 "%'"
                 );
             //获取结果数据集
@@ -541,7 +567,8 @@ public class Query {
                         resultSet.getString("roomtype"),
                         resultSet.getInt("price"),
                         resultSet.getString("desc"),
-                        resultSet.getString("url")
+                        resultSet.getString("url"),
+                        resultSet.getString("hotelID")
                 ) ;
                 allRooms.add(roomTypeAndPrice);
             }
@@ -649,7 +676,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select * from orders where roomNumber='"+roomid+"' and orderStatus='Đã đăng ký'" ;
+            String sql ="select * from orders where hotelID='"+hotelID+"' and roomNumber='"+roomid+"' and orderStatus='Đã_đăng_ký'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -662,7 +689,15 @@ public class Query {
                         ,resultSet.getInt("totalMoney")
                         ,resultSet.getString("waiterID")
                         ,resultSet.getString("remarks")
-                        ,resultSet.getDate("orderTime")) ;
+                        ,resultSet.getDate("orderTime")
+                        ,resultSet.getString("hotelID")
+                        ,resultSet.getInt("serviceID_1")
+                        ,resultSet.getFloat("price_1")
+                        ,resultSet.getInt("serviceID_2")
+                        ,resultSet.getFloat("price_2")
+                        ,resultSet.getInt("serviceID_3")
+                        ,resultSet.getFloat("price_3")
+                ) ;
             }
 
         } catch(Exception exception) {
@@ -677,7 +712,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select count(*) from orders " ;
+            String sql ="select count(*) from orders where hotelID='"+hotelID+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -700,7 +735,7 @@ public class Query {
 
         try {
             connection =  DataBase.getConnection();
-            String sql ="select price from roomtypeandprice where roomType='"+type+"'" ;
+            String sql ="select price from roomtypeandprice where hotelID='"+hotelID+"' and roomType='"+type+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -721,7 +756,8 @@ public class Query {
             preparedStatement = connection.prepareStatement("INSERT INTO Customers VALUES('" +
                     cu.getCustomerIDCard()+"','"+cu.getCustomerGender()+"','"+cu.getCustomerName()+"','"+cu.getCustomerBirthday()
                     +"',"+Integer.parseInt(cu.getCustomerVIPLevel())+",'"+cu.getCustomerPhoneNumber()+"',"+cu.getTotalAmount()
-                    +",'"+cu.getRemarks()+ "');");
+                    +",'"+cu.getRemarks()+"'"
+                    +",'"+hotelID+ "');");
             preparedStatement.execute();
         } catch(Exception exception) {
             exception.printStackTrace();
@@ -736,7 +772,7 @@ public class Query {
         int level =searchVIPlevel(id) ; //该用户的会员等级
         try {
             connection =  DataBase.getConnection();
-            String sql ="select discount from viplevel where level="+level ;
+            String sql ="select discount from viplevel where hotelID='"+hotelID+"' and level="+level ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -756,7 +792,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select customerVIPLevel from customers where customerIDCard=' "+id+"'" ;
+            String sql ="select customerVIPLevel from customers where hotelID='"+hotelID+"' and customerIDCard=' "+id+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -777,7 +813,7 @@ public class Query {
         ResultSet resultSet = null;
         try {
             connection =  DataBase.getConnection();
-            String sql ="select * from Customers where customerIDCard='"+id+"'" ;
+            String sql ="select * from Customers where hotelID='"+hotelID+"' and customerIDCard='"+id+"'" ;
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -807,8 +843,14 @@ public class Query {
                     order.getTotalMoney() + ",'" +
                     order.getWaiterID()+"','"+
                     order.getRemarks() + "','"+
-                    order.getOrderTime()+
-                    "')");
+                    order.getOrderTime()+ "','"+hotelID+ "'"
+                    + "," + order.getServiceID_1()
+                    + "," + order.getPrice_1()
+                    + "," + order.getServiceID_2()
+                    + "," + order.getPrice_2()
+                    + "," + order.getServiceID_3()
+                    + "," + order.getPrice_3()
+                    + "')");
 
             preparedStatement.execute();
 
@@ -861,7 +903,7 @@ public class Query {
                     waiter.getWaiterPassword() + "', '" +
                     waiter.getWaiterJoinDate() + "', '" +
                     waiter.getWaiterPhoneNumber() + "', '" +
-                    waiter.getRemarks() + "');");
+                    waiter.getRemarks() + "','" + hotelID + "');");
 
         } catch(Exception exception) {
             exception.printStackTrace();

@@ -24,12 +24,14 @@ request.setCharacterEncoding("utf-8");
         String userid =request.getParameter("id");
         String userpassword =request.getParameter("password") ;
         String admin = request.getParameter("admin") ;
+        String hotelID = request.getParameter("hotelID");
+        
         System.out.println(userid+" "+userpassword+" "+admin);
         String sql = "" ;
         if(admin.equals("0")){
             sql ="select * from systemadministrator where userID= '"+userid+"' and userPassword='"+userpassword+"'" ;
         }else if (admin.equals("1")) {
-            sql ="select * from waiter where waiterID= '"+userid+"' and waiterPassword='"+userpassword+"'" ;
+            sql ="select * from waiter where waiterID= '"+userid+"' and waiterPassword='"+userpassword+"' and hotelID='"+hotelID+"'" ;
         }
         try {
             try {
@@ -52,6 +54,7 @@ request.setCharacterEncoding("utf-8");
                     Connection connection =null ;
                     session.setAttribute("hoteladmin",userid);
                     session.setAttribute("hotelpassword",userpassword);
+                    session.setAttribute("hotelID",hotelID);
 //                    if(GCON.MAP.get(GCON.HOTELUSERNAME)!=null) {
                     connection = DriverManager.getConnection(
                             GCON.URL,
@@ -65,6 +68,7 @@ request.setCharacterEncoding("utf-8");
 
                     session.setAttribute("systemadmin",userid);
                     session.setAttribute("systempassword",userpassword);
+                    session.setAttribute("hotelID",hotelID);
 
                     Connection connection =DriverManager.getConnection(
                             GCON.URL,

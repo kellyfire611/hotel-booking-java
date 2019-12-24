@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.36-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win32
--- HeidiSQL Version:             10.3.0.5771
+-- Server version:               10.1.40-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             10.2.0.5769
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`customerVIPLevel`) REFERENCES `viplevel` (`level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.customers: ~99 rows (approximately)
+-- Dumping data for table hotel.customers: ~100 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`customerIDCard`, `customerGender`, `customerName`, `customerBirthday`, `customerVIPLevel`, `customerPhoneNumber`, `totalAmount`, `remarks`, `hotelID`) VALUES
 	('10611671', 'Nữ', 'Dr. Javier Strom', '1978-07-21', 1, '881-770-273', 151493, 'Ut qui doloremque et ad.', 'HOT002'),
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`waiterID`) REFERENCES `waiter` (`waiterID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.orders: ~4 rows (approximately)
+-- Dumping data for table hotel.orders: ~26 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`orderNumber`, `orderStatus`, `customerIDCard`, `roomNumber`, `checkInTime`, `checkOutTime`, `totalMoney`, `waiterID`, `remarks`, `orderTime`, `hotelID`, `serviceID_1`, `price_1`, `serviceID_2`, `price_2`, `serviceID_3`, `price_3`) VALUES
 	('14755271', 'Đã_đăng_ký', '4815046', '000038', '2019-12-12', '2020-01-11', 88375523, 'tkadung', 'Suscipit molestiae delectus duci', '2019-12-12', 'HOT002', 5, 55.0000, 2, 15.0000, 5, 55.0000),
@@ -263,8 +263,8 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000006', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000007', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000008', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
-	('000009', 'Tiêu_chuẩn (Đơn)', 'đã_có_người_thuê', NULL),
-	('000010', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
+	('000009', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
+	('000010', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000011', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000012', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000013', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
@@ -272,21 +272,21 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000015', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000016', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000017', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
-	('000018', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
-	('000019', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
+	('000018', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
+	('000019', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
 	('000020', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
-	('000021', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
+	('000021', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
 	('000022', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000023', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000024', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000025', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000026', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000027', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
-	('000028', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
+	('000028', 'Nữ hoàng (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
 	('000029', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
-	('000030', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
+	('000030', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000031', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000032', 'Nữ hoàng (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000032', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000033', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000034', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000035', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
@@ -294,25 +294,25 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000037', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000038', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
 	('000039', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000040', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000040', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000041', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000042', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000043', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000044', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
+	('000044', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000045', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000046', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000047', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
-	('000048', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
+	('000048', 'Doanh_nhân (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
 	('000049', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000050', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000051', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
-	('000052', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
-	('000053', 'Nữ hoàng (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
-	('000054', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
+	('000051', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
+	('000052', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
+	('000053', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
+	('000054', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
 	('000055', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000056', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000057', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
-	('000058', 'Doanh_nhân (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000058', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000059', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000060', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000061', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
@@ -324,30 +324,30 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000067', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000068', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000069', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
-	('000070', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
-	('000071', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000072', 'Doanh_nhân (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000070', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000071', 'Doanh_nhân (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000072', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000073', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
 	('000074', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000075', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000076', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
-	('000077', 'Nữ hoàng (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
-	('000078', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
+	('000077', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
+	('000078', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
 	('000079', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
-	('000080', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
+	('000080', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000081', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000082', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000083', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
-	('000084', 'Nữ hoàng (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000084', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000085', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000086', 'Tiêu_chuẩn (Đơn)', 'còn_trống', NULL),
 	('000087', 'Nữ hoàng (Đơn / Đôi)', 'còn_trống', NULL),
 	('000088', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000089', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000090', 'VIP (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
-	('000091', 'Tiêu_chuẩn (Đôi)', 'đã_có_người_thuê', NULL),
+	('000090', 'VIP (Đơn / Đôi)', 'còn_trống', NULL),
+	('000091', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000092', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
-	('000093', 'Doanh_nhân (Đơn / Đôi)', 'đã_có_người_thuê', NULL),
+	('000093', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
 	('000094', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000095', 'Tiêu_chuẩn (Đôi)', 'còn_trống', NULL),
 	('000096', 'Doanh_nhân (Đơn / Đôi)', 'còn_trống', NULL),
@@ -416,7 +416,7 @@ INSERT INTO `services` (`serviceID`, `name`, `price`, `hotelID`) VALUES
 -- Dumping structure for table hotel.systemadministrator
 CREATE TABLE IF NOT EXISTS `systemadministrator` (
   `userID` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userName` VARCHAR(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userPassword` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hotelID` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`userID`),
@@ -498,98 +498,82 @@ INSERT INTO `waiter` (`waiterID`, `waiterName`, `waiterBirthday`, `waiterIDCard`
 	('tkadung', 'Tống Kim Anh Dũng', '2017-12-21', '362207485', '1234', '2017-12-05', '0914256842', NULL, 'HOT002');
 /*!40000 ALTER TABLE `waiter` ENABLE KEYS */;
 
+-- Dumping structure for view hotel.customerviplevelinfo
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `customerviplevelinfo` (
+	`customerIDCard` CHAR(18) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerGender` CHAR(4) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerBirthday` DATE NULL,
+	`customerVIPLevel` SMALLINT(6) NULL,
+	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`totalAmount` INT(10) UNSIGNED NULL,
+	`remarks` VARCHAR(32) NULL COLLATE 'utf8mb4_unicode_ci',
+	`hotelID` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`discount` DECIMAL(10,2) UNSIGNED NOT NULL
+) ENGINE=MyISAM;
 
+-- Dumping structure for view hotel.incomeview
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `incomeview` (
+	`co` DATE NOT NULL,
+	`tot` DECIMAL(32,0) NULL,
+	`num` BIGINT(21) NOT NULL
+) ENGINE=MyISAM;
 
+-- Dumping structure for view hotel.orderviews
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `orderviews` (
+	`orderNumber` CHAR(32) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`orderStatus` CHAR(18) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`roomNumber` CHAR(6) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`roomType` VARCHAR(32) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`orderTime` DATE NOT NULL,
+	`checkInTime` DATE NOT NULL,
+	`checkOutTime` DATE NOT NULL,
+	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`totalMoney` INT(10) UNSIGNED NOT NULL,
+	`hotelID` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci'
+) ENGINE=MyISAM;
 
-###### 视图 
+-- Dumping structure for view hotel.roominfo
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `roominfo` (
+	`roomNumber` CHAR(6) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`roomType` VARCHAR(32) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`roomStatus` CHAR(255) NULL COLLATE 'utf8mb4_unicode_ci',
+	`remarks` VARCHAR(32) NULL COLLATE 'utf8mb4_unicode_ci',
+	`price` INT(10) UNSIGNED NOT NULL,
+	`desc` VARCHAR(100) NULL COLLATE 'utf8mb4_unicode_ci',
+	`url` VARCHAR(40) NULL COLLATE 'utf8mb4_unicode_ci'
+) ENGINE=MyISAM;
 
-# 创建收入视图
-create view incomeView
-as
-# 选择退房时间，总金额，订单数量
-select checkOutTime co, sum(totalMoney) tot, count(*) num from orders 
-where orders.orderNumber
-in (
-select ordertracking.orderNumber from ordertracking
-    where ordertracking.checkOutTime is not null
-)
-group by co ;
+-- Dumping structure for view hotel.timeextensionordersview
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `timeextensionordersview` (
+	`orderNumber` CHAR(32) NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerName` VARCHAR(16) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`customerPhoneNumber` CHAR(11) NULL COLLATE 'utf8mb4_unicode_ci',
+	`roomNumber` CHAR(6) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`checkInTime` DATE NOT NULL,
+	`oldExpiryDate` DATE NOT NULL,
+	`newExpiryDate` DATE NOT NULL,
+	`addedMoney` INT(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM;
 
+-- Dumping structure for trigger hotel.insertAddMoneyToOrdersTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
+CREATE TRIGGER `insertAddMoneyToOrdersTrigger` BEFORE INSERT ON `orders` FOR EACH ROW begin 
+				UPDATE customers set totalAmount=totalAmount+new.totalMoney where customerIDCard=new.customerIDCard ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
-# 创建客户折扣视图
-create view customerVipLevelInfo
-as
-# 选择客户以及对应的VIP等级
-select 
-    customers.*, viplevel.discount
-from
-    customers, viplevel
-where
-    customers.customerVIPLevel = viplevel.level ;
-
- 
-# 创建房间信息视图
-CREATE VIEW roomInfo
-AS
-select 
-    room.*, rp.price, rp.`desc`,
-    rp.url
-FROM
-    room, roomtypeandprice rp
-WHERE
-    room.roomType = rp.roomType ;
-
-
-# 创建Tình hình Renew视图
-CREATE VIEW timeExtensionOrdersView
-AS
-# 选择订单号，顾客名，Số điện thoại，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
-SELECT 
-    tt.orderNumber,
-    ct.customerName,
-    ct.customerPhoneNumber,
-    od.roomNumber,
-    od.checkInTime,
-    tt.oldExpiryDate,
-    tt.newExpiryDate,
-    tt.addedMoney
-FROM
-    timeextension tt, orders od, customers ct
-WHERE
-    tt.orderNumber = od.orderNumber
-AND
-    od.customerIDCard = ct.customerIDCard ;
-
-
-# 创建订单视图
-CREATE VIEW orderviews as
-SELECT
-    orders.orderNumber,
-    orders.orderStatus,
-    customers.customerName,
-    room.roomNumber,
-    room.roomType,
-    orders.orderTime,
-    orders.checkInTime,
-    orders.checkOutTime,
-    customers.customerPhoneNumber,
-    orders.totalMoney FROM
-    orders, room, customers, roomtypeandprice
-WHERE
-    orders.customerIDCard = customers.customerIDCard
-AND
-    room.roomType = roomtypeandprice.roomType
-AND 
-    orders.roomNumber = room.roomNumber
-ORDER BY
-    orders.orderNumber DESC;
-
--- ----------------------------
--- Triggers structure for table customers
--- ----------------------------
-DROP TRIGGER IF EXISTS `insertCustomerLevelTrigger`;
-delimiter ;;
-# 创建客户折扣触发器
+-- Dumping structure for trigger hotel.insertCustomerLevelTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
 CREATE TRIGGER `insertCustomerLevelTrigger` BEFORE INSERT ON `customers` FOR EACH ROW begin 
 # 消费金额<200 VIP等级为1
 				if new.totalAmount<200
@@ -616,16 +600,52 @@ CREATE TRIGGER `insertCustomerLevelTrigger` BEFORE INSERT ON `customers` FOR EAC
 					then 
 					set new.customerVIPLevel =6 ;
 					end if;
-			end
-;;
-delimiter ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- ----------------------------
--- Triggers structure for table customers
--- ----------------------------
-DROP TRIGGER IF EXISTS `updateCustomerLevelTrigger`;
-delimiter ;;
-# 创建客户消费金额更新后的触发器
+-- Dumping structure for trigger hotel.insertMoneyToTimeExtensionTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
+CREATE TRIGGER `insertMoneyToTimeExtensionTrigger` BEFORE INSERT ON `timeextension` FOR EACH ROW begin 
+				
+				UPDATE orders set totalMoney=totalMoney+new.addedMoney where  orderNumber=new.orderNumber ;
+				UPDATE customers set totalAmount=totalAmount+new.addedMoney  WHERE customerIDCard = (select customerIDCard from orders where new.orderNumber=orderNumber) ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Dumping structure for trigger hotel.insertOrderStatusToTrackingTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
+CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR EACH ROW begin 
+				if new.orderStatus='Đặt phòng中'
+					then
+					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
+				elseif new.orderStatus='Đã đăng ký'
+					then
+					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
+					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime where orderNumber=new.orderNumber ;
+				elseif new.orderStatus='Đã thanh toán' 
+					then
+					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
+					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime,checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
+				end if ;
+				
+				if new.orderStatus='Đã đăng ký'
+					then
+					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
+				elseif new.orderStatus='Đã thanh toán'
+					then 
+					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
+				end if ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Dumping structure for trigger hotel.updateCustomerLevelTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
 CREATE TRIGGER `updateCustomerLevelTrigger` BEFORE UPDATE ON `customers` FOR EACH ROW begin 
 				if new.totalAmount<200
 					then 
@@ -648,62 +668,16 @@ CREATE TRIGGER `updateCustomerLevelTrigger` BEFORE UPDATE ON `customers` FOR EAC
 					then 
 					set new.customerVIPLevel =6 ;
 					end if;
-			end
-;;
-delimiter ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- ----------------------------
--- Triggers structure for table orders
--- ----------------------------
-DROP TRIGGER IF EXISTS `insertAddMoneyToOrdersTrigger`;
-delimiter ;;
-# 创建更新的顾客消费总金额的触发器
-CREATE TRIGGER `insertAddMoneyToOrdersTrigger` BEFORE INSERT ON `orders` FOR EACH ROW begin 
-				UPDATE customers set totalAmount=totalAmount+new.totalMoney where customerIDCard=new.customerIDCard ;
-			end
-;;
-delimiter ;
-
--- ----------------------------
--- Triggers structure for table orders
--- ----------------------------
-# 创建插入订单后对订单信息进行更新的触发器
-DROP TRIGGER IF EXISTS `insertOrderStatusToTrackingTrigger`;
-delimiter ;;
-CREATE TRIGGER `insertOrderStatusToTrackingTrigger` AFTER INSERT ON `orders` FOR EACH ROW begin 
-				if new.orderStatus='Đặt phòng中'
-					then
-					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
-				elseif new.orderStatus='Đã_đăng_ký'
-					then
-					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
-					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime where orderNumber=new.orderNumber ;
-				elseif new.orderStatus='Đã thanh toán' 
-					then
-					INSERT INTO ordertracking VALUES ( new.orderNumber, new.orderTime , NULL, NULL, NULL);
-					update orderTracking set checkInTime=new.checkInTime ,orderTime=new.checkInTime,checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
-				end if ;
-				
-				if new.orderStatus='Đã_đăng_ký'
-					then
-					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='Đã thanh toán'
-					then 
-					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
-				end if ;
-			end
-;;
-delimiter ;
-
--- ----------------------------
--- Triggers structure for table orders
--- ----------------------------
-DROP TRIGGER IF EXISTS `updateOrderStatustoTrackingTrigger`;
-delimiter ;;
-# 创建对订单完整性进行控制的触发器
+-- Dumping structure for trigger hotel.updateOrderStatustoTrackingTrigger
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+DELIMITER //
 CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FOR EACH ROW begin 
 				
-				if new.orderStatus='Đã_đăng_ký'
+				if new.orderStatus='Đã đăng ký'
 					then
 					update orderTracking set checkInTime=new.checkInTime  where orderNumber=new.orderNumber ;
 				elseif new.orderStatus='Đã thanh toán'
@@ -711,58 +685,97 @@ CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FO
 					update orderTracking set checkOutTime=new.checkOutTime where orderNumber=new.orderNumber ;
 				end if ;
 				
-				if new.orderStatus='Đã_đăng_ký'
+				if new.orderStatus='Đã đăng ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
 				elseif new.orderStatus='Đã thanh toán'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;
-			end
-;;
-delimiter ;
+			end//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- ----------------------------
--- Triggers structure for table timeextension
--- ----------------------------
-# 创建对Tình hình Renew总金额进行更新的触发器
-DROP TRIGGER IF EXISTS `insertMoneyToTimeExtensionTrigger`;
-delimiter ;;
-CREATE TRIGGER `insertMoneyToTimeExtensionTrigger` BEFORE INSERT ON `timeextension` FOR EACH ROW begin 
-				
-				UPDATE orders set totalMoney=totalMoney+new.addedMoney where  orderNumber=new.orderNumber ;
-				UPDATE customers set totalAmount=totalAmount+new.addedMoney  WHERE customerIDCard = (select customerIDCard from orders where new.orderNumber=orderNumber) ;
-			end
-;;
-delimiter ;
+-- Dumping structure for view hotel.customerviplevelinfo
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `customerviplevelinfo`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `customerviplevelinfo` AS # 选择客户以及对应的VIP等级
+select 
+    customers.*, viplevel.discount
+from
+    customers, viplevel
+where
+    customers.customerVIPLevel = viplevel.level ;
 
+-- Dumping structure for view hotel.incomeview
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `incomeview`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `incomeview` AS # 选择退房时间，总金额，订单数量
+select checkOutTime co, sum(totalMoney) tot, count(*) num from orders 
+where orders.orderNumber
+in (
+select ordertracking.orderNumber from ordertracking
+    where ordertracking.checkOutTime is not null
+)
+group by co ;
 
-# 建立的索引 
+-- Dumping structure for view hotel.orderviews
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `orderviews`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `orderviews` AS SELECT
+    orders.orderNumber,
+    orders.orderStatus,
+    customers.customerName,
+    room.roomNumber,
+    room.roomType,
+    orders.orderTime,
+    orders.checkInTime,
+    orders.checkOutTime,
+    customers.customerPhoneNumber,
+    orders.totalMoney,
+	 orders.hotelID
+	 FROM
+    orders, room, customers, roomtypeandprice
+WHERE
+    orders.customerIDCard = customers.customerIDCard
+AND
+    room.roomType = roomtypeandprice.roomType
+AND 
+    orders.roomNumber = room.roomNumber
+ORDER BY
+    orders.orderNumber DESC ;
 
+-- Dumping structure for view hotel.roominfo
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `roominfo`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `roominfo` AS select 
+    room.*, rp.price, rp.`desc`,
+    rp.url
+FROM
+    room, roomtypeandprice rp
+WHERE
+    room.roomType = rp.roomType ;
 
-
-
-
-
+-- Dumping structure for view hotel.timeextensionordersview
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `timeextensionordersview`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `timeextensionordersview` AS # 选择订单号，顾客名，Số điện thoại，房间号，入住时间，旧的到期时间，新的到期时间以及增加的金额
+SELECT 
+    tt.orderNumber,
+    ct.customerName,
+    ct.customerPhoneNumber,
+    od.roomNumber,
+    od.checkInTime,
+    tt.oldExpiryDate,
+    tt.newExpiryDate,
+    tt.addedMoney
+FROM
+    timeextension tt, orders od, customers ct
+WHERE
+    tt.orderNumber = od.orderNumber
+AND
+    od.customerIDCard = ct.customerIDCard ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-
-
-
-UPDATE room SET room.roomStatus = 'còn_trống';
-
-CREATE TEMPORARY TABLE IF NOT EXISTS tmpRoom AS (
-	SELECT r.roomNumber
-	FROM orders o
-	JOIN room r ON o.roomNumber = r.roomNumber
-	WHERE o.orderStatus = 'Đã_đăng_ký'
-);
-
-UPDATE room r1
-SET r1.roomStatus = 'đã_có_người_thuê'
-WHERE r1.roomNumber IN (
-	SELECT roomNumber
-	FROM tmpRoom
-);

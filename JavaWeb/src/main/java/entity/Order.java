@@ -23,6 +23,14 @@ public class Order {
     private int totalMoney;
 
     private String remarks;
+    
+    private String hotelID;
+    private int serviceID_1;
+    private float price_1;
+    private int serviceID_2;
+    private float price_2;
+    private int serviceID_3;
+    private float price_3;
 
     public Order() {
 
@@ -35,7 +43,10 @@ public class Order {
                  Date checkInTime,
                  Date checkOutTime,
                  int totalMoney,String waiterID
-            ,String remarks,Date orderTime) {
+            ,String remarks,Date orderTime,
+            String hotelID, int serviceID_1, float price_1,
+            int serviceID_2, float price_2,
+            int serviceID_3, float price_3) {
         this.orderNumber = orderNumber;
         this.orderStatus = orderStatus;
         this.customerIDCard = customerIDCard;
@@ -46,6 +57,13 @@ public class Order {
         this.waiterID =waiterID ;
         this.remarks = remarks;
         this.orderTime =orderTime ;
+        this.hotelID=hotelID;
+        this.serviceID_1=serviceID_1;
+        this.price_1=price_1;
+        this.serviceID_2=serviceID_2;
+        this.price_2=price_2;
+        this.serviceID_3=serviceID_3;
+        this.price_3=price_3;
     }
 
     public void setOrderTime(Date orderTime) {
@@ -126,5 +144,103 @@ public class Order {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    /**
+     * @return the hotelID
+     */
+    public String getHotelID() {
+        return hotelID;
+    }
+
+    /**
+     * @param hotelID the hotelID to set
+     */
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
+    }
+
+    /**
+     * @return the serviceID_1
+     */
+    public int getServiceID_1() {
+        return serviceID_1;
+    }
+
+    /**
+     * @param serviceID_1 the serviceID_1 to set
+     */
+    public void setServiceID_1(int serviceID_1) {
+        this.serviceID_1 = serviceID_1;
+    }
+
+    /**
+     * @return the price_1
+     */
+    public float getPrice_1() {
+        return price_1;
+    }
+
+    /**
+     * @param price_1 the price_1 to set
+     */
+    public void setPrice_1(float price_1) {
+        this.price_1 = price_1;
+    }
+
+    /**
+     * @return the serviceID_2
+     */
+    public int getServiceID_2() {
+        return serviceID_2;
+    }
+
+    /**
+     * @param serviceID_2 the serviceID_2 to set
+     */
+    public void setServiceID_2(int serviceID_2) {
+        this.serviceID_2 = serviceID_2;
+    }
+
+    /**
+     * @return the price_2
+     */
+    public float getPrice_2() {
+        return price_2;
+    }
+
+    /**
+     * @param price_2 the price_2 to set
+     */
+    public void setPrice_2(float price_2) {
+        this.price_2 = price_2;
+    }
+
+    /**
+     * @return the serviceID_3
+     */
+    public int getServiceID_3() {
+        return serviceID_3;
+    }
+
+    /**
+     * @param serviceID_3 the serviceID_3 to set
+     */
+    public void setServiceID_3(int serviceID_3) {
+        this.serviceID_3 = serviceID_3;
+    }
+
+    /**
+     * @return the price_3
+     */
+    public float getPrice_3() {
+        return price_3;
+    }
+
+    /**
+     * @param price_3 the price_3 to set
+     */
+    public void setPrice_3(float price_3) {
+        this.price_3 = price_3;
     }
 }
