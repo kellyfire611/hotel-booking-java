@@ -15,3 +15,8 @@ no-auto-rehash
 # Remove the next comment character if you are not familiar with SQL
 #safe-updates
 default-character-set=utf8mb4
+
+
+# Chỉnh CONFIG TOMCAT
+/conf/server.xml
+<Connector ... URIEncoding="UTF-8">
