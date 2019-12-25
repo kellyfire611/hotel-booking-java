@@ -13,6 +13,7 @@ import java.sql.*;
 import com.mysql.cj.api.Session;
 import config.GCON;
 import tool.DataBase ;
+import tool.Query;
 
 @WebServlet(name="LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -55,6 +56,7 @@ request.setCharacterEncoding("utf-8");
                     session.setAttribute("hoteladmin",userid);
                     session.setAttribute("hotelpassword",userpassword);
                     session.setAttribute("hotelID",hotelID);
+                    Query.hotelID = hotelID;
 //                    if(GCON.MAP.get(GCON.HOTELUSERNAME)!=null) {
                     connection = DriverManager.getConnection(
                             GCON.URL,
@@ -69,6 +71,7 @@ request.setCharacterEncoding("utf-8");
                     session.setAttribute("systemadmin",userid);
                     session.setAttribute("systempassword",userpassword);
                     session.setAttribute("hotelID",hotelID);
+                    Query.hotelID = hotelID;
 
                     Connection connection =DriverManager.getConnection(
                             GCON.URL,

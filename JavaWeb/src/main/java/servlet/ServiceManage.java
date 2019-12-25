@@ -87,6 +87,17 @@ request.setCharacterEncoding("utf-8");
             }
             String url ="/roomOrder.jsp?op=3&discount="+discount.toString()+"&price="+getPrice(map.get("roomtype")[0])
                     +"&pay="+getPrice(map.get("roomtype")[0])*Integer.parseInt(map.get("time")[0])*discount;
+            
+            if(map.get("serviceID_1") != null) {
+                url += "&serviceID_1="+ map.get("serviceID_1")[0];
+            }
+            if(map.get("serviceID_2") != null) {
+                url += "&serviceID_2="+ map.get("serviceID_2")[0];
+            }
+            if(map.get("serviceID_3") != null) {
+                url += "&serviceID_3="+ map.get("serviceID_3")[0];
+            }
+            
             HashSet<String> set =new HashSet<String>() ;
             set.add("roomtype") ;
             set.add("name") ;
@@ -139,18 +150,59 @@ HttpSession session = request.getSession();
             ) ;
             if(map.get("serviceID_1") != null) {
                 order.setServiceID_1(Integer.parseInt(map.get("serviceID_1")[0]));
+                
+                if(order.getServiceID_1() == 1) {
+                    order.setPrice_1(5);
+                } else if (order.getServiceID_1() == 2) {
+                    order.setPrice_1(15);
+                } else if (order.getServiceID_1() == 3) {
+                    order.setPrice_1(20);
+                } else if (order.getServiceID_1() == 4) {
+                    order.setPrice_1(15);
+                } else if (order.getServiceID_1() == 5) {
+                    order.setPrice_1(55);
+                } else if (order.getServiceID_1() == 6) {
+                    order.setPrice_1(99);
+                }
             }
             if(map.get("price_1") != null) {
                 order.setPrice_1(Float.parseFloat(map.get("price_1")[0]));
             }
             if(map.get("serviceID_2") != null) {
                 order.setServiceID_2(Integer.parseInt(map.get("serviceID_2")[0]));
+                
+                if(order.getServiceID_2() == 1) {
+                    order.setPrice_2(5);
+                } else if (order.getServiceID_2() == 2) {
+                    order.setPrice_2(15);
+                } else if (order.getServiceID_2() == 3) {
+                    order.setPrice_2(20);
+                } else if (order.getServiceID_2() == 4) {
+                    order.setPrice_2(15);
+                } else if (order.getServiceID_2() == 5) {
+                    order.setPrice_2(55);
+                } else if (order.getServiceID_2() == 6) {
+                    order.setPrice_2(99);
+                }
             }
             if(map.get("price_2") != null) {
                 order.setPrice_2(Float.parseFloat(map.get("price_2")[0]));
             }
             if(map.get("serviceID_3") != null) {
                 order.setServiceID_3(Integer.parseInt(map.get("serviceID_3")[0]));
+                if(order.getServiceID_3() == 1) {
+                    order.setPrice_3(5);
+                } else if (order.getServiceID_3() == 2) {
+                    order.setPrice_3(15);
+                } else if (order.getServiceID_3() == 3) {
+                    order.setPrice_3(20);
+                } else if (order.getServiceID_3() == 4) {
+                    order.setPrice_3(15);
+                } else if (order.getServiceID_3() == 5) {
+                    order.setPrice_3(55);
+                } else if (order.getServiceID_3() == 6) {
+                    order.setPrice_3(99);
+                }
             }
             if(map.get("price_3") != null) {
                 order.setPrice_3(Float.parseFloat(map.get("price_3")[0]));

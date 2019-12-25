@@ -43,17 +43,18 @@
 
     ArrayList<String> weekRoomType = new ArrayList<String>();
 
-    weekRoomType.add("Doanh_nhân_(Đơn/Đôi)");
-    weekRoomType.add("Nữ_hoàng_(Đơn/Đôi)");
-    weekRoomType.add("Tiêu_chuẩn_(Đơn)");
-    weekRoomType.add("Tiêu_chuẩn_(Đôi)");
-    weekRoomType.add("VIP_(Đơn/Đôi)");
+    weekRoomType.add("HT1-Doanh_nhân_(Đơn/Đôi)");
+    weekRoomType.add("HT1-Nữ_hoàng_(Đơn/Đôi)");
+    weekRoomType.add("HT1-Tiêu_chuẩn_(Đơn)");
+    weekRoomType.add("HT1-Tiêu_chuẩn_(Đôi)");
+    weekRoomType.add("HT1-VIP_(Đơn/Đôi)");
     //获取所有的订单，view根据视图倒序排列
     ArrayList<OrderView> weekView = Query.getAllOrderViews("");
 
-    String weekBeginDate = weekView.get(weekView.size() - 1).getOrderTime().toString();
-
-    String weekEndDate = weekView.get(0).getOrderTime().toString();
+    //String weekBeginDate = weekView.get(weekView.size() - 1).getOrderTime().toString();
+    //String weekEndDate = weekView.get(0).getOrderTime().toString();
+    String weekBeginDate = "2019-12-16";
+    String weekEndDate = "2019-12-30";
 
     ArrayList<String> orderDateSequence = (ArrayList<String>)TraverseDate.getEveryday(weekBeginDate, weekEndDate);
     //ngày期->房间->Đặt phòng数量
@@ -492,11 +493,11 @@ var mainContainerincomeChart = document.getElementById("income");
                         }],
                         title: [{
                             left: 'center',
-                            text: 'Thành tiền mỗi ngày'
+                            text: 'Lượt đặt phòng mỗi ngày'
                         }, {
                             top: '55%',
                             left: 'center',
-                            text: 'Mỗi ngày'
+                            text: 'Thành tiền Mỗi ngày'
                         }],
                         tooltip: {
                             trigger: 'axis'

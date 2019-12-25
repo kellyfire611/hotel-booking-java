@@ -62,12 +62,28 @@ response.setContentType("text/html;charset=UTF-8");
             var sex = document.getElementById("sex").value
             var phonenumber = document.getElementById("phonenumber").value
             var time = document.getElementById("time").value
+            
+            var serviceID_1 = document.getElementById("serviceID_1");
+            var serviceID_2 = document.getElementById("serviceID_2");
+            var serviceID_3 = document.getElementById("serviceID_3");
+            
+            
             if( /^[0-9]{6}$/.test(room) && /^[1-9][0-9]?$/.test(time) && /^[0-9]{9,17}$/.test(idcard)
                 && /^\d{9,11}$/.test(phonenumber) ){
                 var url = "&roomid=" + room + "&name=" + name + "&idcard=" + idcard
-                    + "&birthdata=" + birthdata + "&sex=" + sex + "&phonenumber=" + phonenumber + "&time=" + time
+                    + "&birthdata=" + birthdata + "&sex=" + sex + "&phonenumber=" + phonenumber + "&time=" + time;
+            debugger;
+                    if(serviceID_1.checked) {
+                        url += "&serviceID_1=" + serviceID_1.value;
+                    }
+                    if(serviceID_2.checked) {
+                        url += "&serviceID_2=" + serviceID_2.value;
+                    }
+                    if(serviceID_3.checked) {
+                        url += "&serviceID_3=" + serviceID_3.value;
+                    }
 
-                var url1 = window.location.search.split("&")[1]
+                var url1 = window.location.search.split("&")[1];
 
                 window.location.href = "/ServiceManage?op=1&" + url1 + url;
             }
@@ -240,6 +256,34 @@ response.setContentType("text/html;charset=UTF-8");
                                 <input type="date" value="2018-01-01" value="" id="birthdata" name="birthdata"/>
                             </div>
                         </div>
+                            
+                        <h4 class="ui dividing header">Dịch vụ Thêm</h4>
+                        <div class="fields">
+                            <%
+                                if (session.getAttribute("hotelID").equals("HOT001")) {
+                            %>
+                            <input type="checkbox" name="serviceID_1" id="serviceID_1" value="1" />
+                            <label><i class="user icon"></i>Giặt ủi 5$</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="serviceID_2" id="serviceID_2" value="2" />
+                            <label><i class="user icon"></i>Ăn trưa 15$</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="serviceID_2" id="serviceID_3" value="3" />
+                            <label><i class="user icon"></i>Ăn tối 20$</label>
+                            <% } else if (session.getAttribute("hotelID").equals("HOT002")) { %>
+                                <input type="checkbox" name="serviceID_1" id="serviceID_1" value="4" />
+                                <label><i class="user icon"></i>Giặt ủi 15$</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="serviceID_2" id="serviceID_2" value="5" />
+                                <label><i class="user icon"></i>Ăn trưa 55$</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="serviceID_2" id="serviceID_3" value="6" />
+                                <label><i class="user icon"></i>Ăn tối 99$</label>
+                            <% } %>
+                        </div>
+                        
+                        
+                        
                         <div class="ui right submit floated button" tabindex="0"  >Đặt phòng</div>
                     </form>
                     <%}
@@ -282,7 +326,7 @@ response.setContentType("text/html;charset=UTF-8");
                         </div>
                     </div>
                     <%} else if (op == 4) {%>
-                    <h4 class="ui dividing header">Thanh toán成功</h4>
+                    <h4 class="ui dividing header">Thanh toán</h4>
                     <div class="ui right button" onclick="returnMainPage()">Quay về</div>
                     <%}%>
                 </div>

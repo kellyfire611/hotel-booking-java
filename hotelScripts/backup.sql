@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`customerVIPLevel`) REFERENCES `viplevel` (`level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.customers: ~102 rows (approximately)
+-- Dumping data for table hotel.customers: ~103 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`customerIDCard`, `customerGender`, `customerName`, `customerBirthday`, `customerVIPLevel`, `customerPhoneNumber`, `totalAmount`, `remarks`, `hotelID`) VALUES
 	('10611671', 'Nữ', 'Dr. Javier Strom', '1978-07-21', 1, '881-770-273', 151493, 'Ut qui doloremque et ad.', 'HOT002'),
@@ -68,6 +68,7 @@ INSERT INTO `customers` (`customerIDCard`, `customerGender`, `customerName`, `cu
 	('31607595', 'Nam', 'Dr. Donavon Bins', '1977-09-08', 3, '854.586.516', 828, 'Pariatur cumque optio quidem fac', 'HOT002'),
 	('31868779', 'Nam', 'Nicolette Schnei', '1990-06-07', 1, '1-215-815-8', 82, 'Quidem soluta nisi quam perspici', 'HOT002'),
 	('3306547', 'Nữ', 'Eli Luettgen', '2007-07-24', 1, '780-303-725', 16, 'Ut odit sed cumque accusamus.', 'HOT002'),
+	('3455018575', 'Nam', 'Trần Văn B', '2018-01-01', 4, '0915659223', 1574, '', 'HOT001'),
 	('34788312', 'Nam', 'Everardo Ernser', '2008-08-14', 3, '(583) 832-3', 62588865, 'In molestiae tenetur autem.', 'HOT001'),
 	('36172919', 'Nam', 'Mrs. Dejah DuBuq', '1992-05-04', 1, '841.319.520', 8, 'Odio et laborum sed voluptas mag', 'HOT001'),
 	('362209684', 'Nam', 'Dương Nguyễn Phú Cường 2', '2018-01-31', 4, '0915659223', 1302, '', 'HOT001'),
@@ -197,11 +198,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`waiterID`) REFERENCES `waiter` (`waiterID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.orders: ~28 rows (approximately)
+-- Dumping data for table hotel.orders: ~27 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`orderNumber`, `orderStatus`, `customerIDCard`, `roomNumber`, `checkInTime`, `checkOutTime`, `totalMoney`, `waiterID`, `remarks`, `orderTime`, `hotelID`, `serviceID_1`, `price_1`, `serviceID_2`, `price_2`, `serviceID_3`, `price_3`) VALUES
-	('016', 'Đã_đăng_ký', '362209685', '000001', '2019-12-25', '2019-12-30', 930, 'dnpcuong', '', '2019-12-25', 'HOT001', NULL, NULL, NULL, NULL, NULL, NULL),
-	('017', 'Đã_thanh_toán', '362209684', '000007', '2019-12-25', '2020-01-01', 1302, 'dnpcuong', '', '2019-12-25', 'HOT001', NULL, NULL, NULL, NULL, NULL, NULL),
+	('016', 'Đã_đăng_ký', '3455018575', '000015', '2019-12-25', '2019-12-30', 1574, 'dnpcuong', '', '2019-12-25', 'HOT001', 1, 5.0000, NULL, NULL, 3, 20.0000),
 	('14755271', 'Đã_đăng_ký', '4815046', '000038', '2019-12-12', '2020-01-11', 88375523, 'tkadung', 'Suscipit molestiae delectus duci', '2019-12-12', 'HOT002', 5, 55.0000, 2, 15.0000, 5, 55.0000),
 	('17922951', 'Đã_thanh_toán', '47036826', '000056', '2019-10-30', '2019-11-23', 5397976, 'mtcnhung', 'Et blanditiis quia in enim.', '2019-10-30', 'HOT002', 1, 5.0000, 4, 15.0000, 3, 20.0000),
 	('18972179', 'Đã_thanh_toán', '57672859', '000022', '2019-12-07', '2020-01-28', 40, 'lhsang', 'Et in exercitationem quo et.', '2019-12-07', 'HOT001', 5, 55.0000, 4, 15.0000, 3, 20.0000),
@@ -241,10 +241,34 @@ CREATE TABLE IF NOT EXISTS `ordertracking` (
   CONSTRAINT `ordertracking_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.ordertracking: ~1 rows (approximately)
+-- Dumping data for table hotel.ordertracking: ~25 rows (approximately)
 /*!40000 ALTER TABLE `ordertracking` DISABLE KEYS */;
 INSERT INTO `ordertracking` (`orderNumber`, `orderTime`, `checkInTime`, `checkOutTime`, `remarks`) VALUES
-	('017', '2019-12-25', '2019-12-25', '2019-12-25', NULL);
+	('016', '2019-12-25', '2019-12-25', NULL, NULL),
+	('14755271', '2019-12-12', '2019-12-12', NULL, NULL),
+	('17922951', '2019-10-30', '2019-10-30', '2019-11-23', NULL),
+	('18972179', '2019-12-07', '2019-12-07', '2020-01-28', NULL),
+	('2745121', '2019-12-14', '2019-12-14', NULL, NULL),
+	('32680230', '2019-12-03', '2019-12-03', '2019-12-15', NULL),
+	('36110712', '2019-10-30', '2019-10-30', '2020-01-21', NULL),
+	('39421557', '2019-10-29', '2019-10-29', '2020-02-12', NULL),
+	('4193633', '2019-10-06', '2019-10-06', '2019-12-12', NULL),
+	('44766236', '2019-11-19', '2019-11-19', NULL, NULL),
+	('51087738', '2019-11-18', '2019-11-18', '2019-12-19', NULL),
+	('51730156', '2019-12-06', '2019-12-06', '2020-01-28', NULL),
+	('52839588', '2019-10-05', '2019-10-05', NULL, NULL),
+	('55173543', '2019-12-18', '2019-12-18', NULL, NULL),
+	('55716730', '2019-12-01', '2019-12-01', '2019-12-18', NULL),
+	('59074599', '2019-11-09', '2019-11-09', '2020-02-10', NULL),
+	('63749951', '2019-11-05', '2019-11-05', '2020-03-22', NULL),
+	('6885640', '2019-11-10', '2019-11-10', '2020-02-20', NULL),
+	('72481059', '2019-11-07', '2019-11-07', NULL, NULL),
+	('76349293', '2019-11-07', '2019-11-07', '2019-12-21', NULL),
+	('77357287', '2019-10-18', '2019-10-18', '2019-12-05', NULL),
+	('80992644', '2019-11-27', '2019-11-27', NULL, NULL),
+	('83445318', '2019-10-15', '2019-10-15', NULL, NULL),
+	('90224612', '2019-10-10', '2019-10-10', '2020-01-17', NULL),
+	('98808451', '2019-12-19', '2019-12-19', NULL, NULL);
 /*!40000 ALTER TABLE `ordertracking` ENABLE KEYS */;
 
 -- Dumping structure for table hotel.room
@@ -261,13 +285,13 @@ CREATE TABLE IF NOT EXISTS `room` (
 -- Dumping data for table hotel.room: ~107 rows (approximately)
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
-	('000001', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
+	('000001', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000002', 'HT2-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000003', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000004', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
 	('000005', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000006', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
-	('000007', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
+	('000007', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000008', 'HT1-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000009', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000010', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
@@ -275,7 +299,7 @@ INSERT INTO `room` (`roomNumber`, `roomType`, `roomStatus`, `remarks`) VALUES
 	('000012', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000013', 'HT2-VIP_(Đơn/Đôi)', 'còn_trống', NULL),
 	('000014', 'HT1-Nữ_hoàng_(Đơn/Đôi)', 'còn_trống', NULL),
-	('000015', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'còn_trống', NULL),
+	('000015', 'HT1-Doanh_nhân_(Đơn/Đôi)', 'đã_có_người_thuê', NULL),
 	('000016', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000017', 'HT1-Tiêu_chuẩn_(Đơn)', 'còn_trống', NULL),
 	('000018', 'HT1-Tiêu_chuẩn(Đôi)', 'còn_trống', NULL),
@@ -452,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `timeextension` (
   CONSTRAINT `timeextension_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hotel.timeextension: ~1 rows (approximately)
+-- Dumping data for table hotel.timeextension: ~0 rows (approximately)
 /*!40000 ALTER TABLE `timeextension` DISABLE KEYS */;
 INSERT INTO `timeextension` (`operatingID`, `orderNumber`, `oldExpiryDate`, `newExpiryDate`, `addedMoney`) VALUES
 	(1, '98808451', '2020-01-25', '2020-01-28', 944);
@@ -572,10 +596,10 @@ CREATE TABLE `timeextensionordersview` (
 ) ENGINE=MyISAM;
 
 -- Dumping structure for trigger hotel.insertAddMoneyToOrdersTrigger
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `insertAddMoneyToOrdersTrigger` BEFORE INSERT ON `orders` FOR EACH ROW begin 
-				UPDATE customers set totalAmount=totalAmount+new.totalMoney where customerIDCard=new.customerIDCard ;
+				UPDATE customers set totalAmount=totalAmount+new.totalMoney+IFNULL(NEW.price_1,0)+IFNULL(NEW.price_2,0)+IFNULL(NEW.price_3,0) where customerIDCard=new.customerIDCard ;
 			end//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
@@ -682,7 +706,7 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger hotel.updateOrderStatustoTrackingTrigger
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FOR EACH ROW begin 
 				
@@ -697,7 +721,7 @@ CREATE TRIGGER `updateOrderStatustoTrackingTrigger` BEFORE UPDATE ON `orders` FO
 				if new.orderStatus='Đã_đăng_ký'
 					then
 					update room  set roomStatus='đã_có_người_thuê' where roomNumber=new.roomNumber ;
-				elseif new.orderStatus='_thanh_to'
+				elseif new.orderStatus='Đã_thanh_toán'
 					then 
 					update room  set roomStatus='còn_trống' where roomNumber=new.roomNumber ;
 				end if ;

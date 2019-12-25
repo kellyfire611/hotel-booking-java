@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 //数据库查询功能
 public class Query {
-    static String hotelID = "HOT001";
+    public static String hotelID = "HOT001";
 
     //房间指定型号对应的còn_trống和đã_có_người_thuê间数量
     public static ArrayList<Integer> getNumofRoom(String roomType){
@@ -914,6 +914,38 @@ public class Query {
     //添加新的Loại phòng
     public static void inserRoomType(RoomTypeAndPrice roomTypeAndPrice) {
 
+    }
+    
+    public static ArrayList<Service> getServices(){
+        ArrayList<Service> allServices = new ArrayList<Service>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection =  DataBase.getConnection();
+            if (connection != null) {
+                System.out.println("查询---数据库连接成功");
+            }
+
+            preparedStatement = connection.prepareStatement(GCON.SQL_ALL_WAITERS + " WHERE hotelID='"+hotelID+"'");
+
+            //获取结果数据集
+            resultSet = preparedStatement.executeQuery();
+            //获取数据库中Thông tin xác nhận
+            while (resultSet.next()) {
+                Service waiter = new Service(resultSet.getInt("serviceID"),
+                        resultSet.getString("name"),
+                        resultSet.getFloat("price"),
+                        resultSet.getString("hotelID")
+                );
+                allServices.add(waiter);
+            }
+
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        }
+        return allServices;
     }
 
     //数据库测试

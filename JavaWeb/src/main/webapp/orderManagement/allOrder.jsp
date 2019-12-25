@@ -245,7 +245,7 @@
                 </a>
                 <%} else {%>
                 <a class="icon item">
-                    <label>没有了&nbsp;</label>
+                    <label>Trang cuối&nbsp;</label>
                     <i class="frown icon"></i>
                 </a>
                 <%}%>
